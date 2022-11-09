@@ -11,7 +11,6 @@
 .mtj.tmp/
 
 # Package Files #
-*.jar
 *.war
 *.nar
 *.ear
@@ -21,3 +20,18 @@
 
 # virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
 hs_err_pid*
+/.classpath
+
+# Build folder
+build/
+classes/
+
+# IDE generated files
+.idea
+*.iml
+
+# JARs included in JBoss
+jboss-jsf-api_2.2_spec-2.2.13.redhat-1.jar
+jboss-servlet-api_3.1_spec-1.0.0.Final-redhat-1.jar
+resteasy-client-3.0.24.Final-redhat-1.jar
+resteasy-jaxrs-3.0.24.Final-redhat-1.jar
