@@ -1,0 +1,63 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/common/commonLayout.xhtml">
+	<ui:param name="header" value="District Management" />
+	<ui:param name="headerRendered" value="false" />
+	<ui:define name="content">
+		<div class="pageContent">
+			<h:form id="districtEntryForm">
+				<p:growl globalOnly="true" id="messages" showDetail="true"/>
+				<p:panelGrid columns="4" styleClass="ui-panelgrid-blank ui-fluid">
+					<h:outputText value="#{label['MANAGE_DISTRICT']}" styleClass="title"/>
+					<p:commandButton id="cancel" value="#{label['COMMON_ADDNEW_LINK']}" process="@this" action="#{AddNewDistrictActionBean.createNewDistrict}" icon="pi pi-plus" update="@form" />
+					<p:commandButton id="addBtn" value="#{label['COMMON_SAVE_BTN']}" action="#{AddNewDistrictActionBean.saveDistrict}" icon="pi pi-save" update="@form" />
+					<p:commandButton id="editBtn" value="#{label['COMMON_LIST_BTN']}" action="#{AddNewDistrictActionBean.navManageDistrict}" icon="pi pi-list" update="@form" immediate="true"/>
+				</p:panelGrid>
+				<br/>
+				<p:panel>
+					<p:panelGrid id="panelDept" columns="2" columnClasses="ui-g-12 ui-md-6 ui-lg-4, ui-g-12 ui-md-6 ui-lg-4" 
+						layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+						<h:panelGrid columns="1" styleClass="jsfgrid">
+							<h:outputText for="name" value="#{label['MANAGE_DISTRICT_NAME_LABEL']}" styleClass="input-label mandatory" escape="false" />
+							<p:inputText value="#{AddNewDistrictActionBean.district.name}" id="name" required="true">
+								<f:validateLength maximum="50" />
+							</p:inputText>
+							<p:message display="text" for="name" />
+						</h:panelGrid>
+						
+						<h:panelGrid columns="1" styleClass="jsfgrid">
+							<h:outputText for="shortcode" value="#{label['MANAGE_DISTRICT_SHORTCODE_LABEL']}" styleClass="input-label mandatory" escape="false" />
+							<p:inputText value="#{AddNewDistrictActionBean.district.shortcode}" id="shortcode" required="true">
+								<f:validateLength maximum="50" />
+							</p:inputText>
+							<p:message display="text" for="shortcode" />
+						</h:panelGrid>
+						<h:panelGrid columns="1" styleClass="jsfgrid">
+							<h:outputText styleClass="input-label mandatory" value="#{label['MANAGE_PROVINCE']}" />
+							<p:panelGrid styleClass="ui-panelgrid-blank">
+								<div class="ui-g ui-fluid" id="districtPanel">
+									<div class="ui-inputgroup ui-g-12 ui-lg-12 ui-lg-12">
+										<p:commandButton styleClass="white-button" icon="fa fa-search" actionListener="#{AddNewDistrictActionBean.selectProvince()}" id="selectProvinceDialogLink" process="@this">
+											<p:ajax event="dialogReturn" listener="#{AddNewDistrictActionBean.returnProvince}" update="province" />
+										</p:commandButton>
+										<p:inputText id="province" readonly="#{AddNewDistrictActionBean.district.province == null ? facesContext.currentPhaseId.ordinal eq 6 : true}"
+											 required="true" value="#{AddNewDistrictActionBean.district.province == null ? '' : AddNewDistrictActionBean.district.province.name}" />
+										<p:commandButton styleClass="red-button" icon="fa fa-times" action="#{AddNewDistrictActionBean.district.getProvince(null)}" process="@this" update="province" />
+									</div>
+								</div>
+							</p:panelGrid>
+							<p:message for="province" display="text" />
+						</h:panelGrid>
+						<h:panelGrid columns="1" styleClass="jsfgrid">
+							<h:outputText for="description" value="#{label['MANAGE_DISTRICT_DESCRIPTION_LABEL']}" styleClass="input-label" escape="false" />
+							<p:inputTextarea value="#{AddNewDistrictActionBean.district.description}" id="description" required="true">
+								<f:validateLength maximum="50" />
+							</p:inputTextarea>
+							<p:message display="text" for="description" />
+						</h:panelGrid>						
+					</p:panelGrid>
+				</p:panel>
+				<h:outputText style="color:red;" value="#{label['COMMON_MSG_MANDATORY_LABEL']}"/>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

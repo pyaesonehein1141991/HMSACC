@@ -1,0 +1,54 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/common/commonLayout.xhtml">
+	<ui:param name="header" value="User Management" />
+	<ui:param name="headerRendered" value="false" />
+	<ui:define name="content">
+		<div class="pageContent">
+			<h:form id="userTableForm">
+				<p:growl globalOnly="true" id="messages" showDetail="true"/>
+				<p:panelGrid columns="2" styleClass="ui-panelgrid-blank ui-fluid">
+					<h:outputText value="#{label['MANAGE_USER']}" styleClass="title" />
+					<p:commandButton id="addBtn" value="#{label['COMMON_ADDNEW_LINK']}" action="#{ManageUserActionBean.navAddNewUser}" icon="pi pi-plus" />
+				</p:panelGrid>
+				<br/>
+				<p:dataTable var="user" value="#{ManageUserActionBean.userList}" id="userTable" paginator="true" rows="15" widgetVar="userTable"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10, 15,20,25,30" rowIndexVar="index" rowKey="index" emptyMessage="Nothing found with given criteria" reflow="true" paginatorPosition="bottom">
+					<p:column style="width:3%;" headerText="#{label['COMMON_TABLE_SR_NO']}" styleClass="textOnRight">
+						<h:outputText value="#{index + 1}" />
+					</p:column>
+					<p:column filterBy="#{user.name}" filterMatchMode="contains" headerText="#{label['MANAGE_USER_NAME_LABEL']}">
+						<h:outputText value="#{user.name}" />
+					</p:column>
+					<p:column filterBy="#{user.userCode}" filterMatchMode="contains" headerText="#{label['MANAGE_USER_CODE_LABEL']}">
+						<h:outputText value="#{user.userCode}" />
+					</p:column>
+					<p:column filterBy="#{user.dateOfBirth}" filterMatchMode="contains"   headerText="#{label['MANAGE_USER_DATEOFBIRTH']}">
+						 <f:facet name="filter">
+							<p:inputMask id="dob" mask="99-99-9999" onchange="PF('userTable').filter()">
+									<f:convertDateTime pattern="#{ApplicationSetting.dateFormat}" timeZone="#{ApplicationSetting.timeZone}" />
+							</p:inputMask>
+						</f:facet>
+						<h:outputText value="#{user.dateOfBirth}">
+							<f:convertDateTime pattern="#{ApplicationSetting.dateFormat}" timeZone="#{ApplicationSetting.timeZone}" />
+						</h:outputText>
+					</p:column>
+					<p:column style="width:3%; margin:center" styleClass="textOnCenter">
+						<p:commandButton styleClass="white-button" icon="fa fa-paint-brush" action="#{ManageUserActionBean.prepareUpdateUser(user)}" process="@this" />
+					</p:column>
+					<p:column style="width:3%; max-width: 5px;" styleClass="textOnCenter">
+						<p:commandButton styleClass="red-button" icon="pi pi-times" action="#{ManageUserActionBean.deleteUser(user)}" 
+							oncomplete="PF('userTable').filter();" update=":userTableForm">
+							<p:confirm header="Confirmation"  message="#{label['COMMON_MSG_DELETE_CONFIRM_LABEL']}" icon="pi pi-exclamation-triangle" />
+						</p:commandButton>
+					</p:column>
+				</p:dataTable>
+			</h:form>
+			<!-- Confirmation Dialog -->
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes green-button" icon="pi pi-check" />
+				<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no red-button" icon="pi pi-times" />
+			</p:confirmDialog>
+		</div>
+	</ui:define>
+</ui:composition>

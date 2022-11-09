@@ -1,0 +1,39 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+	<h:form id="headerForm">
+		<table width="100%">
+			<tr style="height: 35px;">
+				<td align="left">
+					<table>
+						<tr>
+							<td>
+								<button type="button" id="sidebarCollapse" class="btn" style="background: #fafafa;">
+									<i class="pi pi-bars" />
+								</button>
+							</td>
+						</tr>
+					</table>
+				</td>
+				<td align="right" width="30%">
+					<div style="margin-top: 20px;">
+					<h:panelGrid columns="5">
+					<h:outputText value="version : 1.0.0|" style="font-family:Century;font-size:14px;" />
+						<h:outputText rendered="#{sessionScope.LoginUser == null ? false : true}" style="font-family:Adobe Garamond Pro;font-size:14px;" value="Welcome : #{sessionScope.LoginUser.name} | "/>
+						<h:commandLink id="currentUser" rendered="#{sessionScope.LoginUser == null ? false : true}" action="#{LoginBean.editUser}">
+							<h:panelGrid columns="2">
+								<h:graphicImage name="images/user.png" style="width:18px;height:15px;" />
+							</h:panelGrid>
+						</h:commandLink>
+						<h:outputLabel rendered="#{sessionScope.LoginUser == null ? false : true}" style="font-family:Adobe Garamond Pro;font-size:14px;" value=" | "/>
+						<h:commandLink id="logOut" action="#{LoginBean.logout}" immediate="true" rendered="#{sessionScope.LoginUser == null ? false : true}">
+							<h:panelGrid columns="2">
+								<h:graphicImage name="images/logout.png" style="width:18px;height:18px;" />
+								<h:outputText value="LogOut" style="font-family:Century;font-size:13px;color:white;" />
+							</h:panelGrid>
+						</h:commandLink>
+						</h:panelGrid>
+					</div>
+				</td>
+			</tr>
+		</table>
+	</h:form>
+</ui:composition>

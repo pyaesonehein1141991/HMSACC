@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<id-config>
+<!-- System -->
+	<class prefix="ISSYS001" name="org.ace.accounting.user.User"/> 
+</id-config>

@@ -1,0 +1,259 @@
+<ui:composition xmlns:ui="http://java.sun.com/jsf/facelets" xmlns="http://www.w3.org/1999/xhtml" xmlns:f="http://java.sun.com/jsf/core" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+    <h:form>
+    <center>
+    <div class="ui-g">
+    	<div class="ui-g-12 ui-md-6 ui-lg-12">
+	    	<font style="font-family:Adobe Garamond Pro;font-size:11px;">Copyright@2022</font>
+	    	<p:commandButton onclick="PF('theamDialog').show()" update="@form" value="themeDialog" style="margin-left: 5px; margin-right: 5px;"/>
+	    	<p:outputLabel value="#{guestPreferences.theme}"/>
+	    </div>
+    </div>
+    </center>
+    </h:form>
+    <p:dialog appendTo="@(body)" header="#{label['THEME_DIALOG_LABEL']}" height="600" hideEffect="explode" resizable="true" showEffect="explode" widgetVar="theamDialog" width="850">  
+        <h:form id="theamForm">
+            <h:panelGroup id="theamPanel">
+                <table align="center" cellpadding="20">
+                       	<tr>
+                       		<td align="center">
+                               <p:commandLink ajax="false" value="afterdark">  
+                                   <f:setPropertyActionListener target="#{guestPreferences.theme}" value="afterdark"/>
+                               </p:commandLink>
+                            </td>
+                            <td align="center">
+                               <p:commandLink ajax="false" value="afternoon">  
+                                   <f:setPropertyActionListener target="#{guestPreferences.theme}" value="afternoon"/>
+                               </p:commandLink>
+                            </td>
+                            <td align="center">
+                               <p:commandLink ajax="false" value="afterwork">  
+                                   <f:setPropertyActionListener target="#{guestPreferences.theme}" value="afterwork"/>
+                               </p:commandLink>
+                            </td>
+                            <td align="center">
+                               <p:commandLink ajax="false" value="blitzer">  
+                                   <f:setPropertyActionListener target="#{guestPreferences.theme}" value="blitzer"/>
+                               </p:commandLink>
+                            </td>
+                            <td align="center">
+                               <p:commandLink ajax="false" value="bluesky">  
+                                   <f:setPropertyActionListener target="#{guestPreferences.theme}" value="bluesky"/>
+                               </p:commandLink>
+							</td>
+                       	</tr>
+                       	<tr>
+                       		<td align="center">
+                               <p:commandLink ajax="false" value="cruze">  
+                                   <f:setPropertyActionListener target="#{guestPreferences.theme}" value="cruze"/>
+                               </p:commandLink>
+                            </td>
+                            <td align="center">
+                               <p:commandLink ajax="false" value="cupertino">  
+                                   <f:setPropertyActionListener target="#{guestPreferences.theme}" value="cupertino"/>
+                               </p:commandLink>
+                            </td>
+                            <td align="center">
+                               <p:commandLink ajax="false" value="dot-luv">  
+                                   <f:setPropertyActionListener target="#{guestPreferences.theme}" value="dot-luv"/>
+                               </p:commandLink>
+                            </td>
+                            <td align="center">
+                               <p:commandLink ajax="false" value="excite-bike">  
+                                   <f:setPropertyActionListener target="#{guestPreferences.theme}" value="excite-bike"/>
+                               </p:commandLink>
+                            </td>
+                            <td align="center">
+                               <p:commandLink ajax="false" value="glass-x">  
+                                   <f:setPropertyActionListener target="#{guestPreferences.theme}" value="glass-x"/>
+                               </p:commandLink>
+							</td>
+                       	</tr>
+                       	<tr>
+                       		<td align="center">
+                               <p:commandLink ajax="false" value="home">  
+                                   <f:setPropertyActionListener target="#{guestPreferences.theme}" value="home"/>
+                               </p:commandLink>
+                            </td>
+                            <td align="center">
+                               <p:commandLink ajax="false" value="hot-sneaks">  
+                                   <f:setPropertyActionListener target="#{guestPreferences.theme}" value="hot-sneaks"/>
+                               </p:commandLink>
+                            </td>
+                            <td align="center">
+                               <p:commandLink ajax="false" value="le-frog">  
+                                   <f:setPropertyActionListener target="#{guestPreferences.theme}" value="le-frog"/>
+                               </p:commandLink>
+                            </td>
+                            <td align="center">
+                               <p:commandLink ajax="false" value="midnight">  
+                                   <f:setPropertyActionListener target="#{guestPreferences.theme}" value="midnight"/>
+                               </p:commandLink>
+                            </td>
+                            <td align="center">
+                               <p:commandLink ajax="false" value="mint-choc">  
+                                   <f:setPropertyActionListener target="#{guestPreferences.theme}" value="mint-choc"/>
+                               </p:commandLink>
+							</td>
+                       	</tr>
+                        <tr>
+                            <td align="center">
+                                <p:commandLink ajax="false" value="aristo">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="aristo"/>
+                                </p:commandLink>
+                            </td>
+                            <td align="center">
+                                <p:commandLink ajax="false" value="black-tie">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="black-tie"/>
+                                </p:commandLink>
+                            </td>
+                            <td align="center">
+                                <p:commandLink ajax="false" value="casablanca">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="casablanca"/>
+                                </p:commandLink>
+                            </td>
+                            <td align="center">
+                                <p:commandLink ajax="false" value="dark-hive">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="dark-hive"/>
+                                </p:commandLink>
+                            </td>
+                            <td align="center">
+                                <p:commandLink ajax="false" value="eggplant">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="eggplant"/>
+                                </p:commandLink>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                <p:commandLink ajax="false" value="flick">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="flick"/>
+                                </p:commandLink>
+                            </td>
+                            <td align="center">
+                                <p:commandLink ajax="false" value="humanity">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="humanity"/>
+                                </p:commandLink>
+                            </td>
+                            <td align="center">
+                                <p:commandLink ajax="false" value="pepper-grinder">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="pepper-grinder"/>
+                                </p:commandLink>
+                            </td>
+                            <td align="center">
+                                <p:commandLink ajax="false" value="redmond">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="redmond"/>
+                                </p:commandLink>
+                            </td>
+                            <td align="center">
+                                <p:commandLink ajax="false" value="rocket">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="rocket"/>
+                                </p:commandLink>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                <p:commandLink ajax="false" value="smoothness">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="smoothness"/>
+                                </p:commandLink>
+                            </td>
+                            <td align="center">
+                                <p:commandLink ajax="false" value="south-street">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="south-street"/>
+                                </p:commandLink>
+                            </td>
+                            <td align="center">
+                                <p:commandLink ajax="false" value="afterdark">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="sunny"/>
+                                </p:commandLink>
+                            </td>
+                            <td align="center">
+                                <p:commandLink ajax="false" value="swanky-purse">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="swanky-purse"/>
+                                </p:commandLink>
+                            </td>
+                            <td align="center">
+                                <p:commandLink ajax="false" value="trontastic">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="trontastic"/>
+                                </p:commandLink>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td align="center">
+                                <p:commandLink ajax="false" value="ui-darkness">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="ui-darkness"/>
+                                </p:commandLink>
+                            </td>
+                            <td align="center">
+                                <p:commandLink ajax="false" value="ui-lightness">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="ui-lightness"/>
+                                </p:commandLink>
+                            </td>
+                            <td align="center">
+                                <p:commandLink ajax="false" value="vader">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="vader"/>
+                                </p:commandLink>
+                            </td>
+                            <td align="center">
+                                <p:commandLink ajax="false" value="overcast">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="overcast"/>
+                                </p:commandLink>
+                            </td>
+                        	<td align="center">
+                                <p:commandLink ajax="false" value="start">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="start"/>
+                                </p:commandLink>
+                        	</td>
+                        </tr>
+                        <tr>
+                        	<td align="center">
+                                <p:commandLink ajax="false" value="sam">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="sam"/>
+                                </p:commandLink>
+                        	</td>
+                        	<td align="center">
+                                <p:commandLink ajax="false" value="nova-light">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="nova-light"/>
+                                </p:commandLink>
+                        	</td>
+                        	<td align="center">
+                                <p:commandLink ajax="false" value="nova-dark">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="nova-dark"/>
+                                </p:commandLink>
+                        	</td>
+                        	<td align="center">
+                                <p:commandLink ajax="false" value="nova-colored">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="nova-colored"/>
+                                </p:commandLink>
+                        	</td>
+                        	<td align="center">
+                                <p:commandLink ajax="false" value="luna-blue">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="luna-blue"/>
+                                </p:commandLink>
+                        	</td>
+                        </tr>
+                        <tr>
+                        	<td align="center">
+                                <p:commandLink ajax="false" value="luna-amber">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="luna-amber"/>
+                                </p:commandLink>
+                        	</td>
+                        	<td align="center">
+                                <p:commandLink ajax="false" value="luna-green">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="luna-green"/>
+                                </p:commandLink>
+                        	</td>
+                        	<td align="center">
+                                <p:commandLink ajax="false" value="luna-pink">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="luna-pink"/>
+                                </p:commandLink>
+                        	</td>
+                        	<td align="center">
+                                <p:commandLink ajax="false" value="omega">  
+                                    <f:setPropertyActionListener target="#{guestPreferences.theme}" value="omega"/>
+                                </p:commandLink>
+                        	</td>
+                        </tr>
+                </table>
+            </h:panelGroup>
+        </h:form>
+    </p:dialog>    
+</ui:composition>

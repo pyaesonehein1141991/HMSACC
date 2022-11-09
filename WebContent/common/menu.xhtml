@@ -1,0 +1,19 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<style type="text/css">
+			.ui-menubar, .ui-menu-child, .ui-menu {
+				background: #00aab4 !important;
+				border: 1px solid #00aab5 !important;
+			}
+			.ui-menu .ui-menuitem-text {
+				color: white;
+			}
+			
+			.ui-menu .ui-state-hover {
+				background: #75807a !important;
+			}
+	</style>
+	<h:form id="menuForm">
+		<p:menubar model="#{MenuActionBean.model}" />
+	</h:form>
+</ui:composition>

@@ -1,0 +1,310 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/common/commonLayout.xhtml">
+	<ui:param name="header" value="Patient Management" />
+	<ui:param name="headerRendered" value="true" />
+	<ui:define name="content">
+
+		<h:outputText value="#{label['MANAGE_PATIENT_ADDNEW_LABEL']}"
+			styleClass="title" rendered="#{ManagePatientActionBean.createNew}" />
+
+		<h:form id="patientValidateForm">
+			<p:panel>
+				<p:panelGrid columns="2"
+					columnClasses="ui-grid-col-6,ui-grid-col-6" layout="grid"
+					styleClass="ui-panelgrid-blank ui-fluid">
+
+					<p:panelGrid columns="2"
+						columnClasses="ui-grid-col-3,ui-grid-col-6" layout="grid"
+						styleClass="ui-panelgrid-blank ui-fluid">
+
+						<h:outputText value="" />
+						<p:message display="text" for="valid_pati_name" />
+						<h:outputText for="valid_pati_name"
+							value="#{label['MANAGE_PATIENT_NAME']}"
+							styleClass="input-label mandatory" escape="false" />
+						<p:inputText value="#{ManagePatientActionBean.valiBean.patiName}"
+							id="valid_pati_name" required="true">
+							<f:validateLength maximum="50" />
+						</p:inputText>
+
+						<h:outputText value="" />
+						<p:message display="text" for="valid_gender" />
+						<h:outputText for="valid_gender"
+							value="#{label['MANAGE_PATIENT_GENDER']}"
+							styleClass="input-label mandatory" escape="false" />
+						<p:selectOneRadio id="valid_gender"
+							value="#{ManagePatientActionBean.valiBean.gender}" required="true">
+							<f:selectItem itemLabel="Male" itemValue="1" />
+							<f:selectItem itemLabel="Female" itemValue="2" />
+							<f:selectItem itemLabel="Other" itemValue="3" />
+						</p:selectOneRadio>
+
+					</p:panelGrid>
+
+					<p:panelGrid columns="2"
+						columnClasses="ui-grid-col-3,ui-grid-col-6" layout="grid"
+						styleClass="ui-panelgrid-blank ui-fluid">
+
+						<h:outputText value="" />
+						<p:message display="text" for="valid_phone" />
+						<h:outputText for="name9"
+							value="#{label['MANAGE_PATIENT_PHONENO']}"
+							styleClass="input-label mandatory" />
+						<p:inputText
+							value="#{ManagePatientActionBean.valiBean.patiPhone}"
+							id="valid_phone" required="true">
+							<f:validateLength maximum="50" />
+						</p:inputText>
+
+						<h:outputText value="" />
+						<p:message display="text" for="valid_dob" />
+						<h:outputText for="dob" styleClass="input-label"
+							value="#{label['MANAGE_PATIENT_DOB']}" escape="false" />
+						<p:inputMask id="valid_dob" mask="99-99-9999"
+							value="#{ManagePatientActionBean.valiBean.dob}">
+							<f:convertDateTime pattern="#{ApplicationSetting.dateFormat}"
+								timeZone="#{ApplicationSetting.timeZone}" />
+						</p:inputMask>
+					</p:panelGrid>
+				</p:panelGrid>
+				<p:panelGrid>
+				<p:commandButton id="validateBtn"
+					value="#{label['COMMON_VALIDATE_BTN']}"
+					action="#{ManagePatientActionBean.validate}" icon="pi pi-user-plus"
+					update="@form :patientEntryForm"
+					style="margin-left:20px; margin-top:5px;"
+					oncomplete="PF('userTable').clearFilters()" />
+			</p:panelGrid>
+			</p:panel>
+		</h:form>
+		<h:form id="patientEntryForm">
+			<p:panel>
+				<p:panelGrid columns="2"
+					columnClasses="ui-grid-col-6,ui-grid-col-6" layout="grid"
+					styleClass="ui-panelgrid-blank ui-fluid">
+
+					<p:panelGrid columns="2"
+						columnClasses="ui-grid-col-3,ui-grid-col-6" layout="grid"
+						styleClass="ui-panelgrid-blank ui-fluid">
+
+						<h:outputText value="" />
+						<p:message display="text" for="out_pati_code" />
+						<h:outputText for="name2"
+							value="#{label['MANAGE_PATIENT_OUTPATIENT_CODE']}"
+							styleClass="input-label" escape="false" />
+						<p:inputText
+							value="#{ManagePatientActionBean.patient.outPatiCode}"
+							id="out_pati_code" disabled="true">
+							<f:validateLength maximum="50" />
+						</p:inputText>
+
+						<h:outputText value="" />
+						<p:message display="text" for="pati_name" />
+						<h:outputText for="valid_pati_name"
+							value="#{label['MANAGE_PATIENT_NAME']}"
+							styleClass="input-label mandatory" escape="false" />
+						<p:inputText value="#{ManagePatientActionBean.patient.patiName}"
+							id="pati_name" required="true">
+							<f:validateLength maximum="50" />
+						</p:inputText>
+
+						<h:outputText value="" />
+						<p:message display="text" for="pati_phone" />
+						<h:outputText for="name3"
+							value="#{label['MANAGE_PATIENT_PHONENO']}"
+							styleClass="input-label mandatory" escape="false" />
+						<p:inputText
+							value="#{ManagePatientActionBean.patient.patiPhoneNo}"
+							id="pati_phone" required="true">
+							<f:validateLength maximum="50" />
+						</p:inputText>
+
+						<h:outputText value="" />
+						<p:message display="text" for="pati_gender" />
+						<h:outputText for="valid_gender"
+							value="#{label['MANAGE_PATIENT_GENDER']}"
+							styleClass="input-label mandatory" escape="false" />
+						<p:selectOneRadio id="pati_gender"
+							value="#{ManagePatientActionBean.patient.gender}" required="true">
+							<f:selectItem itemLabel="Male" itemValue="1" />
+							<f:selectItem itemLabel="Female" itemValue="2" />
+							<f:selectItem itemLabel="Other" itemValue="3" />
+						</p:selectOneRadio>
+
+						<h:outputText value="" />
+						<p:message display="text" for="nrc" />
+						<h:outputText for="name5" value="#{label['MANAGE_PATIENT_NRC']}"
+							styleClass="input-label mandatory" escape="false" />
+						<p:inputText value="#{ManagePatientActionBean.patient.nrcNo}"
+							id="nrc" required="true">
+							<f:validateLength maximum="50" />
+						</p:inputText>
+
+					</p:panelGrid>
+
+					<p:panelGrid columns="2"
+						columnClasses="ui-grid-col-3,ui-grid-col-6" layout="grid"
+						styleClass="ui-panelgrid-blank ui-fluid">
+
+						<h:outputText value="" />
+						<p:message display="text" for="in_pati_code" />
+						<h:outputText for="in_pati_code"
+							value="#{label['MANAGE_PATIENT_INPATIENT_CODE']}"
+							styleClass="input-label" />
+						<p:inputText value="#{ManagePatientActionBean.patient.inPatiCode}"
+							id="in_pati_code" disabled="true">
+						</p:inputText>
+
+						<h:outputText value="" />
+						<p:message display="text" for="pati_type" />
+						<h:outputText for="pati_type"
+							value="#{label['MANAGE_PATIENT_PATIENT_TYPE']}"
+							styleClass="input-label mandatory" />
+						<p:selectManyCheckbox id="pati_type"
+							value="#{ManagePatientActionBean.selectedPatiType}" layout="grid"
+							columns="3" styleClass="grid-checkbox">
+							<f:selectItems value="#{ManagePatientActionBean.patiTypeList}"
+								var="patiType" itemLabel="#{patiType}" itemValue="#{patiType}" />
+						</p:selectManyCheckbox>
+
+						<h:outputText value="" />
+						<p:message display="text" for="pati_dob" />
+						<h:outputText for="pati_dob" styleClass="input-label mandatory"
+							value="#{label['MANAGE_PATIENT_DOB']}" escape="false" />
+						<p:inputMask id="pati_dob" mask="99-99-9999"
+							value="#{ManagePatientActionBean.patient.patiDob}">
+							<f:convertDateTime pattern="#{ApplicationSetting.dateFormat}"
+								timeZone="#{ApplicationSetting.timeZone}" />
+						</p:inputMask>
+
+						<h:outputText value="" />
+						<p:message display="text" for="age" />
+						<h:outputText for="name12" value="#{label['MANAGE_PATIENT_AGE']}"
+							styleClass="input-label" />
+						<p:inputText value="#{ManagePatientActionBean.patient.patiAge}"
+							id="age">
+							<f:validateLength maximum="50" />
+						</p:inputText>
+
+					</p:panelGrid>
+				</p:panelGrid>
+
+				<p:panelGrid columns="2"
+					columnClasses="ui-grid-col-6,ui-grid-col-6" layout="grid"
+					styleClass="ui-panelgrid-blank ui-fluid">
+
+					<p:panelGrid columns="2"
+						columnClasses="ui-grid-col-3,ui-grid-col-6" layout="grid"
+						styleClass="ui-panelgrid-blank ui-fluid">
+
+						<h:outputText value="" />
+						<p:message display="text" for="guar_name" />
+						<h:outputText for="guar_name"
+							value="#{label['MANAGE_PATIENT_GUARDIAN_NAME']}"
+							styleClass="input-label mandatory" escape="false" />
+						<p:inputText value="#{ManagePatientActionBean.patient.guarName}"
+							id="guar_name" required="true">
+							<f:validateLength maximum="50" />
+						</p:inputText>
+
+						<h:outputText value="" />
+						<p:message display="text" for="guar_phone" />
+						<h:outputText for="guar_phone"
+							value="#{label['MANAGE_PATIENT_PHONENO']}"
+							styleClass="input-label mandatory" escape="false" />
+						<p:inputText
+							value="#{ManagePatientActionBean.patient.contPhoneNo}"
+							id="guar_phone" required="true">
+							<f:validateLength maximum="50" />
+						</p:inputText>
+
+						<h:outputText value="" />
+						<p:message display="text" for="address" />
+						<h:outputText for="address"
+							value="#{label['MANAGE_PATIENT_ADDRESS']}"
+							styleClass="input-label" escape="false" />
+						<p:inputTextarea rows="10" cols="50" value="#{ManagePatientActionBean.patient.address}"
+							id="address">
+							<f:validateLength maximum="225" />
+						</p:inputTextarea>
+
+						<h:outputText value="" />
+						<p:message display="text" for="remark" />
+						<h:outputText for="remark"
+							value="#{label['MANAGE_PATIENT_REMARK']}"
+							styleClass="input-label" escape="false" />
+						<p:inputTextarea rows="10" cols="50" value="#{ManagePatientActionBean.patient.remark}"
+							id="remark">
+							<f:validateLength maximum="225" />
+						</p:inputTextarea>
+
+					</p:panelGrid>
+
+					<p:panelGrid columns="2"
+						columnClasses="ui-grid-col-3,ui-grid-col-6" layout="grid"
+						styleClass="ui-panelgrid-blank ui-fluid">
+
+
+						<h:outputText value="" />
+						<p:message display="text" for="relation" />
+						<h:outputText for="relation"
+							value="#{label['MANAGE_PATIENT_RELATIONSHIP']}"
+							styleClass="input-label mandatory" />
+						<p:selectOneMenu id="relation" converter="omnifaces.SelectItemsIndexConverter"
+							value="#{ManagePatientActionBean.patient.relation}">
+							<f:selectItem itemLabel="#{label['COMMON_SELECT_BTN']}"
+							noSelectionOption="true" />
+							<f:selectItems
+								value="#{ManagePatientActionBean.relationshipList}"
+								var="relation" itemLabel="#{relation.name}" itemValue="#{relation}"/>
+						</p:selectOneMenu>
+
+						<h:outputText value="" />
+						<p:message display="text" for="town" />
+						<h:outputText for="town"
+							value="#{label['MANAGE_PATIENT_TOWNSHIP']}"
+							styleClass="input-label" />
+						<p:inputText value="#{ManagePatientActionBean.patient.township}"
+							id="town">
+							<f:validateLength maximum="50" />
+						</p:inputText>
+
+						<h:outputText value="" />
+						<p:message display="text" for="full_address" />
+						<h:outputText for="full_address"
+							value="#{label['MANAGE_PATIENT_ADDRESS']}"
+							styleClass="input-label" />
+						<p:inputTextarea rows="10" cols="50" id="full_address" disabled="true">
+							<f:validateLength maximum="50" />
+						</p:inputTextarea>
+					</p:panelGrid>
+				</p:panelGrid>
+			</p:panel>
+			<p:panelGrid>
+				<p:commandButton id="addBtn"
+				value="#{label['COMMON_ADDNEW_BTN']}"
+					action="#{ManagePatientActionBean.addNewPatient}"
+					icon="pi pi-user-plus"
+					 update="@form"
+					style="margin-left:20px; margin-top:5px;"
+					/>
+				<p:commandButton id="editBtn" value="#{label['COMMON_UPDATE_BTN']}"
+					action="#{ManagePatientActionBean.updatePatient}"
+					rendered="#{!ManagePatientActionBean.createNew}"
+					icon="pi pi-user-edit"
+					style="margin-left:20px; margin-top:5px;"
+					 />
+				<p:commandButton id="cancel" value="#{label['COMMON_RESET_BTN']}"
+					process="@this"
+					action="#{ManagePatientActionBean.createNewPatient}"
+					icon="pi pi-refresh" />
+			</p:panelGrid>
+		</h:form>
+
+
+	</ui:define>
+</ui:composition>

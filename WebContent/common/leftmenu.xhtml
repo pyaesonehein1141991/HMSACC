@@ -1,0 +1,21 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+	<style type="text/css">
+			.ui-menubar, .ui-menu-child, .ui-menu {
+				background: #3d2a62 !important;
+				border: 1px solid #00aab5 !important;
+			}
+			.ui-menu .ui-menuitem-text {
+				color: white;
+			}
+			
+			.ui-menu .ui-state-hover {
+				background: #75807a !important;
+			}
+	</style>
+	<h:form id="leftMenuForm">
+		<h:graphicImage style="width:100%;height:60px;margin-top:-8px;" value="#{requestContext}/#{label['LOGO_LOGIN']}"/>
+		<p:menu overlay="false" trigger="menu" at="right bottom" my="left bottom" collision="flip"  model="#{MenuActionBean.model}"/>
+<!-- 		<p:commandButton id="menu" value="Menus"/> -->
+	</h:form>
+</ui:composition>

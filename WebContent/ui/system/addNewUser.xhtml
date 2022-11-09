@@ -1,0 +1,113 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/common/commonLayout.xhtml">
+	<ui:param name="header" value="User Management" />
+	<ui:param name="headerRendered" value="false" />
+	<ui:define name="content">
+		<div class="pageContent">
+			<h:form id="userEntryForm">
+				<p:growl globalOnly="true" id="messages" showDetail="true"/>
+				<p:panelGrid columns="4" styleClass="ui-panelgrid-blank ui-fluid">
+					<h:outputText value="#{label['MANAGE_USER']}" styleClass="title"/>
+					<p:commandButton id="cancel" value="#{label['COMMON_ADDNEW_LINK']}" process="@this" action="#{AddNewUserActionBean.createNewUser}" icon="pi pi-plus" update="@form" />
+					<p:commandButton id="addBtn" value="#{label['COMMON_SAVE_BTN']}" action="#{AddNewUserActionBean.saveUser}" icon="pi pi-save" update="@form" />
+					<p:commandButton id="editBtn" value="#{label['COMMON_LIST_BTN']}" action="#{AddNewUserActionBean.navManageUser}" icon="pi pi-list" update="@form" immediate="true"/>
+				</p:panelGrid>
+				<br/>
+				<p:panel>
+					<p:panelGrid id="panelDept" columns="3" columnClasses="ui-g-12 ui-md-6 ui-lg-4, ui-g-12 ui-md-6 ui-lg-4, ui-g-12 ui-md-6 ui-lg-4" 
+						layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+						<h:panelGrid columns="1" styleClass="jsfgrid">
+							<h:outputText for="name" value="#{label['MANAGE_USER_NAME_LABEL']}" styleClass="input-label mandatory" escape="false" />
+							<p:inputText value="#{AddNewUserActionBean.user.name}" id="name" required="true">
+								<f:validateLength maximum="50" />
+							</p:inputText>
+							<p:message display="text" for="name" />
+						</h:panelGrid>
+						
+						<h:panelGrid columns="1" styleClass="jsfgrid">
+							<h:outputText for="dob" styleClass="input-label mandatory" value="#{label['MANAGE_USER_DATEOFBIRTH']}" escape="false" />
+							<p:inputMask id="dob" mask="99-99-9999" value="#{AddNewUserActionBean.user.dateOfBirth}" required="true">
+								<f:convertDateTime pattern="#{ApplicationSetting.dateFormat}" timeZone="#{ApplicationSetting.timeZone}" />
+							</p:inputMask>
+							<p:message display="text" for="dob" />
+						</h:panelGrid>
+						
+						<h:panelGrid columns="1" styleClass="jsfgrid">
+							<h:outputText for="code" value="#{label['MANAGE_USER_CODE_LABEL']}" styleClass="input-label mandatory" escape="false" />
+							<p:inputText value="#{AddNewUserActionBean.user.userCode}" id="code" required="true">
+								<f:validateLength maximum="50" />
+							</p:inputText>
+							<p:message display="text" for="code" />
+						</h:panelGrid>
+						
+						<h:panelGrid columns="1" styleClass="jsfgrid">
+							<h:outputText for="email" value=" #{label['MANAGE_USER_EMAIL']}" styleClass="input-label mandatory" escape="false" />
+							<p:inputText value="#{AddNewUserActionBean.user.contactInfo.email}" id="email" required="true">
+								<f:validateLength maximum="50" />
+							</p:inputText>
+							<p:message display="text" for="email" />
+						</h:panelGrid>
+						
+						<h:panelGrid columns="1" styleClass="jsfgrid">
+							<h:outputText for="pass" value="#{label['MANAGE_USER_PASSWORD_LABEL']}" styleClass="input-label mandatory" escape="false" />
+							<p:password value="#{AddNewUserActionBean.user.password}" id="pass" redisplay="true" required="true">
+								<f:validateLength maximum="50" />
+							</p:password>
+							<p:message display="text" for="pass" />
+						</h:panelGrid>
+						
+						<h:panelGrid columns="1" styleClass="jsfgrid">
+							<h:outputText for="phone" value="#{label['MANAGE_USER_PHONE']}" styleClass="input-label" />
+							<p:inputText value="#{AddNewUserActionBean.user.contactInfo.phone}" id="phone">
+								<f:validateLength maximum="50" />
+							</p:inputText>
+							<p:message display="text" for="phone" />
+						</h:panelGrid>
+						
+						<h:panelGrid columns="1" styleClass="jsfgrid">
+							<h:outputText for="mobile" value="#{label['MANAGE_USER_MOBILE']}" styleClass="input-label" />
+							<p:inputText value="#{AddNewUserActionBean.user.contactInfo.mobile}" id="mobile">
+								<f:validateLength maximum="50" />
+							</p:inputText>
+							<p:message display="text" for="mobile" />
+						</h:panelGrid>
+						
+						<h:panelGrid columns="1" styleClass="jsfgrid">
+							<h:outputText for="admin" value="#{label['MANAGE_USER_ISADMIN_LABEL']}" styleClass="input-label" />
+							<p:selectBooleanButton id="admin" value="#{AddNewUserActionBean.user.admin}" onLabel="Yes" offLabel="No" style="width:20%">
+								<p:ajax process="@this" update="@this" />
+							</p:selectBooleanButton>
+							<p:message display="text" for="admin" />
+						</h:panelGrid>
+						
+						<h:panelGrid columns="1" styleClass="jsfgrid">
+							<h:outputText for="fax" styleClass="input-label" value="#{label['MANAGE_USER_FAX']}" />
+							<p:inputText value="#{AddNewUserActionBean.user.contactInfo.fax}" id="fax">
+								<f:validateLength maximum="50" />
+							</p:inputText>
+							<p:message display="text" for="fax" />
+						</h:panelGrid>
+						
+						<h:panelGrid columns="1" styleClass="jsfgrid">
+							<h:outputText styleClass="input-label mandatory" value="#{label['MANAGE_USER_ROLE']}" />
+							<p:panelGrid styleClass="ui-panelgrid-blank">
+								<div class="ui-g ui-fluid" id="rolePanel">
+									<div class="ui-inputgroup ui-g-12 ui-lg-12 ui-lg-12">
+										<p:commandButton styleClass="white-button" icon="fa fa-search" actionListener="#{AddNewUserActionBean.selectRole()}" id="selectRoleDialogLink" process="@this">
+											<p:ajax event="dialogReturn" listener="#{AddNewUserActionBean.returnRole}" update="role" />
+										</p:commandButton>
+										<p:inputText id="role" readonly="#{AddNewUserActionBean.user.role == null ? facesContext.currentPhaseId.ordinal eq 6 : true}"
+											 required="true" value="#{AddNewUserActionBean.user.role == null ? '' : AddNewUserActionBean.user.role.name}" />
+										<p:commandButton styleClass="red-button" icon="fa fa-times" action="#{AddNewUserActionBean.user.setRole(null)}" process="@this" update="role" />
+									</div>
+								</div>
+							</p:panelGrid>
+							<p:message for="role" display="text" />
+						</h:panelGrid>
+					</p:panelGrid>
+				</p:panel>
+				<h:outputText style="color:red;" value="#{label['COMMON_MSG_MANDATORY_LABEL']}"/>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

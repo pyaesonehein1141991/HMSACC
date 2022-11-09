@@ -1,0 +1,45 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/common/commonLayout.xhtml">
+	<ui:param name="header" value="Relation Management" />
+	<ui:param name="headerRendered" value="false" />
+	<ui:define name="content">
+	<div class="pageContent">
+		<h:form id="relationTableForm">
+			<p:growl globalOnly="true" id="messages" showDetail="true"/>
+			<p:panelGrid columns="2" styleClass="ui-panelgrid-blank ui-fluid">
+				<h:outputText value="#{label['MANAGE_RELATION']}" styleClass="title" />
+				<p:commandButton id="addBtn" value="#{label['COMMON_ADDNEW_LINK']}" action="#{ManageRelationActionBean.navAddNewRelation}" icon="pi pi-plus" />
+			</p:panelGrid>
+			<br/>	
+			<p:dataTable var="relation" value="#{ManageRelationActionBean.relationList}" id="relationTable" paginator="true" rows="15" widgetVar="relationTable"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10, 15,20,25,30" rowIndexVar="index" rowKey="index" emptyMessage="Nothing found with given criteria" reflow="true" paginatorPosition="bottom">
+				<p:column style="width:5%;" headerText="#{label['COMMON_TABLE_SR_NO']}">
+					<h:outputText value="#{index + 1}" />
+				</p:column>
+				<p:column filterBy="#{relation.name}" filterMatchMode="contains" headerText="#{label['MANAGE_RELATION_NAME_LABEL']}">
+					<h:outputText value="#{relation.name}" />
+				</p:column>
+				<p:column filterBy="#{relation.description}" filterMatchMode="contains" headerText="#{label['MANAGE_RELATION_DESCRIPTION_LABEL']}">
+					<h:outputText value="#{relation.description}" />
+				</p:column>
+				<p:column style="width:5%; margin:center">
+					<p:commandButton styleClass="green-button" icon="fa fa-paint-brush" action="#{ManageRelationActionBean.prepareUpdateRelation(relation)}" process="@this"/>
+				</p:column>
+				<p:column style="width:5%;">
+					<p:commandButton styleClass="red-button" icon="pi pi-times" action="#{ManageRelationActionBean.deleteRelation(relation)}" 
+						oncomplete="PF('relationTable').filter();" update=":relationTableForm">
+						<p:confirm header="Confirmation"  message="#{label['COMMON_MSG_DELETE_CONFIRM_LABEL']}" icon="pi pi-exclamation-triangle" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</div>
+		<!-- Confirmation Dialog -->
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+		<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes green-button" icon="pi pi-check" />
+		<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no red-button" icon="pi pi-times" />
+	</p:confirmDialog>
+		
+	</ui:define>
+</ui:composition>

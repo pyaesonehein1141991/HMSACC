@@ -1,0 +1,85 @@
+<!DOCTYPE html [
+    <!ENTITY nbsp "&#160;">
+    <!ENTITY bull "&#8226;">
+    <!ENTITY copy "&#169;">
+]>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core" xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui" lang="#{LanguageActionBean.locale}">
+<h:head>
+	<link href="#{request.contextPath}/resources/css/theme-home.css" rel="stylesheet" type="text/css"/>
+	<link href="#{request.contextPath}/resources/css/app.css" rel="stylesheet" type="text/css"/>
+	<h:outputStylesheet name="primeicons/primeicons.css" library="primefaces" />
+	<!-- Bootstrap CSS CDN -->
+	<h:outputStylesheet name="/css/bootstrap.min.css" />
+	<h:outputStylesheet name="/css/sidebar.css" />
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<style type="text/css" xml:space="preserve">
+		table.noneBorderGrid tr {
+			border: none;
+		}
+		table.noneBorderGrid td {
+			border: none;
+		}
+		.ui-state-error {
+			border: 1px solid #8F8F8F;
+		}
+		.rowWarnning {
+			background-color: #FF9933 !important;
+			background-image: none !important;
+			color: #000000 !important;
+		}
+		div.ui-message-error {
+			margin-left: 0px;
+			width: 250px;
+		}
+		#roleEntryForm:resourceItem tr td ul {
+			height: 500px;
+		}
+		#userEntryForm:messageUserName {
+			margin-left: 0px;
+			width: 300px;
+		}
+		th div.ui-dt-c {
+			overflow: hidden;
+			padding: 4px 10px;
+			text-align: center;
+		}
+		#topPanel {
+			z-index: 2 !important;
+			padding: 0 !important;
+		}
+		#topPanel div {
+			overflow: visible;
+		}
+	</style>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+	<title>Hospital Management System</title>
+</h:head>
+<h:body>
+	<div id="statusIndicator" style="z-index: 100; position: fixed; margin-top: 50px; margin-left: 650px;">
+		<p:ajaxStatus style="width:16px;height:16px;">
+			<f:facet name="start">
+				<h:outputText value="Loading..."/>
+				<h:graphicImage value="/images/loading.gif"/>
+			</f:facet>
+			<f:facet name="complete">
+				<h:outputText value=""/>
+			</f:facet>
+		</p:ajaxStatus>
+	</div>
+	<p:layout fullPage="true" styleClass="top" widgetVar="layoutV" id="layout">
+		<p:layoutUnit id="north" position="north"  resizable="true" size="85" gutter="0" rendered="#{sessionScope.LoginUser == null ? false : true}">
+			<ui:include src="/common/header.xhtml"/>
+		</p:layoutUnit>
+		<p:layoutUnit id="left" position="west" size="250" resizable="true" gutter="0"  collapsible="true" rendered="#{sessionScope.LoginUser == null ? false : true}" >
+			<ui:include src="/common/leftmenu.xhtml"/>
+		</p:layoutUnit>
+		<p:layoutUnit id="centerPanel" position="center"  gutter="0" resizable="false" >
+			<ui:insert name="content"/>
+		</p:layoutUnit>
+		<p:layoutUnit position="south" resizable="true" rendered="#{sessionScope.LoginUser == null  ? false : true}" gutter="0"> 
+			<ui:include src="/common/footer.xhtml" /> 
+		</p:layoutUnit>
+	</p:layout>
+</h:body>
+</html>

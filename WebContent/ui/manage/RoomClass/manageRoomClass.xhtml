@@ -1,0 +1,106 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/common/commonLayout.xhtml">
+	<ui:param name="header" value="Room Class Management" />
+	<ui:param name="headerRendered" value="true" />
+	<ui:define name="content">
+	<h:form id="roomClassEntryForm">
+		<p:panel>
+			<p:growl globalOnly="true" id="messages" showDetail="true"/>
+			
+					<p:panelGrid id="panelRoomClass" columns="3" columnClasses="ui-g-12 ui-md-6 ui-lg-4, ui-g-12 ui-md-6 ui-lg-4, ui-g-12 ui-md-6 ui-lg-4" 
+					layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+					
+						<h:panelGrid columns="1" styleClass="jsfgrid">
+						<h:outputText for="name" value="#{label['MANAGE_ROOMCLASS_NAME_LABEL']}" styleClass="input-label mandatory" escape="false" />
+						<p:inputText value="#{ManageRoomClassActionBean.roomClass.name}" id="name" required="true">
+							<f:validateLength maximum="50" />
+						</p:inputText>
+						<p:message display="text" for="name" />
+						</h:panelGrid>
+						
+						<h:panelGrid columns="1" styleClass="jsfgrid">
+						<h:outputText for="description" value="#{label['MANAGE_ROOMCLASS_DESCRIPTION_LABEL']}" styleClass="input-label " escape="false" />
+						<p:inputText value="#{ManageRoomClassActionBean.roomClass.description}" id="description" required="true">
+							<f:validateLength maximum="50" />
+						</p:inputText>
+						<p:message display="text" for="description" />
+						</h:panelGrid>
+						
+						<h:panelGrid columns="1" styleClass="jsfgrid">
+						<h:outputText for="per" value="#{label['MANAGE_ROOMCLASS_PER_LABEL']}" styleClass="input-label mandatory" escape="false" />
+						<p:inputText value="#{ManageRoomClassActionBean.roomClass.per}" id="per" required="true">
+							<f:validateLength maximum="50" />
+						</p:inputText>
+						<p:message display="text" for="per" />
+						</h:panelGrid>
+						
+						<h:panelGrid columns="1" styleClass="jsfgrid">
+						<h:outputText for="unit" value="#{label['MANAGE_ROOMCLASS_UNIT_LABEL']}" styleClass="input-label mandatory" escape="false" />
+						<p:inputText value="#{ManageRoomClassActionBean.roomClass.unit}" id="unit" required="true">
+							<f:validateLength maximum="50" />
+						</p:inputText>
+						<p:message display="text" for="unit" />
+						</h:panelGrid>
+						
+						<h:panelGrid columns="1" styleClass="jsfgrid">
+						<h:outputText for="price" value="#{label['MANAGE_ROOMCLASS_PRICE_LABEL']}" styleClass="input-label mandatory" escape="false" />
+						<p:inputText value="#{ManageRoomClassActionBean.roomClass.price}" id="price" required="true">
+							<f:validateLength maximum="50" />
+						</p:inputText>
+						<p:message display="text" for="price" />
+						</h:panelGrid>
+						
+					</p:panelGrid>
+		</p:panel>
+		<p:panelGrid >
+			<p:commandButton id="addBtn" value="#{label['COMMON_ADDNEW_BTN']}" action="#{ManageRoomClassActionBean.addNewRoomClass()}" rendered="#{ManageRoomClassActionBean.createNew}"
+				icon="pi pi-save" update="@form :RoomClassTableForm" style="margin-left:20px; margin-top:5px;" 
+				oncomplete="PF('RoomClassTable').clearFilters()" />
+			<p:commandButton id="editBtn" value="#{label['COMMON_UPDATE_BTN']}" action="#{ManageRoomClassActionBean.updateRoomClass()}" rendered="#{!ManageRoomClassActionBean.createNew}"
+				icon="pi pi-save" update="@form :RoomClassTableForm" style="margin-left:20px; margin-top:5px;" 
+				oncomplete="PF('RoomClassTable').clearFilters()"/>
+			<p:commandButton id="cancel" value="#{label['COMMON_RESET_BTN']}" process="@this" action="#{ManageRoomClassActionBean.createNewRoomClass()}" icon="pi pi-refresh"
+			 update="@form :RoomClassTableForm" oncomplete="PF('RoomClassTable').clearFilters()"/>
+		</p:panelGrid>
+		<h:outputText style="color:red;" value="#{label['COMMON_MSG_MANDATORY_LABEL']}"/>
+	</h:form>
+	<br/>
+	<h:form id="RoomClassTableForm">
+		<p:dataTable var="roomClass" value="#{ManageRoomClassActionBean.roomClassList}" id="RoomClassTable" paginator="true" rows="15" widgetVar="RoomClassTable"
+			paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+			rowsPerPageTemplate="5,10, 15,20,25,30" rowIndexVar="index" rowKey="index" emptyMessage="Nothing found with given criteria" reflow="true" paginatorPosition="bottom">
+			<p:column style="width:5%;" headerText="#{label['COMMON_TABLE_SR_NO']}">
+				<h:outputText value="#{index + 1}" />
+			</p:column>
+			<p:column filterBy="#{roomClass.name}" filterMatchMode="contains" headerText="Name">
+				<h:outputText value="#{roomClass.name}" />
+			</p:column>
+			<p:column filterBy="#{roomClass.per}" filterMatchMode="contains" headerText="Per">
+				<h:outputText value="#{roomClass.per}" />
+			</p:column>
+			<p:column filterBy="#{roomClass.unit}" filterMatchMode="contains" headerText="Unit">
+				<h:outputText value="#{roomClass.unit}" />
+			</p:column>
+			<p:column filterBy="#{roomClass.price}" filterMatchMode="contains" headerText="Price">
+				<h:outputText value="#{roomClass.price}" />
+			</p:column>
+			
+			<p:column style="width:5%; margin:center">
+				<p:commandButton styleClass="green-button" icon="fa fa-paint-brush" action="#{ManageRoomClassActionBean.prepareUpdateRoomClass(roomClass)}" process="@this" update=":roomClassEntryForm" />
+			</p:column>
+			<p:column style="width:5%;">
+				<p:commandButton styleClass="red-button" icon="pi pi-times" action="#{ManageRoomClassActionBean.deleteRoomClass(roomClass)}" 
+					oncomplete="PF('RoomClassTable').filter();" update=":roomClassEntryForm :RoomClassTableForm">
+					<p:confirm header="Confirmation"  message="#{label['COMMON_MSG_DELETE_CONFIRM_LABEL']}" icon="pi pi-exclamation-triangle" />
+				</p:commandButton>
+			</p:column>
+		</p:dataTable>
+	</h:form>
+		<!-- Confirmation Dialog -->
+	<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+		<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes green-button" icon="pi pi-check" />
+		<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no red-button" icon="pi pi-times" />
+	</p:confirmDialog>
+		
+	</ui:define>
+</ui:composition>

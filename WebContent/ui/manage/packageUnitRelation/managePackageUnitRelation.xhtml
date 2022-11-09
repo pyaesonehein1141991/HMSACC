@@ -1,0 +1,116 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/common/commonLayout.xhtml">
+	<ui:param name="header" value="PackageUnitRelation Management" />
+	<ui:param name="headerRendered" value="true" />
+	<ui:define name="content">
+		<h:form id="packageUnitRelationForm">
+			<p:panelGrid id="panelDept" columns="2"
+				columnClasses="ui-grid-col-6,ui-grid-col-6" layout="grid"
+				styleClass="ui-panelgrid-blank ui-fluid">
+
+				<p:panelGrid columns="2" columnClasses="ui-grid-col-3,ui-grid-col-6"
+					layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+					<h:outputText  value=""/>
+					<p:message for="role" display="text" />
+					<h:outputText styleClass="input-label mandatory" value="#{label['MANAGE_packageUnitRelation_ROLE_LABEL']}" />
+					<p:panelGrid styleClass="ui-panelgrid-blank">
+						<div style="margin-top: -5px; margin-left: -5px;"
+							class="ui-g ui-fluid" id="rolePanel">
+							<div class="ui-inputgroup ui-g-12 ui-lg-12 ui-lg-12">
+								<p:commandButton styleClass="green-button" icon="fa fa-search"
+									actionListener="#{ManagePackageUnitRelationActionBean.selectRole()}"
+									id="selectRoleDialogLink" process="@this">
+									<p:ajax event="dialogReturn"
+										listener="#{ManagePackageUnitRelationActionBean.returnRole}"
+										update="role" />
+								</p:commandButton>
+								<p:inputText id="role"
+									readonly="#{ManagePackageUnitRelationActionBean.packageUnitRelation.role == null ? facesContext.currentPhaseId.ordinal eq 6 : true}"
+									required="true"
+									value="#{ManagePackageUnitRelationActionBean.packageUnitRelation.role == null ? '' : ManagePackageUnitRelationActionBean.packageUnitRelation.role.name}" />
+								<p:commandButton styleClass="red-button" icon="fa fa-times"
+									action="#{ManagePackageUnitRelationActionBean.packageUnitRelation.setRole(null)}"
+									process="@this" update="role" />
+							</div>
+						</div>
+					</p:panelGrid>
+					<h:outputLabel value="priority" />
+					<p:message display="text" for="priority" />
+					<h:outputLabel for="priority" value="#{label['MANAGE_packageUnitRelation_PRIORITY_LABEL']}"
+						styleClass="input-label mandatory" escape="false" />
+					<p:inputNumber
+						value="#{ManagePackageUnitRelationActionBean.packageUnitRelation.priority}"
+						id="priority" required="true">
+						<f:validateLength maximum="50" />
+					</p:inputNumber>
+
+					<h:outputLabel value="" />
+					<p:message display="text" for="perqty" />
+					<h:outputLabel for="perqty" styleClass="input-label mandatory"
+						value="#{label['MANAGE_packageUnitRelation_PERQTY_LABEL']}" escape="false" />
+					<p:inputNumber id="perqty"
+						value="#{ManagePackageUnitRelationActionBean.packageUnitRelation.perqty}"
+						required="true">
+						<f:validateLength maximum="50" />
+					</p:inputNumber>
+				</p:panelGrid>
+			</p:panelGrid>
+			<p:panelGrid >
+			<p:commandButton id="addBtn" value="#{label['COMMON_ADDNEW_BTN']}" action="#{ManagePackageUnitRelationActionBean.addNewPackageUnitRelation}" rendered="#{ManagePackageUnitRelationActionBean.createNew}"
+				icon="pi pi-save"  update="@form :packageUnitRelationTabelForm" style="margin-left:20px; margin-top:5px;"
+				oncomplete="PF('packageUnitRelationTable').clearFilters()"  />
+			<p:commandButton id="editBtn" value="#{label['COMMON_UPDATE_BTN']}" action="#{ManagePackageUnitRelationActionBean.updatePackageUnitRelation}" rendered="#{!ManagePackageUnitRelationActionBean.createNew}"
+				icon="pi pi-save" update="@form :packageUnitRelationTableForm" style="margin-left:20px; margin-top:5px;"
+				oncomplete="PF('packageUnitRelationTable').clearFilters()" />
+			<p:commandButton id="cancel" value="#{label['COMMON_RESET_BTN']}" process="@this" action="#{ManagePackageUnitRelationActionBean.createNewPackageUnitRelation}" icon="pi pi-refresh" update="@form :packageUnitRelationTableForm"/>
+		</p:panelGrid>
+			<h:outputText style="color:red;" value="#{label['COMMON_MSG_MANDATORY_LABEL']}"/> 
+		</h:form>
+		<br/>
+		<h:form id="packageUnitRelationTabelForm">
+			<p:dataTable var="packageUnitRelation" value="#{ManagePackageUnitRelationActionBean.packageUnitRelationList}" id="packageUnitRelationTable" paginator="true" rows="15" widgetVar="packageUnitRelationTable"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10, 15,20,25,30" rowIndexVar="index" rowKey="index" emptyMessage="Nothing found with given criteria" reflow="true" paginatorPosition="bottom">
+				<p:column style="width:5%;" headerText="#{label['COMMON_TABLE_SR_NO']}">
+					<h:outputText value="#{index + 1}" />
+				</p:column>
+				<p:column filterBy="#{packageUnitRelation.priority}" filterMatchMode="contains" headerText="#{label['MANAGE_packageUnitRelation_PRIORITY_LABEL']}">
+					<h:outputLabel value="#{packageUnitRelation.priority}" />
+				</p:column>
+				<p:column filterBy="#{packageUnitRelation.perqty}" filterMatchMode="contains" headerText="#{label['MANAGE_packageUnitRelation_PERQTY_LABEL']}">
+					<h:outputLabel value="#{packageUnitRelation.perqty}" />
+				</p:column>
+				<p:column style="width:5%;">
+					<p:commandButton id="detailItem" styleClass="green-button" icon="fa fa-laptop" oncomplete="PF('SelectedRoleDialog').show()" update=":roleDetailForm">
+						<f:setPropertyActionListener target="#{ManagePackageUnitRelationActionBean.role}" value="#{packageUnitRelation.role}" />
+					</p:commandButton>
+				</p:column>
+				<p:column style="width:5%; margin:center">
+					<p:commandButton styleClass="green-button" icon="fa fa-paint-brush" action="#{ManagePackageUnitRelationActionBean.prepareUpdatePackageUnitRelation(packageUnitRelation)}" process="@this" update=":packageUnitRelationForm" />
+				</p:column>
+				<p:column style="width:5%;">
+					<p:commandButton styleClass="red-button" icon="pi pi-times" action="#{ManagePackageUnitRelationActionBean.deletePackageUnitRelation(packageUnitRelation)}" 
+						oncomplete="PF('packageUnitRelationTable').filter();" update=":packageUnitRelationForm :packageUnitRelationTabelForm">
+						<p:confirm header="Confirmation"  message="#{label['COMMON_MSG_DELETE_CONFIRM_LABEL']}" icon="pi pi-exclamation-triangle" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</h:form>
+		Confirmation Dialog
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes green-button" icon="pi pi-check" />
+			<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no red-button" icon="pi pi-times" />
+		</p:confirmDialog>
+		
+		 Role Detail Dialog
+		<p:dialog appendTo="@(body)" dynamic="true" modal="true" responsive="true" id="SelectedRoleDialog" widgetVar="SelectedRoleDialog" header="Role Detail List" width="550">
+			<h:form id="roleDetailForm">
+				
+			</h:form>
+		</p:dialog>
+	</ui:define>
+</ui:composition>

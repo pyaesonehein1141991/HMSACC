@@ -1,0 +1,351 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<faces-config xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd"
+	version="2.2">
+	<application>
+		<action-listener>org.primefaces.application.DialogActionListener</action-listener>
+		<navigation-handler>org.primefaces.application.DialogNavigationHandler</navigation-handler>
+		<view-handler>org.primefaces.application.DialogViewHandler</view-handler>
+		<el-resolver>org.springframework.web.jsf.el.SpringBeanFacesELResolver</el-resolver>
+		<message-bundle>MESSAGES</message-bundle>
+		<resource-bundle>
+			<base-name>LANGUAGE</base-name>
+			<var>label</var>
+		</resource-bundle>
+		<locale-config>
+			<default-locale>en</default-locale>
+			<supported-locale>jp</supported-locale>
+		</locale-config>
+		<system-event-listener>
+			<system-event-listener-class>org.tech.java.component.viewScopeConfig.ViewScopeCallbackRegistrar</system-event-listener-class>
+			<system-event-class>javax.faces.event.PostConstructViewMapEvent</system-event-class>
+			<source-class>javax.faces.component.UIViewRoot</source-class>
+		</system-event-listener>
+
+		<system-event-listener>
+			<system-event-listener-class>org.tech.java.component.viewScopeConfig.ViewScopeCallbackRegistrar</system-event-listener-class>
+			<system-event-class>javax.faces.event.PreDestroyViewMapEvent</system-event-class>
+			<source-class>javax.faces.component.UIViewRoot</source-class>
+		</system-event-listener>
+	</application>
+	<converter>
+		<converter-id>theme</converter-id>
+		<converter-class>org.ace.java.web.convert.ThemeConverter</converter-class>
+	</converter>
+	<converter>
+		<converter-for-class>java.lang.Enum</converter-for-class>
+		<converter-class>javax.faces.convert.EnumConverter</converter-class>
+	</converter>
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>login</from-outcome>
+			<to-view-id>/index.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>home</from-outcome>
+			<to-view-id>/ui/system/home.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>manageUser</from-outcome>
+			<to-view-id>/ui/system/manageUser.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>addNewUser</from-outcome>
+			<to-view-id>/ui/system/addNewUser.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>manageCurrency</from-outcome>
+			<to-view-id>/ui/manage/currency/managecurrency.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>manageRole</from-outcome>
+			<to-view-id>/ui/system/manageRole.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>manageMenu</from-outcome>
+			<to-view-id>/ui/manage/menu/manageMenu.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>manageLabTestCategory</from-outcome>
+			<to-view-id>/ui/manage/labTestCategory/manageLabTestCategory.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>manageUnit</from-outcome>
+			<to-view-id>/ui/manage/unit/manageUnit.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>addNewUnit</from-outcome>
+			<to-view-id>/ui/manage/unit/addNewUnit.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>manageRelation</from-outcome>
+			<to-view-id>/ui/manage/relation/manageRelation.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>addNewRelation</from-outcome>
+			<to-view-id>/ui/manage/relation/addNewRelation.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>manageGeneric</from-outcome>
+			<to-view-id>/ui/manage/generic/manageGeneric.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>addNewGeneric</from-outcome>
+			<to-view-id>/ui/manage/generic/addnewGeneric.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>manageSpecialist</from-outcome>
+			<to-view-id>/ui/manage/specialist/manageSpecialist.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>addNewSpecialist</from-outcome>
+			<to-view-id>/ui/manage/specialist/addnewSpecialist.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>manageSpecialization</from-outcome>
+			<to-view-id>/ui/manage/specialization/manageSpecialization.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>addNewSpecialization</from-outcome>
+			<to-view-id>/ui/manage/specialization/addnewSpecialization.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>managePosition</from-outcome>
+			<to-view-id>/ui/manage/position/managePosition.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>addNewPosition</from-outcome>
+			<to-view-id>/ui/manage/position/addnewPosition.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>managepackageUnitRelation</from-outcome>
+			<to-view-id>/ui/manage/packageUnitRelation/managePackageUnitRelation.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>manageUnit</from-outcome>
+			<to-view-id>/ui/manage/unit/manageunit.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>manageBrand</from-outcome>
+			<to-view-id>/ui/manage/Brand/manageBrand.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>addNewBrand</from-outcome>
+			<to-view-id>/ui/manage/Brand/addNewBrand.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>manageFacility</from-outcome>
+			<to-view-id>/ui/manage/Facility/manageFacility.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>manageRoomClass</from-outcome>
+			<to-view-id>/ui/manage/RoomClass/manageRoomClass.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>managePackagingUnit</from-outcome>
+			<to-view-id>/ui/manage/PackagingUnit/managePackagingUnit.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>addNewPackagingUnit</from-outcome>
+			<to-view-id>/ui/manage/PackagingUnit/addNewPackagingUnit.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>packagingunitDialog</from-outcome>
+			<to-view-id>/dialog/packagingunitDialog.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>manageCountry</from-outcome>
+			<to-view-id>/ui/manage/Country/manageCountry.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>addNewCountry</from-outcome>
+			<to-view-id>/ui/manage/Country/addNewCountry.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>countryDialog</from-outcome>
+			<to-view-id>/dialog/countryDialog.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>manageProvince</from-outcome>
+			<to-view-id>/ui/manage/Province/manageProvince.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>addNewProvince</from-outcome>
+			<to-view-id>/ui/manage/Province/addNewProvince.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>provinceDialog</from-outcome>
+			<to-view-id>/dialog/provinceDialog.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>manageDistrict</from-outcome>
+			<to-view-id>/ui/manage/District/manageDistrict.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>addNewDistrict</from-outcome>
+			<to-view-id>/ui/manage/District/addNewDistrict.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>districtDialog</from-outcome>
+			<to-view-id>/dialog/districtDialog.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>manageTownship</from-outcome>
+			<to-view-id>/ui/manage/Township/manageTownship.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>addNewTownship</from-outcome>
+			<to-view-id>/ui/manage/Township/addNewTownship.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>townshipDialog</from-outcome>
+			<to-view-id>/dialog/townshipDialog.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>Test</from-outcome>
+			<to-view-id>/ui/manage/Test/Test.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>manageRelation</from-outcome>
+			<to-view-id>/ui/manage/relation/managerelation.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>roleDialog</from-outcome>
+			<to-view-id>/dialog/roleDialog.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>unitDialog</from-outcome>
+			<to-view-id>/dialog/unitDialog.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>labTestCategoryDialog</from-outcome>
+			<to-view-id>/dialog/labTestCategoryDialog.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>manageNrcPrefix</from-outcome>
+			<to-view-id>/ui/manage/nrcPrefix/manageNrcPrefix.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>addNewNrcPrefix</from-outcome>
+			<to-view-id>/ui/manage/nrcPrefix/addNewNrcPrefix.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>manageSupplier</from-outcome>
+			<to-view-id>/ui/manage/supplier/manageSupplier.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>addNewSupplier</from-outcome>
+			<to-view-id>/ui/manage/supplier/addNewSupplier.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>managelabtest</from-outcome>
+			<to-view-id>/ui/manage/labTest/managelabtest.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>managePatient</from-outcome>
+			<to-view-id>/ui/manage/patient/managePatient.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>patientInquiry</from-outcome>
+			<to-view-id>/ui/manage/patient/patientInquiry.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>manageEmployee</from-outcome>
+			<to-view-id>/ui/manage/employee/manageEmployee.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/ui/manage/menu/manageMenu.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>addNewMenu</from-outcome>
+			<to-view-id>/ui/manage/menu/addNewMenu.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+		<from-view-id>/ui/manage/labTestCategory/manageLabTestCategory.xhtml</from-view-id>
+		<navigation-case>
+			<from-outcome>addNewLabTestCategory</from-outcome>
+			<to-view-id>/ui/manage/labTestCategory/addNewLabTestCategory.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+	</navigation-rule>
+</faces-config>

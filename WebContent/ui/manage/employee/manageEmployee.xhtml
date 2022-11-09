@@ -1,0 +1,88 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/common/commonLayout.xhtml">
+	<ui:param name="header" value="Employee Management" />
+	<ui:param name="headerRendered" value="true" />
+	<ui:define name="content">
+		<h:form id="employeeEntryForm">
+			<h:outputText value="#{label['MANAGE_EMPLOYEE_ADDNEW_LABEL']}" styleClass="title" rendered="#{ManageEmployeeActionBean.createNew}" />
+			<h:outputText value="#{label['MANAGE_EMPLOYEE_EDIT_LABEL']}" styleClass="title" rendered="#{!ManageEmployeeActionBean.createNew}" />
+			<p:panel>
+				<p:panelGrid id="panelDept" columns="2" columnClasses="ui-grid-col-6,ui-grid-col-6" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+
+					<p:panelGrid columns="2" columnClasses="ui-grid-col-3,ui-grid-col-6" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+
+						<h:outputText value="" />
+						<p:message display="text" for="name" />
+						<h:outputText for="name" value="#{label['MANAGE_USER_NAME_LABEL']}" styleClass="input-label mandatory" escape="false" />
+						<p:inputText value="#{ManageEmployeeActionBean.employee.patiName}" id="name" required="true">
+							<f:validateLength maximum="50" />
+						</p:inputText>
+
+						<h:outputText value="" />
+						<p:message display="text" for="dob" />
+						<h:outputText for="dob" styleClass="input-label mandatory" value="#{label['MANAGE_USER_DATEOFBIRTH']}" escape="false" />
+						<p:inputMask id="dob" mask="99-99-9999" value="#{ManageEmployeeActionBean.employee.dateOfBirth}" required="true">
+							<f:convertDateTime pattern="#{ApplicationSetting.dateFormat}" timeZone="#{ApplicationSetting.timeZone}" />
+						</p:inputMask>
+
+
+					</p:panelGrid>
+
+					<p:panelGrid columns="2" columnClasses="ui-grid-col-3,ui-grid-col-6" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+
+						<h:outputText value="" />
+						<p:message display="text" for="phone" />
+						<h:outputText for="phone" value="#{label['MANAGE_USER_PHONE']}" styleClass="input-label" />
+						<p:inputText value="#{ManageEmployeeActionBean.employee.patiPhoneNo}" id="phone">
+							<f:validateLength maximum="50" />
+						</p:inputText>
+
+						<h:outputText value="" />
+						<p:message display="text" for="mobile" />
+						<h:outputText for="mobile" value="#{label['MANAGE_USER_MOBILE']}" styleClass="input-label" />
+						<p:inputText value="#{ManageEmployeeActionBean.employee.contName}" id="mobile">
+							<f:validateLength maximum="50" />
+						</p:inputText>
+
+
+
+					</p:panelGrid>
+				</p:panelGrid>
+			</p:panel>
+			<p:panelGrid >
+				<p:commandButton id="addBtn" value="#{label['COMMON_ADDNEW_BTN']}" action="#{ManageEmployeeActionBean.addNewEmployee}" rendered="#{ManageEmployeeActionBean.createNew}"
+					icon="pi pi-user-plus" update="@form :userTableForm" style="margin-left:20px; margin-top:5px;"
+					oncomplete="PF('userTable').clearFilters()" />
+				<p:commandButton id="editBtn" value="#{label['COMMON_UPDATE_BTN']}" action="#{ManageEmployeeActionBean.updateEmployee}" rendered="#{!ManageEmployeeActionBean.createNew}"
+					icon="pi pi-user-edit" update="@form :userTableForm" style="margin-left:20px; margin-top:5px;"
+					oncomplete="PF('userTable').clearFilters()"/>
+				<p:commandButton id="cancel" value="#{label['COMMON_RESET_BTN']}" process="@this" action="#{ManageEmployeeActionBean.createNewEmployee}" icon="pi pi-refresh" update="@form :userTableForm" />
+			</p:panelGrid>
+			<h:outputText style="color:red;" value="#{label['COMMON_MSG_MANDATORY_LABEL']}"/>
+		</h:form>
+		<br/>
+		<h:form id="userTableForm">
+			<p:dataTable var="user" value="#{ManageEmployeeActionBean.employeeList}" id="userTable" paginator="true" rows="15" widgetVar="userTable"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10, 15,20,25,30" rowIndexVar="index" rowKey="index" emptyMessage="Nothing found with given criteria" reflow="true" paginatorPosition="bottom">
+				<p:column style="width:5%;" headerText="#{label['COMMON_TABLE_SR_NO']}">
+					<h:outputText value="#{index + 1}" />
+				</p:column>
+				<p:column filterBy="#{user.patiName}" filterMatchMode="contains" headerText="#{label['MANAGE_USER_NAME_LABEL']}">
+					<h:outputText value="#{user.name}" />
+				</p:column>
+				<p:column filterBy="#{user.patiCode}" filterMatchMode="contains" headerText="#{label['MANAGE_USER_CODE_LABEL']}">
+					<h:outputText value="#{user.userCode}" />
+				</p:column>
+
+			</p:dataTable>
+		</h:form>
+		<!-- Confirmation Dialog -->
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes green-button" icon="pi pi-check" />
+			<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no red-button" icon="pi pi-times" />
+		</p:confirmDialog>
+
+
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,131 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/common/commonLayout.xhtml">
+	<ui:param name="header" value="User Management" />
+	<ui:param name="headerRendered" value="false" />
+	<ui:define name="content">
+		<div class="pageContent">
+		<h:outputText value="#{label['MANAGE_PATIENT_ADDNEW_LABEL']}"
+			styleClass="title" rendered="#{ManagePatientActionBean.createNew}" />
+
+		<h:form id="patientValidateForm">
+			<p:panel>
+				<p:panelGrid columns="2"
+					columnClasses="ui-grid-col-6,ui-grid-col-6" layout="grid"
+					styleClass="ui-panelgrid-blank ui-fluid">
+
+					<p:panelGrid columns="2"
+						columnClasses="ui-grid-col-3,ui-grid-col-6" layout="grid"
+						styleClass="ui-panelgrid-blank ui-fluid">
+
+						<h:outputText value="" />
+						<p:message display="text" for="valid_pati_name" />
+						<h:outputText for="valid_pati_name"
+							value="Patient Code"
+							styleClass="input-label mandatory" escape="false" />
+						<p:inputText value="#{PatientInquiryActionBean.input.patiCode}"
+							id="valid_pati_name" required="true">
+							<f:validateLength maximum="50" />
+						</p:inputText>
+
+								<h:outputText value="" />
+						<p:message display="text" for="pati_name" />
+						<h:outputText for="valid_pati_name"
+							value="#{label['MANAGE_PATIENT_NAME']}"
+							styleClass="input-label mandatory" escape="false" />
+						<p:inputText value="#{PatientInquiryActionBean.input.patiName}"
+							id="pati_name" required="true">
+							<f:validateLength maximum="50" />
+						</p:inputText>
+
+					</p:panelGrid>
+
+					<p:panelGrid columns="2"
+						columnClasses="ui-grid-col-3,ui-grid-col-6" layout="grid"
+						styleClass="ui-panelgrid-blank ui-fluid">
+
+						<h:outputText value="" />
+						<p:message display="text" for="pati_type" />
+						<h:outputText for="pati_type"
+							value="#{label['MANAGE_PATIENT_PATIENT_TYPE']}"
+							styleClass="input-label mandatory" />
+						<p:selectManyCheckbox id="pati_type"
+							value="#{PatientInquiryActionBean.input.selectedPatiType}" layout="grid"
+							columns="3" styleClass="grid-checkbox">
+							<f:selectItems value="#{ManagePatientActionBean.patiTypeList}"
+								var="patiType" itemLabel="#{patiType}" itemValue="#{patiType}" />
+						</p:selectManyCheckbox>
+
+<h:outputText value="" />
+						<p:message display="text" for="pati_phone" />
+						<h:outputText for="name3"
+							value="#{label['MANAGE_PATIENT_PHONENO']}"
+							styleClass="input-label mandatory" escape="false" />
+						<p:inputText
+							value="#{PatientInquiryActionBean.input.patiPhone}"
+							id="pati_phone" required="true">
+							<f:validateLength maximum="50" />
+						</p:inputText>
+					</p:panelGrid>
+				</p:panelGrid>
+				<p:panelGrid>
+				<p:commandButton id="searchBtn"
+					value="Search"
+					action="#{PatientInquiryActionBean.findPatientByCond}" icon="pi pi-user-plus"
+					update="@form :patientResultForm"
+					style="margin-left:20px; margin-top:5px;"
+					oncomplete="PF('userTable').clearFilters()" />
+			</p:panelGrid>
+			</p:panel>
+		</h:form>
+			<h:form id="patientResultForm">
+				<p:growl globalOnly="true" id="messages" showDetail="true"/>
+				<p:panelGrid columns="2" styleClass="ui-panelgrid-blank ui-fluid">
+					<h:outputText value="#{label['MANAGE_USER']}" styleClass="title" />
+					<p:commandButton id="addBtn" value="#{label['COMMON_ADDNEW_LINK']}" action="#{ManageUserActionBean.navAddNewUser}" icon="pi pi-plus" />
+				</p:panelGrid>
+				<br/>
+				<p:dataTable var="patient" value="#{PatientInquiryActionBean.patientList}" id="userTable" paginator="true" rows="15" widgetVar="userTable"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10, 15,20,25,30" rowIndexVar="index" rowKey="index" emptyMessage="Nothing found with given criteria" reflow="true" paginatorPosition="bottom">
+					<p:column style="width:3%;" headerText="#{label['COMMON_TABLE_SR_NO']}" styleClass="textOnRight">
+						<h:outputText value="#{index + 1}" />
+					</p:column>
+					<p:column filterBy="#{patient.patiName}" filterMatchMode="contains" headerText="Patient Name">
+						<h:outputText value="#{patient.patiName}" />
+					</p:column>
+					<p:column filterBy="#{patient.patiType}" filterMatchMode="contains" headerText="Patient Type">
+						<h:outputText value="#{patient.inPatiCode}" />
+					</p:column>
+					<p:column filterBy="#{patient.patiPhoneNo}" filterMatchMode="contains" headerText="Patient Type">
+						<h:outputText value="#{patient.patiPhoneNo}" />
+					</p:column>
+					<p:column filterBy="#{patient.nrcNo}" filterMatchMode="contains" headerText="NRC">
+						<h:outputText value="#{patient.nrcNo}" />
+					</p:column>
+					<p:column style="width:3%; margin:center" styleClass="textOnCenter">
+<p:link outcome="managePatient" value="Edit" >
+<f:param name="patiId" value="1"/>
+    </p:link>
+    	</p:column>
+<p:column style="width:3%; margin:center" styleClass="textOnCenter">
+<p:link outcome="managePatient" value="Delete">
+    </p:link>
+    	</p:column>
+    	<p:column style="width:3%; margin:center" styleClass="textOnCenter">
+<p:link outcome="managePatient" value="OPD Info">
+    </p:link>
+    <p:column style="width:3%; margin:center" styleClass="textOnCenter">
+<p:link outcome="managePatient" value="Admission Info">
+    </p:link>
+    	</p:column>
+    	</p:column>
+				</p:dataTable>
+			</h:form>
+			<!-- Confirmation Dialog -->
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes green-button" icon="pi pi-check" />
+				<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no red-button" icon="pi pi-times" />
+			</p:confirmDialog>
+		</div>
+	</ui:define>
+</ui:composition>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14483757432580" configfile="/hms/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="*" x="122" y="2290" id="pf14483760409842" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf14483760409843 pf14483761642208 pf1660140227053109 pf1660140227053110 pf1660140463147114 pf16601558430430 pf16612776929460 pf16616899241940 pf16616899241941 pf16616899241942 pf16621125369940 pf16621125369941 pf16621125369942 pf16623492650170 pf16623499037632" path="*"/>
+  <nodes xsi:type="pageflow:PFPage" name="index.xhtml" x="338" y="178" id="pf14483760409844" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf14483760409843" path="/index.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ui/system/home.xhtml" x="338" y="946" id="pf14483761642209" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf14483761642208" path="/ui/system/home.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="dialog/ccoaAccountDialog.xhtml" x="122" y="3538" id="pf14487244920369" referenceLink="//@navigationRule.0/@navigationCase.5/@toViewId|" path="/dialog/ccoaAccountDialog.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ui/system/manageUser.xhtml" x="338" y="1330" id="pf166013951134376" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf1660140227053109" path="/ui/system/manageUser.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ui/system/manageRole.xhtml" x="338" y="1714" id="pf1660140227053111" referenceLink="//@navigationRule.0/@navigationCase.3/@toViewId|" inlinks="pf1660140227053110" path="/ui/system/manageRole.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ui/manage/menu/manageMenu.xhtml" x="338" y="562" id="pf1660140463147115" referenceLink="//@navigationRule.1/@fromViewId|" outlinks="pf1660140532509121" inlinks="pf1660140463147114" path="/ui/manage/menu/manageMenu.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ui/manage/menu/addNewMenu.xhtml" x="554" y="562" id="pf1660140532509122" referenceLink="//@navigationRule.1/@navigationCase.0/@toViewId|" inlinks="pf1660140532509121" path="/ui/manage/menu/addNewMenu.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="dialog/roleDialog.xhtml" x="338" y="2098" id="pf16601558430431" referenceLink="//@navigationRule.0/@navigationCase.13/@toViewId|" inlinks="pf16601558430430" path="/dialog/roleDialog.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ui/manage/labTestCategory/manageLabTestCategory.xhtml" x="338" y="2482" id="pf16612776929462" referenceLink="//@navigationRule.0/@navigationCase.5/@toViewId|" inlinks="pf16612776929460" path="/ui/manage/labTestCategory/manageLabTestCategory.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ui/manage/packageUnitRelation/managePackageUnitRelation.xhtml" x="338" y="2866" id="pf16612776929463" referenceLink="//@navigationRule.0/@navigationCase.7/@toViewId|" inlinks="pf16616899241941" path="/ui/manage/packageUnitRelation/managePackageUnitRelation.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ui/manage/unit/manageunit.xhtml" x="338" y="3250" id="pf16613657458911" referenceLink="//@navigationRule.0/@navigationCase.8/@toViewId|" inlinks="pf16616899241942" path="/ui/manage/unit/manageunit.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ui/manage/generic/manageGeneric.xhtml" x="338" y="3634" id="pf16616899241943" referenceLink="//@navigationRule.0/@navigationCase.6/@toViewId|" inlinks="pf16616899241940" path="/ui/manage/generic/manageGeneric.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ui/manage/Brand/manageBrand.xhtml" x="338" y="4018" id="pf16621125369973" referenceLink="//@navigationRule.0/@navigationCase.9/@toViewId|" inlinks="pf16621125369940" path="/ui/manage/Brand/manageBrand.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ui/manage/PackagingUnit/managePackagingUnit.xhtml" x="338" y="4402" id="pf16621125369974" referenceLink="//@navigationRule.0/@navigationCase.13/@toViewId|" inlinks="pf16621125369941" path="/ui/manage/PackagingUnit/managePackagingUnit.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ui/manage/relation/managerelation.xhtml" id="pf16621125369975" referenceLink="//@navigationRule.0/@navigationCase.11/@toViewId|" inlinks="pf16621125369942" path="/ui/manage/relation/managerelation.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="ui/manage/labTest/managelabtest.xhtml" id="pf16623492650181" referenceLink="//@navigationRule.0/@navigationCase.13/@toViewId|" inlinks="pf16623492650170" path="/ui/manage/labTest/managelabtest.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="dialog/labTestCategoryDialog.xhtml" id="pf16623499037633" referenceLink="//@navigationRule.0/@navigationCase.13/@toViewId|" inlinks="pf16623499037632" path="/dialog/labTestCategoryDialog.xhtml"/>
+  <links id="pf14483760409843" target="pf14483760409844" source="pf14483760409842" outcome="login" redirect="true"/>
+  <links id="pf14483761642208" target="pf14483761642209" source="pf14483760409842" outcome="home" redirect="true"/>
+  <links id="pf1660140227053109" target="pf166013951134376" source="pf14483760409842" outcome="manageUser" redirect="true"/>
+  <links id="pf1660140227053110" target="pf1660140227053111" source="pf14483760409842" outcome="manageRole" redirect="true"/>
+  <links id="pf1660140463147114" target="pf1660140463147115" source="pf14483760409842" outcome="manageMenu" redirect="true"/>
+  <links id="pf1660140532509121" target="pf1660140532509122" source="pf1660140463147115" outcome="addNewMenu" redirect="true"/>
+  <links id="pf16601558430430" target="pf16601558430431" source="pf14483760409842" outcome="roleDialog" redirect="true"/>
+  <links id="pf16612776929460" target="pf16612776929462" source="pf14483760409842" outcome="manageLabTestCategory" redirect="true"/>
+  <links id="pf16616899241940" target="pf16616899241943" source="pf14483760409842" outcome="manageGeneric" redirect="true"/>
+  <links id="pf16616899241941" target="pf16612776929463" source="pf14483760409842" outcome="managepackageUnitRelation" redirect="true"/>
+  <links id="pf16616899241942" target="pf16613657458911" source="pf14483760409842" outcome="manageUnit" redirect="true"/>
+  <links id="pf16621125369940" target="pf16621125369973" source="pf14483760409842" outcome="manageBrand" redirect="true"/>
+  <links id="pf16621125369941" target="pf16621125369974" source="pf14483760409842" outcome="managePackagingUnit" redirect="true"/>
+  <links id="pf16621125369942" target="pf16621125369975" source="pf14483760409842" outcome="manageRelation" redirect="true"/>
+  <links id="pf16623492650170" target="pf16623492650181" source="pf14483760409842" outcome="managelabtest" redirect="true"/>
+  <links id="pf16623499037632" target="pf16623499037633" source="pf14483760409842" outcome="labTestCategoryDialog" redirect="true"/>
+</pageflow:Pageflow>

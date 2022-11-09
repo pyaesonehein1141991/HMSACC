@@ -1,0 +1,146 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/common/commonLayout.xhtml">
+	<ui:param name="header" value="User Management" />
+	<ui:param name="headerRendered" value="false" />
+	<ui:define name="content">
+		<div class="pageContent">
+		<h:outputText value="#{label['MANAGE_PATIENT_ADDNEW_LABEL']}"
+			styleClass="title" rendered="#{ManagePatientActionBean.createNew}" />
+
+		<h:form id="empInqForm">
+			<p:panel>
+				<p:panelGrid columns="2"
+					columnClasses="ui-grid-col-6,ui-grid-col-6" layout="grid"
+					styleClass="ui-panelgrid-blank ui-fluid">
+
+					<p:panelGrid columns="2"
+						columnClasses="ui-grid-col-3,ui-grid-col-6" layout="grid"
+						styleClass="ui-panelgrid-blank ui-fluid">
+
+						<h:outputText value="" />
+						<p:message display="text" for="emp_name" />
+						<h:outputText for="emp_name"
+							value="Employee Name"
+							styleClass="input-label" escape="false" />
+						<p:inputText value="#{EmployeeInquiryActionBean.cond.empName}"
+							id="emp_name">
+							<f:validateLength maximum="50" />
+						</p:inputText>
+
+						<h:outputText value="" />
+						<p:message display="text" for="spec" />
+						<h:outputText for="spec"
+							value="Specialization"
+							styleClass="input-label" escape="false" />
+						<p:selectOneMenu id="spec" converter="omnifaces.SelectItemsIndexConverter"
+							value="#{EmployeeInquiryActionBean.cond.specId}">
+							<f:selectItem itemLabel="#{label['COMMON_SELECT_BTN']}"
+							noSelectionOption="true" />
+							<f:selectItems
+								value="#{EmployeeInquiryActionBean.specList}"
+								var="spec" itemLabel="#{spec.name}" itemValue="#{spec.id}"/>
+						</p:selectOneMenu>
+
+					</p:panelGrid>
+
+					<p:panelGrid columns="2"
+						columnClasses="ui-grid-col-3,ui-grid-col-6" layout="grid"
+						styleClass="ui-panelgrid-blank ui-fluid">
+
+						<h:outputText value="" />
+						<p:message display="text" for="pati_type" />
+						<h:outputText for="pati_type"
+							value="Employee Type"
+							styleClass="input-label" />
+						<p:selectOneMenu id="pati_type" converter="omnifaces.SelectItemsIndexConverter"
+							value="#{EmployeeInquiryActionBean.cond.empType}">
+							<f:selectItem itemLabel="#{label['COMMON_SELECT_BTN']}"
+							noSelectionOption="true" />
+							<f:selectItems
+								value="#{EmployeeInquiryActionBean.empTypeList}"
+								var="empType" itemLabel="empType" itemValue="empType"/>
+						</p:selectOneMenu>
+
+						<h:outputText value="" />
+						<p:message display="text" for="from_date" />
+						<h:outputText for="from_date" styleClass="input-label"
+							value="Created Date(From)" escape="false" />
+						<p:inputMask id="from_date" mask="99-99-9999"
+							value="#{EmployeeInquiryActionBean.cond.fromDate}">
+							<f:convertDateTime pattern="#{ApplicationSetting.dateFormat}"
+								timeZone="#{ApplicationSetting.timeZone}" />
+						</p:inputMask>
+							<h:outputText for="to_date" styleClass="input-label"
+							value="Created Date(To)" escape="false" />
+						<p:inputMask id="to_date" mask="99-99-9999"
+							value="#{EmployeeInquiryActionBean.cond.toDate}">
+							<f:convertDateTime pattern="#{ApplicationSetting.dateFormat}"
+								timeZone="#{ApplicationSetting.timeZone}" />
+						</p:inputMask>
+					</p:panelGrid>
+				</p:panelGrid>
+				<p:panelGrid>
+				<p:commandButton id="searchBtn"
+					value="Search"
+					action="#{EmployeeInquiryActionBean.search}" icon="pi pi-user-plus"
+					update="@form :empResForm"
+					style="margin-left:20px; margin-top:5px;"
+					oncomplete="PF('userTable').clearFilters()" />
+			</p:panelGrid>
+			</p:panel>
+		</h:form>
+		<h:form id="empResForm">
+			<p:growl globalOnly="true" id="messages" showDetail="true"/>
+			<p:panelGrid columns="2" styleClass="ui-panelgrid-blank ui-fluid">
+				<h:outputText value="#{label['MANAGE_USER']}" styleClass="title" />
+				<p:commandButton id="addBtn" value="#{label['COMMON_ADDNEW_LINK']}" action="#{ManageUserActionBean.navAddNewUser}" icon="pi pi-plus" />
+			</p:panelGrid>
+			<br/>
+			<p:dataTable var="emp" value="#{EmployeeInquiryActionBean.empList}" id="userTable" paginator="true" rows="15" widgetVar="userTable"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10, 15,20,25,30" rowIndexVar="index" rowKey="index" emptyMessage="Nothing found with given criteria" reflow="true" paginatorPosition="bottom">
+				<p:column style="width:3%;" headerText="#{label['COMMON_TABLE_SR_NO']}" styleClass="textOnRight">
+					<h:outputText value="#{index + 1}" />
+				</p:column>
+				<p:column filterBy="#{emp.empName}" filterMatchMode="contains" headerText="Employee Name">
+					<h:outputText value="#{emp.empName}" />
+				</p:column>
+				<p:column filterBy="#{emp.empType}" filterMatchMode="contains" headerText="Employee Type">
+					<h:outputText value="#{emp.empType}" />
+				</p:column>
+					<p:column filterBy="#{emp.position.name}" filterMatchMode="contains" headerText="Position">
+					<h:outputText value="#{emp.position.name}" />
+				</p:column>
+				<p:column filterBy="#{emp.phoneNo}" filterMatchMode="contains" headerText="Phone No">
+					<h:outputText value="#{emp.phoneNo}" />
+				</p:column>
+				<p:column filterBy="#{emp.timeTable}" filterMatchMode="contains" headerText="TimeTable">
+					<h:outputText value="#{emp.timeTable}" />
+				</p:column>
+				<p:column style="width:3%; margin:center" styleClass="textOnCenter" headerText="Action">
+<p:link outcome="managePatient" value="Edit" >
+<f:param name="patiId" value="1"/>
+    </p:link>
+    	</p:column>
+<p:column style="width:3%; margin:center" styleClass="textOnCenter">
+<p:link outcome="managePatient" value="Delete">
+    </p:link>
+    	</p:column>
+    	<p:column style="width:3%; margin:center" styleClass="textOnCenter">
+<p:link outcome="managePatient" value="OPD Info">
+    </p:link>
+    <p:column style="width:3%; margin:center" styleClass="textOnCenter">
+<p:link outcome="managePatient" value="Admission Info">
+    </p:link>
+    	</p:column>
+    	</p:column>
+				</p:dataTable>
+			</h:form>
+			<!-- Confirmation Dialog -->
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes green-button" icon="pi pi-check" />
+				<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no red-button" icon="pi pi-times" />
+			</p:confirmDialog>
+		</div>
+	</ui:define>
+</ui:composition>

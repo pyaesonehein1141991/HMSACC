@@ -1,0 +1,304 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui"
+	template="/common/commonLayout.xhtml">
+	<ui:param name="header" value="Lab Test Management" />
+	<ui:param name="headerRendered" value="true" />
+	<ui:define name="content">
+		<h:form id="labtestEntryForm">
+			<p:growl globalOnly="true" id="messages" showDetail="true" />
+			<h:outputText value="#{label['MANAGE_LABTEST_ADDNEW_LABEL']}"
+				styleClass="title" rendered="#{ManageLabTestActionBean.createNew}" />
+			<h:outputText value="#{label['MANAGE_LABTEST_EDIT_LABEL']}"
+				styleClass="title" rendered="#{!ManageLabTestActionBean.createNew}" />
+			<h:outputText value="#{label['MANAGE_USER_EDIT_LABEL']}" styleClass="title" rendered="#{!ManageUserActionBean.createNew}" />
+			<p:panel>
+				<p:panelGrid id="panelDept" columns="3" columnClasses="ui-g-12 ui-md-6 ui-lg-4, ui-g-12 ui-md-6 ui-lg-4, ui-g-12 ui-md-6 ui-lg-4" 
+					layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+				<p:panelGrid columns="1">
+					<h:outputLabel styleClass="mandatory"
+						value="#{label['MANAGE_LABTEST_NAME_LABEL']}" />
+					<p:inputNumber id="name" required="true"
+						requiredMessage="#{label['COMMON_REQUIRED_MSG']}" size="38"
+						value="#{ManageLabTestActionBean.labtest.name}">
+						<f:validateLength maximum="50" />
+					</p:inputNumber>
+					<p:message display="text" for="name" />
+				</p:panelGrid>
+				<h:panelGrid columns="1" styleClass="jsfgrid">
+					<h:outputText styleClass="input-label mandatory"
+						value="#{label['MANAGE_LABTEST_LABTESTCATEGORY']}" />
+					<p:panelGrid styleClass="ui-panelgrid-blank">
+						<div style="margin-top: -5px; margin-left: -5px;"
+							class="ui-g ui-fluid" id="labtestcategoryPanel">
+							<div class="ui-inputgroup ui-g-12 ui-lg-12 ui-lg-12">
+								<p:commandButton styleClass="green-button" icon="fa fa-search"
+									actionListener="#{ManageLabTestActionBean.selectLabTestCategory()}"
+									id="selectLabTestCategoryDialogLink" process="@this">
+									<p:ajax event="dialogReturn"
+										listener="#{ManageLabTestActionBean.returnLabTestCategory}"
+										update="LabTestCatetory" />
+								</p:commandButton>
+								<p:inputText id="LabTestCatetory"
+									readonly="#{ManageLabTestActionBean.labtest.LabTestCatetory == null ? facesContext.currentPhaseId.ordinal eq 6 : true}"
+									required="true"
+									value="#{ManageLabTestActionBean.labtest.LabTestCatetory == null ? '' : ManageLabTestActionBean.labtest.LabTestCatetory.name}" />
+								<p:commandButton styleClass="red-button" icon="fa fa-times"
+									action="#{ManageLabTestActionBean.labtest.setLabTestCatetory(null)}"
+									process="@this" update="LabTestCatetory" />
+							</div>
+						</div>
+					</p:panelGrid>
+					<p:message for="LabTestCatetory" display="text" />
+				</h:panelGrid>
+
+				<p:panelGrid columns="1">
+					<h:outputLabel styleClass="input-label mandatory"
+						value="#{label['MANAGE_LABTEST_REFERENCETYPE']}" />
+					<p:selectOneMenu required="true"
+						converter="omnifaces.SelectItemsIndexConverter" id="referenceType"
+						value="#{ManageLabTestActionBean.labtest.referenceType}">
+						<f:selectItem itemLabel="#{label['COMMON_SELECT_BTN']}"
+							noSelectionOption="true" />
+						<f:selectItems itemLabel="#{type.referenceTypelabel}"
+							itemValue="#{type}"
+							value="#{ManageLabTestActionBean.referenceType}" var="type" />
+					</p:selectOneMenu>
+					<p:message display="text" for="referenceType" />
+				</p:panelGrid>
+				<p:panelGrid columns="1">
+					<h:outputLabel styleClass="mandatory"
+						value="#{label['MINIMUM_REFERENCE_VALUE_LABEL']}" />
+					<p:inputNumber id="minReferenceValue" required="true"
+						requiredMessage="#{label['COMMON_REQUIRED_MSG']}" size="38"
+						value="#{ManageLabTestActionBean.labtest.minReferenceValue}">
+						<f:validateLength maximum="50" />
+					</p:inputNumber>
+					<p:message display="text" for="minReferenceValue" />
+				</p:panelGrid>
+				<p:panelGrid columns="1">
+					<h:outputLabel styleClass="mandatory"
+						value="#{label['MINIMUM_REFERENCE_VALUE_LABEL']}" />
+					<p:inputNumber id="minReferenceValue" required="true"
+						requiredMessage="#{label['COMMON_REQUIRED_MSG']}" size="38"
+						value="#{ManageLabTestActionBean.labtest.minReferenceValue}">
+						<f:validateLength maximum="50" />
+					</p:inputNumber>
+					<p:message display="text" for="minReferenceValue" />
+				</p:panelGrid>
+				<p:panelGrid columns="1">
+					<h:outputLabel styleClass="mandatory"
+						value="#{label['MAXIMUM_REFERENCE_VALUE_LABEL']}" />
+					<p:inputNumber id="maxReferenceValue" required="true"
+						requiredMessage="#{label['COMMON_REQUIRED_MSG']}" size="38"
+						value="#{ManageLabTestActionBean.labtest.maxReferenceValue}">
+						<f:validateLength maximum="50" />
+					</p:inputNumber>
+					<p:message display="text" for="maxReferenceValue" />
+				</p:panelGrid>
+				<p:panelGrid columns="1">
+					<h:outputLabel styleClass="input-label mandatory"
+						value="#{label['MANAGE_LABTEST_REFERENCEVALUE']}" />
+					<p:selectOneMenu required="true"
+						converter="omnifaces.SelectItemsIndexConverter"
+						id="referenceValue"
+						value="#{ManageLabTestActionBean.labtest.unit}">
+						<f:selectItem itemLabel="#{label['COMMON_SELECT_BTN']}"
+							noSelectionOption="true" />
+						<f:selectItems itemLabel="#{type.referenceValuelabel}"
+							itemValue="#{type}" value="#{ManageLabTestActionBean.labtest.unit}"
+							var="type" />
+					</p:selectOneMenu>
+					<p:message display="text" for="unit" />
+				</p:panelGrid>
+				<p:panelGrid columns="1">
+					<h:outputLabel styleClass="mandatory"
+						value="#{label['MANAGE_LABTEST_UNIT_LABEL']}" />
+					<p:inputNumber id="unit" required="true"
+						requiredMessage="#{label['COMMON_REQUIRED_MSG']}" size="38"
+						value="#{ManageLabTestActionBean.labtest.maxReferenceValue}">
+						<f:validateLength maximum="50" />
+					</p:inputNumber>
+					<p:message display="text" for="unit" />
+				</p:panelGrid>
+				<p:panelGrid columns="1">
+					<h:outputLabel styleClass="mandatory"
+						value="#{label['MANAGE_LABTEST_PRICE_LABEL']}" />
+					<p:inputNumber id="labTestPrice" required="true"
+						requiredMessage="#{label['COMMON_REQUIRED_MSG']}" size="38"
+						value="#{ManageLabTestActionBean.labtest.labTestPrice}">
+						<f:validateLength maximum="50" />
+					</p:inputNumber>
+					<p:message display="text" for="labTestPrice" />
+				</p:panelGrid>
+				<p:panelGrid columns="1">
+					<h:outputLabel styleClass="mandatory"
+						value="#{label['MANAGE_LABTEST_TECHNICALFEETYPE_LABEL']}" />
+					<p:selectOneRadio id="technicalFeeType" required="true"
+						requiredMessage="#{label['COMMON_REQUIRED_MSG']}"
+						value="#{ManageLabTestActionBean.labtest.technicalFeeType}">
+						<f:selectItems value="#{ManageLabTestActionBean.labtest.technicalFeeType}"
+							var="technicalFeeType"
+							itemLabel="#{technicalFeeType.technicalFeeTypelabel}"
+							itemValue="#{technicalFeeType}" />
+						<p:ajax update="technicalFeeTypeBasedPanel" />
+					</p:selectOneRadio>
+					<p:message display="text" for="technicalFeeType" />
+				</p:panelGrid>
+				<p:panelGrid columns="1">
+					<h:outputLabel styleClass="mandatory"
+						value="#{label['MANAGE_LABTEST_TECHNICAL_FEE_BASE_AMOUNT_LABEL']}" />
+					<p:inputNumber id="technicalFeeBasedAmount" required="true"
+						requiredMessage="#{label['COMMON_REQUIRED_MSG']}" size="38"
+						value="#{ManageLabTestActionBean.labtest.technicalFeeBasedAmount}">
+						<f:validateLength maximum="50" />
+					</p:inputNumber>
+					<p:message display="text" for="technicalFeeBasedAmount" />
+				</p:panelGrid>
+				<p:panelGrid columns="1">
+					<h:outputLabel styleClass="mandatory"
+						value="#{label['MANAGE_LABTEST_TECHNICAL_FEE_AMOUNT_LABEL']}" />
+					<p:inputNumber id="technicalFeeAmount" required="true"
+						requiredMessage="#{label['COMMON_REQUIRED_MSG']}" size="38"
+						value="#{ManageLabTestActionBean.labtest.technicalFeeAmount}">
+						<f:validateLength maximum="50" />
+					</p:inputNumber>
+					<p:message display="text" for="technicalFeeAmount" />
+				</p:panelGrid>
+				<p:panelGrid columns="1">
+					<h:outputLabel styleClass="mandatory"
+						value="#{label['MANAGE_LABTEST_AD_HOC_TECHNICALFEE_LABEL']}" />
+					<p:selectOneRadio id="adhoctechnicalFee" required="true"
+						requiredMessage="#{label['COMMON_REQUIRED_MSG']}"
+						value="#{ManageLabTestActionBean.labtest.dhoctechnicalFee}">
+						<f:selectItem itemValue="#{false}" itemLabel="No" />
+						<f:selectItem itemValue="#{true}" itemLabel="Yes" />
+					<!-- 	<f:ajax execute="@form" render="userDetailsGrid "></f:ajax> -->
+					</p:selectOneRadio>
+					<p:message display="text" for="adhoctechnicalFee" />
+				</p:panelGrid>
+				<p:panelGrid columns="1">
+					<h:outputLabel styleClass="mandatory"
+						value="#{label['MANAGE_LABTEST_READ_FEE_NEED_LABEL']}" />
+					<p:selectOneRadio id="readFeeNeed" required="true"
+						requiredMessage="#{label['COMMON_REQUIRED_MSG']}"
+						value="#{ManageLabTestActionBean.labtest.readFeeNeed}">
+						<f:selectItem itemValue="#{false}" itemLabel="No" />
+						<f:selectItem itemValue="#{true}" itemLabel="Yes" />
+					<!-- 	<f:ajax execute="@form" render="userDetailsGrid "></f:ajax> -->
+					</p:selectOneRadio>
+					<p:message display="text" for="readFeeNeed" />
+				</p:panelGrid>
+				<p:panelGrid columns="1">
+					<h:outputLabel styleClass="mandatory"
+						value="#{label['MANAGE_LABTEST_READ_FEE_TYPE_LABEL']}" />
+					<p:selectOneRadio id="readFeeType" required="true"
+						requiredMessage="#{label['COMMON_REQUIRED_MSG']}"
+						value="#{ManageLabTestActionBean.labtest.readFeeType}">
+						<f:selectItems value="#{ManageLabTestActionBean.labtest.readFeeType}"
+							var="readFeeType" itemLabel="#{readFeeType.readFeeTypelabel}"
+							itemValue="#{readFeeType}" />
+						<p:ajax update="readFeeTypeBasedPanel" />
+					</p:selectOneRadio>
+					<p:message display="text" for="readFeeType" />
+				</p:panelGrid>
+				<p:panelGrid columns="1">
+					<h:outputLabel styleClass="mandatory"
+						value="#{label['MANAGE_LABTEST_BASED_AMOUNT_LABEL']}" />
+					<p:inputNumber id="readFeeBasedAmount" required="true"
+						requiredMessage="#{label['COMMON_REQUIRED_MSG']}" size="38"
+						value="#{ManageLabTestActionBean.labtest.readFeeBasedAmount}">
+						<f:validateLength maximum="50" />
+					</p:inputNumber>
+					<p:message display="text" for="readFeeBasedAmount" />
+				</p:panelGrid>
+				<p:panelGrid columns="1">
+					<h:outputLabel styleClass="mandatory"
+						value="#{label['MANAGE_LABTEST_READ_FEE_AMOUNT_LABEL']}" />
+					<p:inputNumber id="readFeeAmount" required="true"
+						requiredMessage="#{label['COMMON_REQUIRED_MSG']}" size="38"
+						value="#{ManageLabTestActionBean.labtest.readFeeAmount}">
+						<f:validateLength maximum="50" />
+					</p:inputNumber>
+					<p:message display="text" for="readFeeAmount" />
+				</p:panelGrid>
+				</p:panelGrid>
+			</p:panel>
+			<!-- <p:panelGrid>
+				<p:commandButton id="addBtn" value="#{label['COMMON_ADDNEW_BTN']}"
+					action="#{ManageLabTestActionBean.addNewLabTest}"
+					rendered="#{ManageLabTestActionBean.createNew}"
+					icon="pi pi-save" update="@form :labtestTableForm"
+					style="margin-left:20px; margin-top:5px;"
+					oncomplete="PF('categoryTable').clearFilters()" />
+				<p:commandButton id="editBtn" value="#{label['COMMON_UPDATE_BTN']}"
+					action="#{ManageLabTestCategoryActionBean.updateCategory}"
+					rendered="#{!ManageLabTestActionBean.createNew}"
+					icon="pi pi-save" update="@form :labtestTableForm"
+					style="margin-left:20px; margin-top:5px;"
+					oncomplete="PF('labtestTable').clearFilters()" />
+				<p:commandButton id="cancel" value="#{label['COMMON_RESET_BTN']}"
+					process="@this"
+					action="#{ManageLabTestActionBean.createNewLabTest}"
+					icon="pi pi-refresh" update="@form :l;TableForm" />
+			</p:panelGrid>
+			<h:outputText style="color:red;"
+				value="#{label['COMMON_MSG_MANDATORY_LABEL']}" /> -->
+		</h:form>
+		<br />
+		<!-- <h:form id="categoryTableForm">
+			<p:dataTable var="category"
+				value="#{ManageLabTestCategoryActionBean.categoryList}"
+				id="categoryTable" paginator="true" rows="15"
+				widgetVar="categoryTable"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+				rowsPerPageTemplate="5,10, 15,20,25,30" rowIndexVar="index"
+				rowKey="index" emptyMessage="Nothing found with given criteria"
+				reflow="true" paginatorPosition="bottom">
+				<p:column style="width:5%;"
+					headerText="#{label['COMMON_TABLE_SR_NO']}">
+					<h:outputText value="#{index + 1}" />
+				</p:column>
+				<p:column filterBy="#{category.name}" filterMatchMode="contains"
+					headerText="Name">
+					<h:outputText value="#{category.name}" />
+				</p:column>
+				<p:column filterBy="#{category.description}"
+					filterMatchMode="contains" headerText="Description">
+					<h:outputText value="#{category.description}" />
+				</p:column>
+				<p:column style="width:5%; margin:center">
+					<p:commandButton styleClass="green-button" icon="fa fa-paint-brush"
+						action="#{ManageLabTestCategoryActionBean.prepareUpdateCategory(category)}"
+						process="@this" update=":categoryEntryForm" />
+				</p:column>
+				<p:column style="width:5%;">
+					<p:commandButton styleClass="red-button" icon="pi pi-times"
+						action="#{ManageLabTestCategoryActionBean.deleteCategory(category)}"
+						oncomplete="PF('categoryTable').filter();"
+						update=":categoryEntryForm :categoryTableForm">
+						<p:confirm header="Confirmation"
+							message="#{label['COMMON_MSG_DELETE_CONFIRM_LABEL']}"
+							icon="pi pi-exclamation-triangle" />
+					</p:commandButton>
+				</p:column>
+			</p:dataTable>
+		</h:form> -->
+		<!-- Confirmation Dialog -->
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+			<p:commandButton value="Yes" type="button"
+				styleClass="ui-confirmdialog-yes green-button" icon="pi pi-check" />
+			<p:commandButton value="No" type="button"
+				styleClass="ui-confirmdialog-no red-button" icon="pi pi-times" />
+		</p:confirmDialog>
+		<!-- Lab Test Detail Dialog -->
+		<p:dialog appendTo="@(body)" dynamic="true" modal="true"
+			responsive="true" id="SelectedLabTestCategoryDialog"
+			widgetVar="SelectedLabTestCategoryDialog"
+			header="Lab Test Detail List" width="550">
+			<h:form id="labTestCategoryDetailForm"/>
+			</p:dialog>
+	</ui:define>
+</ui:composition>

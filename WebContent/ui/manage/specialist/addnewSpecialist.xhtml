@@ -1,0 +1,33 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/common/commonLayout.xhtml">
+	<ui:param name="header" value="Specialist Management" />
+	<ui:param name="headerRendered" value="false" />
+	<ui:define name="content">
+		<div class="pageContent">
+			<h:form id="specialistEntryForm">
+				<p:growl globalOnly="true" id="messages" showDetail="true"/>
+				<p:panelGrid columns="4" styleClass="ui-panelgrid-blank ui-fluid">
+					<h:outputText value="#{label['MANAGE_SPECIALIST']}" styleClass="title"/>
+					<p:commandButton id="cancel" value="#{label['COMMON_ADDNEW_LINK']}" process="@this" action="#{AddNewSpecialistActionBean.createNewSpecialist}" icon="pi pi-plus" update="@form" />
+					<p:commandButton id="addBtn" value="#{label['COMMON_SAVE_BTN']}" action="#{AddNewSpecialistActionBean.saveSpecialist}" icon="pi pi-save" update="@form" />
+					<p:commandButton id="editBtn" value="#{label['COMMON_LIST_BTN']}" action="#{AddNewSpecialistActionBean.navManageSpecialist}" icon="pi pi-list" update="@form" immediate="true"/>
+				</p:panelGrid>
+				<br/>
+				<p:panel>
+					<p:panelGrid id="panelDept" columns="3" columnClasses="ui-g-12 ui-md-6 ui-lg-4, ui-g-12 ui-md-6 ui-lg-4, ui-g-12 ui-md-6 ui-lg-4" 
+						layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+						<h:panelGrid columns="1" styleClass="jsfgrid">
+							<h:outputText for="name" value="#{label['MANAGE_SPECIALIST_NAME_LABEL']}" styleClass="input-label mandatory" escape="false" />
+							<p:inputText value="#{AddNewSpecialistActionBean.specialist.name}" id="name" required="true">
+								<f:validateLength maximum="150" />
+							</p:inputText>
+							<p:message display="text" for="name" />
+						</h:panelGrid>
+						
+					</p:panelGrid>
+				</p:panel>
+				<h:outputText style="color:red;" value="#{label['COMMON_MSG_MANDATORY_LABEL']}"/>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>
