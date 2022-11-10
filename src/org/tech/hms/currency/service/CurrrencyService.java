@@ -10,31 +10,20 @@ import org.springframework.transaction.annotation.Transactional;
 import org.tech.hms.currency.Currency;
 import org.tech.hms.currency.persistence.interfaces.ICurrencyDAO;
 import org.tech.hms.currency.service.interfaces.ICurrencyService;
-import org.tech.hms.user.User;
 import org.tech.java.component.SystemException;
 import org.tech.java.component.persistence.exception.DAOException;
-import org.tech.java.component.service.BaseService;
-import org.tech.java.component.service.interfaces.IDataRepService;
+import org.tech.java.component.service.DataRepService;
 
-@Service(value="CurrrencyService")
-public class CurrrencyService extends BaseService implements ICurrencyService {
-	
+@Service(value = "CurrrencyService")
+public class CurrrencyService extends DataRepService<Currency> implements ICurrencyService {
+
 	@Resource(name = "CurrerncyDAO")
 	private ICurrencyDAO currencyDAO;
-	
-	@Resource(name = "DataRepService")
-	private IDataRepService<Currency> dataRepService;
-	
+
 	@Transactional(propagation = Propagation.REQUIRED)
 	@Override
-	public List<Currency> findAllCurrency() {
-		List<Currency> result = null;
-		try {
-			result = currencyDAO.findAll();
-		} catch (DAOException e) {
-			throw new SystemException(e.getErrorCode(), "Failed to find all of Currency)", e);
-		}
-		return result;
+	public List<Currency> findAllCurrency() throws SystemException {
+		return findAll();
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED)
@@ -48,29 +37,34 @@ public class CurrrencyService extends BaseService implements ICurrencyService {
 	@Override
 	public void addNewCurrency(Currency currency) {
 		try {
-			dataRepService.insert(currency);
-	} catch (DAOException e) {
-		throw new SystemException(e.getErrorCode(), "Failed to find all of User)", e);
-	}
+			// TODO Business Logic
+			insert(currency);
+		} catch (DAOException e) {
+			throw new SystemException(e.getErrorCode(), "Failed to add currency", e);
+		}
+
 	}
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void updateCurrency(Currency currency) {
 		try {
-			dataRepService.update(currency);
+			// TODO Business Logic
+			update(currency);
 		} catch (DAOException e) {
 			throw new SystemException(e.getErrorCode(), "Failed to update currency", e);
 		}
 	}
+
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void deleteCurrency(Currency currency) throws SystemException{
+	public void deleteCurrency(Currency currency){
 		try {
-		dataRepService.delete(currency);
-	} catch (DAOException e) {
-		throw new SystemException(e.getErrorCode(), "Failed to delete user", e);
-	}
+			// TODO Business Logic
+			delete(currency);
+		} catch (DAOException e) {
+			throw new SystemException(e.getErrorCode(), "Failed to delete currency", e);
+		}
 	}
 
 	@Override
@@ -78,9 +72,5 @@ public class CurrrencyService extends BaseService implements ICurrencyService {
 		// TODO Auto-generated method stub
 		return null;
 	}
-	
-
-	
-	
 
 }

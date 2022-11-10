@@ -45,5 +45,7 @@ public class TableName {
 	
 	public static final String CUR="CUR";
 	public static final String RATEINFO="RATEINFO";
+	
+	public static final String BRANCH = "BRANCH";
 
 }

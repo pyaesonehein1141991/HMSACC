@@ -1,6 +1,9 @@
 package org.tech.java.component.service;
 
+import java.util.List;
+
 import javax.annotation.Resource;
+
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -15,6 +18,7 @@ public class DataRepService<T> extends BaseService implements IDataRepService<T>
 	@Resource(name = "DataRepository")
 	private IDataRepository<T> dataRepository;
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void insert(Object object) {
 		try {
@@ -24,6 +28,7 @@ public class DataRepService<T> extends BaseService implements IDataRepService<T>
 		}
 	}
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public T update(T param) {
 		try {
@@ -34,6 +39,7 @@ public class DataRepService<T> extends BaseService implements IDataRepService<T>
 		return null;
 	}
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public void delete(Object object) {
 		try {
@@ -43,6 +49,7 @@ public class DataRepService<T> extends BaseService implements IDataRepService<T>
 		}
 	}
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = false)
 	public T findById(Class<T> paramClass, Object paramObject) {
 		T result = null;
@@ -52,6 +59,15 @@ public class DataRepService<T> extends BaseService implements IDataRepService<T>
 			throw new SystemException(e.getErrorCode(), "Failed to find a " + paramClass.getName() + "(ID : " + paramObject.toString() + ")", e);
 		}
 		return result;
+	}
+	
+	@Override
+	public List<T> findAll(){
+		try {
+			return dataRepository.findAll();
+		} catch (DAOException e) {
+			throw new SystemException(e.getErrorCode(), "Failed to find all " , e);
+		}
 	}
 
 }
