@@ -7,7 +7,6 @@ import javax.servlet.http.HttpSession;
 
 import org.tech.hms.common.validation.MessageId;
 import org.tech.hms.process.interfaces.IUserProcessService;
-import org.tech.hms.role.Role;
 import org.tech.hms.user.User;
 import org.tech.hms.user.service.interfaces.IUserService;
 import org.tech.java.web.common.BaseBean;
