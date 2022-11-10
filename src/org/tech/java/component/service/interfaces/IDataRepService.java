@@ -1,5 +1,7 @@
 package org.tech.java.component.service.interfaces;
 
+import java.util.List;
+
 public interface IDataRepService<T> {
 	
 	public void insert(Object object);
@@ -9,4 +11,6 @@ public interface IDataRepService<T> {
 	public void delete(Object object);
 	
 	public T findById(Class<T> paramClass,Object paramObject);
+
+	List<T> findAll();
 }
