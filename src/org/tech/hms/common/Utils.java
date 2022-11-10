@@ -14,19 +14,17 @@ import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Locale;
-import java.util.Map;
 import java.util.zip.ZipEntry;
 import java.util.zip.ZipInputStream;
 
 import javax.faces.context.FacesContext;
 import javax.servlet.ServletContext;
+
 import org.apache.commons.io.IOUtils;
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
@@ -217,8 +215,7 @@ public class Utils {
 	}
 
 	/**
-	 * @param stringDate
-	 *            : format must be dd-MM-yyyy
+	 * @param stringDate : format must be dd-MM-yyyy
 	 */
 	public static Date getDate(String stringDate) {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
@@ -235,12 +232,11 @@ public class Utils {
 		SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 		return formatter.format(date);
 	}
-	
+
 	public static String getYearMonthDateFormatString(Date date) {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd");
 		return formatter.format(date);
 	}
-
 
 	public static String getDatabaseDateString(Date date) {
 		SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS");
@@ -357,8 +353,7 @@ public class Utils {
 	}
 
 	/**
-	 * @param if
-	 *            month is 0, "JANUARY" will returned.
+	 * @param if month is 0, "JANUARY" will returned.
 	 */
 	public static String getMonthString(int month) {
 		if (month == 0) {
@@ -449,90 +444,6 @@ public class Utils {
 	 * case 10: return MonthType.NOV; case 11: return MonthType.DEC; } return
 	 * MonthType.JAN; }
 	 */
-	/**
-	 * Calculate age for next year.
-	 * 
-	 * @param dateOfBirth
-	 * @return age for next year
-	 */
-	public static int getAgeForNextYear(Date dateOfBirth) {
-		Calendar cal_1 = Calendar.getInstance();
-		int currentYear = cal_1.get(Calendar.YEAR);
-		Calendar cal_2 = Calendar.getInstance();
-		cal_2.setTime(dateOfBirth);
-		cal_2.set(Calendar.YEAR, currentYear);
-
-		if (new Date().after(cal_2.getTime())) {
-			Calendar cal_3 = Calendar.getInstance();
-			cal_3.setTime(dateOfBirth);
-			int year_1 = cal_3.get(Calendar.YEAR);
-			int year_2 = cal_1.get(Calendar.YEAR) + 1;
-			return year_2 - year_1;
-		} else {
-			Calendar cal_3 = Calendar.getInstance();
-			cal_3.setTime(dateOfBirth);
-			int year_1 = cal_3.get(Calendar.YEAR);
-			int year_2 = cal_1.get(Calendar.YEAR);
-			return year_2 - year_1;
-		}
-	}
-
-	/**
-	 * Calculate age for next year.
-	 * 
-	 * @param dateOfBirth
-	 * @return age for next year
-	 */
-	public static int getAgeForNextYear(Date dateOfBirth, Date calculateOnDate) {
-		Calendar cal_1 = Calendar.getInstance();
-		cal_1.setTime(calculateOnDate);
-		int currentYear = cal_1.get(Calendar.YEAR);
-		Calendar cal_2 = Calendar.getInstance();
-		cal_2.setTime(dateOfBirth);
-		cal_2.set(Calendar.YEAR, currentYear);
-
-		if (calculateOnDate.after(cal_2.getTime())) {
-			Calendar cal_3 = Calendar.getInstance();
-			cal_3.setTime(dateOfBirth);
-			int year_1 = cal_3.get(Calendar.YEAR);
-			int year_2 = cal_1.get(Calendar.YEAR) + 1;
-			return year_2 - year_1;
-		} else {
-			Calendar cal_3 = Calendar.getInstance();
-			cal_3.setTime(dateOfBirth);
-			int year_1 = cal_3.get(Calendar.YEAR);
-			int year_2 = cal_1.get(Calendar.YEAR);
-			return year_2 - year_1;
-		}
-	}
-
-	public static int getAgeForOldYear(Date commDate, Date dateOfBirth) {
-		Calendar cal_1 = Calendar.getInstance();
-		cal_1.setTime(commDate);
-		int currentYear = cal_1.get(Calendar.YEAR);
-		Calendar cal_2 = Calendar.getInstance();
-		cal_2.setTime(dateOfBirth);
-		cal_2.set(Calendar.YEAR, currentYear);
-
-		if (commDate.after(cal_2.getTime())) {
-			Calendar cal_3 = Calendar.getInstance();
-			cal_3.setTime(dateOfBirth);
-			int year_1 = cal_3.get(Calendar.YEAR);
-			int year_2 = cal_1.get(Calendar.YEAR) + 1;
-			return year_2 - year_1;
-		} else {
-			Calendar cal_3 = Calendar.getInstance();
-			cal_3.setTime(dateOfBirth);
-			int year_1 = cal_3.get(Calendar.YEAR);
-			int year_2 = cal_1.get(Calendar.YEAR);
-			return year_2 - year_1;
-		}
-	}
-
-	public static String getAge(Date dob) {
-		Period period = getPeriod(dob);
-		return period.getYears() + " Y";
-	}
 
 	public static Period getPeriod(Date date) {
 		DateTime startDate = new DateTime(date);
@@ -542,7 +453,6 @@ public class Utils {
 		Period period = new Period(startDate, endDate);
 		return period;
 	}
-
 
 	public static boolean isNullOrEmpty(String value) {
 		if (value == null || value.isEmpty()) {
@@ -620,8 +530,7 @@ public class Utils {
 	}
 
 	/**
-	 * Return Percentage of amount on base value. Round mode with two decimal
-	 * point.
+	 * Return Percentage of amount on base value. Round mode with two decimal point.
 	 * 
 	 * @param amount
 	 * @param baseValue
@@ -681,41 +590,6 @@ public class Utils {
 		return numberOfDays;
 	}
 
-	/* unused */
-	public static <T> boolean isNCB(Date policyEndDate) {
-		Date fromDate = substractMonth(policyEndDate, 2);
-		fromDate = substractDay(fromDate, 15);
-		Date currentDate = new Date();
-		Date toDate = addMonth(policyEndDate, 1);
-		toDate = addDay(toDate, 1);
-		fromDate = Utils.resetStartDate(fromDate);
-		toDate = Utils.resetEndDate(toDate);
-		if (fromDate.before(currentDate) && currentDate.before(toDate)) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	public static <T> boolean isYearlyPolicy(Date policyStartDate, Date policyEndDate, Date proposalStartDate, Date proposalEndDate) {
-		DateTime oldstart = new DateTime(policyStartDate);
-		DateTime oldend = new DateTime(policyEndDate);
-		DateTime newstart = new DateTime(proposalStartDate);
-		DateTime newend = new DateTime(proposalEndDate);
-		return (Months.monthsBetween(oldstart, oldend).getMonths() == 12) && (Months.monthsBetween(newstart, newend).getMonths() == 12);
-	}
-
-	public static boolean isExpiredRenewal(Date policyEndDate, int allowNextMonth) {
-		Calendar oldEndDate = Calendar.getInstance();
-		oldEndDate.setTime(policyEndDate);
-		oldEndDate.add(Calendar.MONTH, allowNextMonth);
-		Calendar todayDate = Calendar.getInstance();
-		if (oldEndDate.after(todayDate))
-			return false;
-		else
-			return true;
-	}
-
 	public static double round2Decimal(double d) {
 		d = Math.round(d * 100) / 100.0d;
 		return d;
@@ -762,45 +636,6 @@ public class Utils {
 		bos.close();
 	}
 
-	/*
-	 * public static List<String> getTableNameList(String tableName) { List<String>
-	 * result = new ArrayList<String>(); if (ZipFileName.TLF.equals(tableName)) {
-	 * result.add("TLF"); return result; } else if
-	 * (ZipFileName.SYSTEM.equals(tableName)) { result.add("Country");
-	 * result.add("TypesOfSport"); result.add("Occupation");
-	 * result.add("BuildingOccupation"); result.add("Industry");
-	 * result.add("Qualification"); result.add("Religion");
-	 * result.add("RelationShip"); result.add("Province"); result.add("Township");
-	 * result.add("Branch"); result.add("WorkShop"); result.add("ClassOfInsurance");
-	 * result.add("Company"); // result.add("CoinsuranceCompany");
-	 * result.add("Organization"); result.add("SaleMan"); return result; } else if
-	 * (ZipFileName.TRAVEL.equals(tableName)) { result.add("City");
-	 * result.add("Occurrence"); result.add("Express"); return result; } else if
-	 * (ZipFileName.PAYMENT.equals(tableName)) { result.add("Currency");
-	 * result.add("Deno"); result.add("Bank"); result.add("BankBranch");
-	 * result.add("PaymentType"); return result; } else if
-	 * (ZipFileName.USERAUTHORITY.equals(tableName)) { result.add("Role");
-	 * result.add("User"); return result; } else if
-	 * (ZipFileName.MOTOR.equals(tableName)) { result.add("TypeOfBody");
-	 * result.add("MotorType"); result.add("Manufacture");
-	 * result.add("VehiclePart"); return result; } else if
-	 * (ZipFileName.FIRE.equals(tableName)) { result.add("Roof");
-	 * result.add("Wall"); result.add("Floor"); result.add("MainCover");
-	 * result.add("BuildingClass"); result.add("SettingVariable"); return result; }
-	 * else if (ZipFileName.PRODUCT.equals(tableName)) { result.add("AddOn");
-	 * result.add("KeyFactor"); result.add("ProductGroup"); result.add("Product");
-	 * return result; }
-	 * 
-	 * return null; }
-	 * 
-	 * public static Map<Integer, Unit> getUnits(int maxUnit, boolean flag) {
-	 * Map<Integer, Unit> unitMap = new HashMap<Integer, Unit>(); if (flag) { for
-	 * (int i = 1; i <= maxUnit; i++) { Unit unit = new Unit(new
-	 * DefaultProcessor().getName(i).toUpperCase(), i); unitMap.put(i, unit); } }
-	 * else { Unit unit = new Unit(new
-	 * DefaultProcessor().getName(maxUnit).toUpperCase(), maxUnit); unitMap.put(0,
-	 * unit); } return unitMap; }
-	 */
 	public static boolean isEmpty(String value) {
 		if (value == null || value.isEmpty()) {
 			return true;
@@ -814,31 +649,13 @@ public class Utils {
 		return systemPath;
 	}
 
-	/*
-	 * public static String getCompleteName(String initialId, Name name) { String
-	 * result = ""; if (name != null) { if (initialId != null &&
-	 * !initialId.isEmpty()) { result = initialId + " "; } if (name.getFirstName()
-	 * != null && !name.getFirstName().isEmpty()) { result = result +
-	 * name.getFirstName(); } if (name.getMiddleName() != null &&
-	 * !name.getMiddleName().isEmpty()) { result = result + " " +
-	 * name.getMiddleName(); } if (name.getLastName() != null &&
-	 * !name.getLastName().isEmpty()) { result = result + " " + name.getLastName();
-	 * } } return result; }
-	 */
-
 	public static String getLastNCharFromString(String string, int i) {
 		String result = string.trim().substring(string.length() - i);
 		return result;
 	}
 
-	/*
-	 * public static Date addYears(Date date, int years) { return
-	 * org.apache.commons.lang.time.DateUtils.addYears(date, years); }
-	 */
-
 	/**
-	 * @param month
-	 *            : if month = 0, it is January. If month = 11, it is December.
+	 * @param month : if month = 0, it is January. If month = 11, it is December.
 	 */
 	public static Date getStartDateOfMonth(int month, int year) {
 		Calendar cal = Calendar.getInstance();
@@ -849,8 +666,7 @@ public class Utils {
 	}
 
 	/**
-	 * @param month
-	 *            : if month = 0, it is January. If month = 11, it is December.
+	 * @param month : if month = 0, it is January. If month = 11, it is December.
 	 */
 	public static Date getEndDateOfMonth(int month, int year) {
 		Calendar cal = Calendar.getInstance();
@@ -868,8 +684,7 @@ public class Utils {
 	}
 
 	/**
-	 * @param double
-	 *            : if double = 1.0, return String 1.0000%.
+	 * @param double : if double = 1.0, return String 1.0000%.
 	 */
 	public static String formattedPercentage(double value) {
 		DecimalFormat decimalFormat = new DecimalFormat("##,##0.0000");
@@ -878,8 +693,7 @@ public class Utils {
 	}
 
 	/**
-	 * @param Date
-	 *            : if Date, return Date eg. 12-30-2000.
+	 * @param Date : if Date, return Date eg. 12-30-2000.
 	 */
 	public static String formattedDate(Date date) {
 		SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
@@ -888,8 +702,7 @@ public class Utils {
 
 	/**
 	 * @param Date
-	 * @param String
-	 *            return Date string with dateFormat.
+	 * @param String return Date string with dateFormat.
 	 */
 	public static String formattedDate(Date date, String dateFormat) {
 		SimpleDateFormat sdf = new SimpleDateFormat(dateFormat);

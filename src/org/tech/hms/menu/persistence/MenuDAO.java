@@ -5,7 +5,6 @@ import java.util.List;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
-
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,6 +21,7 @@ import org.tech.java.component.persistence.exception.DAOException;
 @Repository("MenuDAO")
 public class MenuDAO extends BasicDAO implements IMenuDAO {
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void insert(MainMenu mainMenu) throws DAOException {
 		try {
@@ -32,6 +32,7 @@ public class MenuDAO extends BasicDAO implements IMenuDAO {
 		}
 	}
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void update(MainMenu mainMenu) throws DAOException {
 		try {
@@ -42,6 +43,7 @@ public class MenuDAO extends BasicDAO implements IMenuDAO {
 		}
 	}
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(MainMenu mainMenu) throws DAOException {
 		try {
@@ -53,6 +55,7 @@ public class MenuDAO extends BasicDAO implements IMenuDAO {
 		}
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	@Transactional(propagation = Propagation.REQUIRED)
 	public List<MainMenuValue> findMainMenuValueByMainMenuId(String mainMenuId) throws DAOException {
@@ -69,6 +72,7 @@ public class MenuDAO extends BasicDAO implements IMenuDAO {
 		return results;
 	}
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(MainMenuValue mainMenuValue) throws DAOException {
 		try {
@@ -80,6 +84,7 @@ public class MenuDAO extends BasicDAO implements IMenuDAO {
 		}
 	}
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void insert(SubMenu subMenu) throws DAOException {
 		try {
@@ -90,6 +95,7 @@ public class MenuDAO extends BasicDAO implements IMenuDAO {
 		}
 	}
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void update(SubMenu subMenu) throws DAOException {
 		try {
@@ -100,6 +106,7 @@ public class MenuDAO extends BasicDAO implements IMenuDAO {
 		}
 	}
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(SubMenu subMenu) throws DAOException {
 		try {
@@ -111,6 +118,7 @@ public class MenuDAO extends BasicDAO implements IMenuDAO {
 		}
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	@Transactional(propagation = Propagation.REQUIRED)
 	public List<SubMenuValue> findSubMenuValueBySubMenuId(String subMenuId) throws DAOException {
@@ -127,6 +135,7 @@ public class MenuDAO extends BasicDAO implements IMenuDAO {
 		return results;
 	}
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(SubMenuValue subMenuValue) throws DAOException {
 		try {
@@ -138,6 +147,7 @@ public class MenuDAO extends BasicDAO implements IMenuDAO {
 		}
 	}
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void insert(MenuItem menuItem) throws DAOException {
 		try {
@@ -148,6 +158,7 @@ public class MenuDAO extends BasicDAO implements IMenuDAO {
 		}
 	}
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void update(MenuItem menuItem) throws DAOException {
 		try {
@@ -158,6 +169,7 @@ public class MenuDAO extends BasicDAO implements IMenuDAO {
 		}
 	}
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(MenuItem menuItem) throws DAOException {
 		try {
@@ -169,6 +181,7 @@ public class MenuDAO extends BasicDAO implements IMenuDAO {
 		}
 	}
 
+	@Override
 	@SuppressWarnings("unchecked")
 	@Transactional(propagation = Propagation.REQUIRED)
 	public List<MenuItemValue> findMenuItemValueByMenuItemId(String menuItemId) throws DAOException {
@@ -185,6 +198,7 @@ public class MenuDAO extends BasicDAO implements IMenuDAO {
 		return results;
 	}
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void delete(MenuItemValue menuItemValue) throws DAOException {
 		try {
@@ -196,6 +210,7 @@ public class MenuDAO extends BasicDAO implements IMenuDAO {
 		}
 	}
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public MainMenu findById(String id) throws DAOException {
 		MainMenu result = null;
@@ -208,6 +223,7 @@ public class MenuDAO extends BasicDAO implements IMenuDAO {
 		return result;
 	}
 
+	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public List<MainMenu> findAll() throws DAOException {
 		List<MainMenu> result = null;

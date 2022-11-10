@@ -3,7 +3,7 @@ package org.tech.hms.currency.persistence;
 import java.util.List;
 
 import javax.persistence.PersistenceException;
-import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
@@ -21,7 +21,7 @@ public class CurrerncyDAO extends BasicDAO implements ICurrencyDAO{
 	public List<Currency> findAll() throws DAOException {
 		List<Currency> result = null;
 		try {
-			Query q = em.createNamedQuery("Currency.findAll");
+			TypedQuery<Currency>q = em.createNamedQuery("Currency.findAll",Currency.class);
 			result = q.getResultList();
 			em.flush();
 		} catch (PersistenceException pe) {
