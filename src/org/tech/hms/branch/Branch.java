@@ -26,7 +26,6 @@ import lombok.Data;
 @TableGenerator(name = "BRANCH_GEN", table = "ID_GEN",valueColumnName = "GEN_VAL", pkColumnName = "GEN_NAME", pkColumnValue = "BRANCH_GEN",allocationSize = 10)
 @NamedQueries(value = { @NamedQuery(name = "Branch.findAll",query = "SELECT b FROM Branch b  ORDER BY b.name ASC"),
 		@NamedQuery(name = "Branch.findById",query = "SELECT b FROM Branch b WHERE b.id = :id")
-		
 })
 @Data
 public class Branch implements Serializable{
