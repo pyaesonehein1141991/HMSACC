@@ -1,7 +1,6 @@
 package org.tech.hms.web.system.coa;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
@@ -16,40 +15,31 @@ import org.tech.java.web.common.BaseBean;
 import lombok.Getter;
 import lombok.Setter;
 
-@Named(value = "ManageCoaActionBean")
+@Named(value = "ManageCreateNewCoaAction")
 @Scope(value = "view")
-public class ManageCoaActionBean extends BaseBean implements Serializable {
+public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
 	private ICoaService coaService;
-	
+
 	@Getter
 	@Setter
 	private CoaDTO coaDTO;
-	
-	@Getter
-	private List<CoaDTO> coaDTOList;
 
+	public void initialization() {
+
+	}
+	
 	@PostConstruct
 	public void init() {
-		
+		coaDTO = new CoaDTO();
 	}
-	
-	public void initialization() {
-		
-	}
-	
-	public void loadDTOList() {
-		coaDTOList = coaService.findAllDTO();
-	}
-	
+
+
 	public AccountType[] getAcTypes() {
 		return AccountType.values();
 	}
-	
-	public String createNewCoa() {
-		return "manageNewChartOfAccount.xhtml?faces-redirect=true";
-	}
+
 }

@@ -51,26 +51,25 @@
     TARGET="rules:#ui#manage#relation#manageRelation.xhtml"
     TITLE="manageRelation" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
+    ID="addNewRelation::#ui#manage#relation#addNewRelation.xhtml"
+    NAME="output12" PATH="/ui/manage/relation/addNewRelation.xhtml"
+    TARGET="rules:#ui#manage#relation#addNewRelation.xhtml"
+    TITLE="addNewRelation" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="manageGeneric::#ui#manage#generic#manageGeneric.xhtml"
+    NAME="output13" PATH="/ui/manage/generic/manageGeneric.xhtml"
+    TARGET="rules:#ui#manage#generic#manageGeneric.xhtml"
+    TITLE="manageGeneric" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
     ID="addNewGeneric::#ui#manage#generic#addnewGeneric.xhtml"
-    NAME="output12" PATH="/ui/manage/generic/addnewGeneric.xhtml"
+    NAME="output14" PATH="/ui/manage/generic/addnewGeneric.xhtml"
     TARGET="rules:#ui#manage#generic#addnewGeneric.xhtml"
     TITLE="addNewGeneric" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="manageSpecialist::#ui#manage#specialist#manageSpecialist.xhtml"
-    NAME="output13" PATH="/ui/manage/specialist/manageSpecialist.xhtml"
+    NAME="output15" PATH="/ui/manage/specialist/manageSpecialist.xhtml"
     TARGET="rules:#ui#manage#specialist#manageSpecialist.xhtml"
     TITLE="manageSpecialist" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT
-    ID="addNewSpecialist::#ui#manage#specialist#addnewSpecialist.xhtml"
-    NAME="output14" PATH="/ui/manage/specialist/addnewSpecialist.xhtml"
-    TARGET="rules:#ui#manage#specialist#addnewSpecialist.xhtml"
-    TITLE="addNewSpecialist" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT
-    ID="manageSpecialization::#ui#manage#specialization#manageSpecialization.xhtml"
-    NAME="output15"
-    PATH="/ui/manage/specialization/manageSpecialization.xhtml"
-    TARGET="rules:#ui#manage#specialization#manageSpecialization.xhtml"
-    TITLE="manageSpecialization" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="addNewSpecialization::#ui#manage#specialization#addnewSpecialization.xhtml"
     NAME="output16"
@@ -78,16 +77,15 @@
     TARGET="rules:#ui#manage#specialization#addnewSpecialization.xhtml"
     TITLE="addNewSpecialization" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
+    ID="managePosition::#ui#manage#position#managePosition.xhtml"
+    NAME="output17" PATH="/ui/manage/position/managePosition.xhtml"
+    TARGET="rules:#ui#manage#position#managePosition.xhtml"
+    TITLE="managePosition" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
     ID="addNewPosition::#ui#manage#position#addnewPosition.xhtml"
-    NAME="output17" PATH="/ui/manage/position/addnewPosition.xhtml"
+    NAME="output18" PATH="/ui/manage/position/addnewPosition.xhtml"
     TARGET="rules:#ui#manage#position#addnewPosition.xhtml"
     TITLE="addNewPosition" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT
-    ID="managepackageUnitRelation::#ui#manage#packageUnitRelation#managePackageUnitRelation.xhtml"
-    NAME="output18"
-    PATH="/ui/manage/packageUnitRelation/managePackageUnitRelation.xhtml"
-    TARGET="rules:#ui#manage#packageUnitRelation#managePackageUnitRelation.xhtml"
-    TITLE="managepackageUnitRelation" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="manageUnit::#ui#manage#unit#manageunit.xhtml" NAME="output19"
     PATH="/ui/manage/unit/manageunit.xhtml"
@@ -125,15 +123,15 @@
     TARGET="rules:#ui#manage#PackagingUnit#addNewPackagingUnit.xhtml"
     TITLE="addNewPackagingUnit" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
+    ID="packagingunitDialog::#dialog#packagingunitDialog.xhtml"
+    NAME="output26" PATH="/dialog/packagingunitDialog.xhtml"
+    TARGET="rules:#dialog#packagingunitDialog.xhtml"
+    TITLE="packagingunitDialog" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
     ID="manageCountry::#ui#manage#Country#manageCountry.xhtml"
-    NAME="output26" PATH="/ui/manage/Country/manageCountry.xhtml"
+    NAME="output27" PATH="/ui/manage/Country/manageCountry.xhtml"
     TARGET="rules:#ui#manage#Country#manageCountry.xhtml"
     TITLE="manageCountry" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT
-    ID="addNewCountry::#ui#manage#Country#addNewCountry.xhtml"
-    NAME="output27" PATH="/ui/manage/Country/addNewCountry.xhtml"
-    TARGET="rules:#ui#manage#Country#addNewCountry.xhtml"
-    TITLE="addNewCountry" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="countryDialog::#dialog#countryDialog.xhtml"
     NAME="output28" PATH="/dialog/countryDialog.xhtml"
     TARGET="rules:#dialog#countryDialog.xhtml" TITLE="countryDialog" model-entity="JSFProcessItemOutput"/>
@@ -228,6 +226,16 @@
     NAME="output48" PATH="/ui/manage/patient/managePatient.xhtml"
     TARGET="rules:#ui#manage#patient#managePatient.xhtml"
     TITLE="managePatient" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="patientInquiry::#ui#manage#patient#patientInquiry.xhtml"
+    NAME="output49" PATH="/ui/manage/patient/patientInquiry.xhtml"
+    TARGET="rules:#ui#manage#patient#patientInquiry.xhtml"
+    TITLE="patientInquiry" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="manageEmployee::#ui#manage#employee#manageEmployee.xhtml"
+    NAME="output50" PATH="/ui/manage/employee/manageEmployee.xhtml"
+    TARGET="rules:#ui#manage#employee#manageEmployee.xhtml"
+    TITLE="manageEmployee" model-entity="JSFProcessItemOutput"/>
   </PROCESS-ITEM>
  </PROCESS-ITEM>
  <PROCESS-ITEM NAME="rules:#ui#system#home.xhtml"

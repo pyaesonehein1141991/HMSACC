@@ -3,11 +3,13 @@
 	<ui:param name="header" value="Chart Of Account Management" />
 	<ui:param name="headerRendered" value="false" />
 	<ui:define name="content">
-		<h:form>
-			
-		</h:form>
-	
 		<h:form id="coaEntryTableForm">
+		
+		<p:growl globalOnly="true" id="messages" showDetail="true"/>
+				<p:panelGrid columns="2" styleClass="ui-panelgrid-blank ui-fluid">
+					<p:commandButton id="addBtn" value="#{label['COMMON_ADDNEW_LINK']}" action="#{ManageCoaActionBean.createNewCoa}" icon="pi pi-plus" />
+				</p:panelGrid>
+		
 			<p:dataTable var="coa" value="#{ManageCoaActionBean.coaDTOList}" id="coaTable" paginator="true" rows="10" style="width:100%;" widgetVar="coaTable"
 				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10, 15"
 				rowKey="#{coa.id}"  emptyMessage="Nothing found with given criteria" paginatorPosition="bottom"	reflow="true">

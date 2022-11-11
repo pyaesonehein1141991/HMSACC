@@ -79,6 +79,7 @@
 			<to-view-id>/ui/manage/chartofaccount/manageChartOfAccount.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
+		
 		<navigation-case>
 			<from-outcome>manageLabTestCategory</from-outcome>
 			<to-view-id>/ui/manage/labTestCategory/manageLabTestCategory.xhtml</to-view-id>
