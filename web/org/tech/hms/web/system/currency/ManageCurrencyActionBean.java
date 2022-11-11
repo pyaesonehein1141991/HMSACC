@@ -14,6 +14,10 @@ import org.tech.hms.currency.service.interfaces.ICurrencyService;
 import org.tech.java.component.SystemException;
 import org.tech.java.web.common.BaseBean;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
+
 @Named(value = "ManageCurrencyActionBean")
 @Scope(value = "view")
 public class ManageCurrencyActionBean extends BaseBean implements Serializable {
@@ -23,12 +27,19 @@ public class ManageCurrencyActionBean extends BaseBean implements Serializable {
 	@Autowired
 	protected ICurrencyService currencyService;
 
-	
-
+	@Getter
+	@Setter
 	private boolean createNew;
+	
+	@Getter
+	@Setter
 	private Currency currency;
+	
+	@Getter
+	@Setter
 	private boolean homeCurDisable;
 
+	@Getter
 	private List<Currency> currencyList;
 
 	@PostConstruct
@@ -92,49 +103,5 @@ public class ManageCurrencyActionBean extends BaseBean implements Serializable {
 			}
 			loadCurrency();
 		}
-
-			
-	
-
-	public ICurrencyService getCurrencyService() {
-		return currencyService;
-	}
-
-	public void setCurrencyService(ICurrencyService currencyService) {
-		this.currencyService = currencyService;
-	}
-
-	public boolean isCreateNew() {
-		return createNew;
-	}
-
-	public void setCreateNew(boolean createNew) {
-		this.createNew = createNew;
-	}
-
-	public Currency getCurrency() {
-		return currency;
-	}
-
-	public void setCurrency(Currency currency) {
-		this.currency = currency;
-	}
-
-	public boolean isHomeCurDisable() {
-		return homeCurDisable;
-	}
-
-	public void setHomeCurDisable(boolean homeCurDisable) {
-		this.homeCurDisable = homeCurDisable;
-	}
-
-	public List<Currency> getCurrencyList() {
-		return currencyList;
-	}
-
-	public void setCurrencyList(List<Currency> currencyList) {
-		this.currencyList = currencyList;
-	}
-
 
 }

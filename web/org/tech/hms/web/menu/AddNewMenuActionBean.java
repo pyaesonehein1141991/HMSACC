@@ -12,10 +12,10 @@ import java.io.Serializable;
 
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
-import javax.faces.bean.ViewScoped;
+import javax.inject.Named;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.tech.hms.common.validation.MessageId;
 import org.tech.hms.menu.MainMenu;
 import org.tech.hms.menu.MenuItem;
@@ -24,8 +24,8 @@ import org.tech.hms.menu.service.interfaces.IMenuService;
 import org.tech.java.component.SystemException;
 import org.tech.java.web.common.BaseBean;
 
-@ViewScoped
-@ManagedBean(name = "AddNewMenuActionBean")
+@Named(value = "AddNewMenuActionBean")
+@Scope(value = "view")
 public class AddNewMenuActionBean extends BaseBean implements Serializable {
 	private static final long serialVersionUID = 1L;
 
@@ -37,12 +37,9 @@ public class AddNewMenuActionBean extends BaseBean implements Serializable {
 	private boolean isSubMenu;
 	private boolean isMenuItem;
 
-	@ManagedProperty(value = "#{MenuService}")
+	@Autowired
 	private IMenuService menuService;
 
-	public void setMenuService(IMenuService menuService) {
-		this.menuService = menuService;
-	}
 
 	private void initialization() {
 		menu = (MainMenu) getParam("menu");
