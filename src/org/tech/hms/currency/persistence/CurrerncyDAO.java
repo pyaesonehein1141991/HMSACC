@@ -32,9 +32,18 @@ public class CurrerncyDAO extends BasicDAO implements ICurrencyDAO{
 		
 
 	@Override
+	@SuppressWarnings("unchecked")
+	@Transactional(propagation = Propagation.REQUIRED)
 	public List<Currency> findForeignCurrency() throws DAOException {
-		// TODO Auto-generated method stub
-		return null;
+		List<Currency> result = null;
+		try {
+			Query q = em.createNamedQuery("Currency.findForeignCurrency");
+			result = q.getResultList();
+			em.flush();
+		} catch (PersistenceException pe) {
+			throw translate("Failed to find all of Currency", pe);
+		}
+		return result;
 	}
 
 	@Override

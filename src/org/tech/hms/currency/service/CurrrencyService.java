@@ -74,10 +74,17 @@ public class CurrrencyService extends BaseService implements ICurrencyService {
 	}
 
 	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
 	public List<Currency> findForeignCurrency() {
-		// TODO Auto-generated method stub
-		return null;
+		List<Currency> result = null;
+		try {
+			result = currencyDAO.findForeignCurrency();
+		} catch (DAOException e) {
+			throw new SystemException(e.getErrorCode(), "Failed to find all of Currency)", e);
+		}
+		return result;
 	}
+
 	
 
 	

@@ -11,7 +11,6 @@ import org.springframework.context.annotation.Scope;
 import org.tech.hms.common.validation.MessageId;
 import org.tech.hms.currency.Currency;
 import org.tech.hms.currency.service.interfaces.ICurrencyService;
-import org.tech.hms.user.USR001;
 import org.tech.java.component.SystemException;
 import org.tech.java.web.common.BaseBean;
 
