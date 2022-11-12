@@ -185,5 +185,9 @@ public class BaseBean {
 	public void selectPackagingUnit() {
 		PrimeFaces.current().dialog().openDynamic("packagingunitDialog", getDialogOptions(), null);
 	}
+	
+	public void selectParentCoa() {
+		PrimeFaces.current().dialog().openDynamic("coaDialog", getDialogOptions(), null);
+	}
 
 }
