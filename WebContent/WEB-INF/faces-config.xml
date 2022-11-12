@@ -194,6 +194,12 @@
 		</navigation-case>
 		
 		<navigation-case>
+			<from-outcome>coaDialog</from-outcome>
+			<to-view-id>/dialog/coaDialog.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
 			<from-outcome>packagingunitDialog</from-outcome>
 			<to-view-id>/dialog/packagingunitDialog.xhtml</to-view-id>
 			<redirect />
