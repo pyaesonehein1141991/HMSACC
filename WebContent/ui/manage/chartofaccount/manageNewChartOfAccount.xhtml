@@ -1,84 +1,63 @@
-<ui:composition xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui"
-	template="/common/commonLayout.xhtml">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/common/commonLayout.xhtml">
 	<ui:param name="header" value="Chart Of Account Management" />
 	<ui:param name="headerRendered" value="false" />
 	<ui:define name="content">
 		<h:form id="coaEntryForm">
 			<p:panel>
-				<p:panelGrid id="panelDept" columns="3"
-					columnClasses="ui-g-12 ui-md-6 ui-lg-4, ui-g-12 ui-md-6 ui-lg-4, ui-g-12 ui-md-6 ui-lg-4"
-					layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
-
+				<p:panelGrid id="panelDept" columns="3" columnClasses="ui-g-12 ui-md-6 ui-lg-4, ui-g-12 ui-md-6 ui-lg-4, ui-g-12 ui-md-6 ui-lg-4" layout="grid"
+					styleClass="ui-panelgrid-blank ui-fluid">
 					<h:panelGrid columns="1" styleClass="jsfgrid">
-						<h:outputText for="acCode" value="Account Code"
-							styleClass="input-label mandatory" escape="false" />
-						<p:inputText value="#{ManageCreateNewCoaAction.coaDTO.acCode}"
-							id="acCode" required="true">
+						<h:outputText for="acCode" value="Account Code" styleClass="input-label mandatory" escape="false" />
+						<p:inputText value="#{ManageCreateNewCoaAction.coaDTO.acCode}" id="acCode" required="true">
 							<f:validateLength maximum="50" />
 						</p:inputText>
 						<p:message display="text" for="acCode" />
 					</h:panelGrid>
-					
 					<h:panelGrid columns="1" styleClass="jsfgrid">
-						<h:outputText for="acType" value="Account Type"
-							styleClass="input-label mandatory" escape="false" />
+						<h:outputText for="acType" value="Account Type" styleClass="input-label mandatory" escape="false" />
 						<p:selectOneMenu converter="omnifaces.SelectItemsIndexConverter" id="acType" value="#{ManageCreateNewCoaAction.coaDTO.acType}" required="true">
-						<f:selectItem itemLabel="Select One Account Type" noSelectionOption="true"/>
+							<f:selectItem itemLabel="Select One Account Type" noSelectionOption="true" />
 							<f:selectItems itemLabel="#{type.label}" itemValue="#{type}" value="#{ManageCreateNewCoaAction.acTypes}" var="type" />
 						</p:selectOneMenu>
 						<p:message display="text" for="acType" />
 					</h:panelGrid>
-					
 					<h:panelGrid columns="1" styleClass="jsfgrid">
-						<h:outputText for="acCodeType" value="Account Code Type"
-							styleClass="input-label mandatory" escape="false" />
+						<h:outputText for="acCodeType" value="Account Code Type" styleClass="input-label mandatory" escape="false" />
 						<p:selectOneMenu converter="omnifaces.SelectItemsIndexConverter" id="acCodeType" value="#{ManageCreateNewCoaAction.coaDTO.acType}" required="true">
 							<f:selectItems itemLabel="#{type.label}" itemValue="#{type}" value="#{ManageCreateNewCoaAction.acTypes}" var="type" />
 						</p:selectOneMenu>
 						<p:message display="text" for="acCodeType" />
 					</h:panelGrid>
-					
 					<h:panelGrid columns="1" styleClass="jsfgrid">
-						<h:outputText for="ibsbCode" value="IBSB Account Code"/>
-						<p:inputText value="#{ManageCreateNewCoaAction.coaDTO.ibsbACode}"
-							id="ibsbCode">
+						<h:outputText for="ibsbCode" value="IBSB Account Code" />
+						<p:inputText value="#{ManageCreateNewCoaAction.coaDTO.ibsbACode}" id="ibsbCode">
 							<f:validateLength maximum="50" />
 						</p:inputText>
 						<p:message display="text" for="ibsbCode" />
 					</h:panelGrid>
-					
 					<h:panelGrid columns="1" styleClass="jsfgrid">
-						<h:outputText for="parentAccount" value="Parent Account"
-							styleClass="input-label mandatory" escape="false" />
+						<h:outputText for="parentAccount" value="Parent Account" styleClass="input-label mandatory" escape="false" />
 						<p:selectOneMenu converter="omnifaces.SelectItemsIndexConverter" id="parentAccount" value="#{ManageCreateNewCoaAction.coaDTO.acType}" required="true">
 							<f:selectItems itemLabel="#{type.label}" itemValue="#{type}" value="#{ManageCreateNewCoaAction.acTypes}" var="type" />
 						</p:selectOneMenu>
 						<p:message display="text" for="parentAccount" />
 					</h:panelGrid>
-					
 					<h:panelGrid columns="1" styleClass="jsfgrid">
-						<h:outputText for="acName" value="Description"
-							styleClass="input-label mandatory" escape="false" />
-						<p:inputTextarea rows="3"  value="#{ManageCreateNewCoaAction.coaDTO.acName}" id="acName">
+						<h:outputText for="acName" value="Description" styleClass="input-label mandatory" escape="false" />
+						<p:inputTextarea rows="3" value="#{ManageCreateNewCoaAction.coaDTO.acName}" id="acName">
 							<p:ajax process="@this" />
 						</p:inputTextarea>
 						<p:message display="text" for="acName" />
 					</h:panelGrid>
-
 				</p:panelGrid>
 			</p:panel>
 			<p:panelGrid columns="4" styleClass="ui-panelgrid-blank ui-fluid">
-					<h:outputText value="#{label['MANAGE_USER']}" styleClass="title"/>
-					<p:commandButton id="cancel" value="#{label['COMMON_ADDNEW_LINK']}" process="@this" action="#{AddNewUserActionBean.createNewUser}" icon="pi pi-plus" update="@form" />
-					<p:commandButton id="addBtn" value="#{label['COMMON_SAVE_BTN']}" action="#{AddNewUserActionBean.saveUser}" icon="pi pi-save" update="@form" />
-					<p:commandButton id="editBtn" value="#{label['COMMON_LIST_BTN']}" action="#{AddNewUserActionBean.navManageUser}" icon="pi pi-list" update="@form" immediate="true"/>
-				</p:panelGrid>
+				<h:outputText value="#{label['MANAGE_USER']}" styleClass="title" />
+				<p:commandButton id="cancel" value="#{label['COMMON_ADDNEW_LINK']}" process="@this" action="#{AddNewUserActionBean.createNewUser}" icon="pi pi-plus" update="@form" />
+				<p:commandButton id="addBtn" value="#{label['COMMON_SAVE_BTN']}" action="#{AddNewUserActionBean.saveUser}" icon="pi pi-save" update="@form" />
+				<p:commandButton id="editBtn" value="#{label['COMMON_LIST_BTN']}" action="#{AddNewUserActionBean.navManageUser}" icon="pi pi-list" update="@form" immediate="true" />
+			</p:panelGrid>
 		</h:form>
-
-
 	</ui:define>
 </ui:composition>
