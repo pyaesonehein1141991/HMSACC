@@ -85,6 +85,12 @@
 			<redirect />
 		</navigation-case>
 		<navigation-case>
+			<from-outcome>manageCoa</from-outcome>
+			<to-view-id>/ui/manage/chartofaccount/manageChartOfAccount.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
 			<from-outcome>manageLabTestCategory</from-outcome>
 			<to-view-id>/ui/manage/labTestCategory/manageLabTestCategory.xhtml</to-view-id>
 			<redirect />
@@ -194,6 +200,12 @@
 		<navigation-case>
 			<from-outcome>addNewPackagingUnit</from-outcome>
 			<to-view-id>/ui/manage/PackagingUnit/addNewPackagingUnit.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>coaDialog</from-outcome>
+			<to-view-id>/dialog/coaDialog.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		

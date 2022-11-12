@@ -48,5 +48,7 @@ public class TableName {
 	public static final String CODESETUP="CODESETUP";
 	
 	public static final String BRANCH = "BRANCH";
+	
+	public static final String COA = "COA";
 
 }
