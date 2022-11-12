@@ -24,14 +24,13 @@
     TARGET="rules:#ui#currencyrate#managecurrencyrate.xhtml"
     TITLE="managedailyrate" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="managecodesetup::#ui#codesetup#managecodesetup.xhtml"
-    NAME="output6" PATH="/ui/codesetup/managecodesetup.xhtml"
-    TARGET="rules:#ui#codesetup#managecodesetup.xhtml"
+    ID="managecodesetup::#ui#codesetup#managecodestepup.xhtml"
+    NAME="output6" PATH="/ui/codesetup/managecodestepup.xhtml"
+    TARGET="rules:#ui#codesetup#managecodestepup.xhtml"
     TITLE="managecodesetup" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT
-    ID="manageMenu::#ui#manage#menu#manageMenu.xhtml" NAME="output7"
-    PATH="/ui/manage/menu/manageMenu.xhtml"
-    TARGET="rules:#ui#manage#menu#manageMenu.xhtml" TITLE="manageMenu" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="manageRole::#ui#system#manageRole.xhtml"
+    NAME="output7" PATH="/ui/system/manageRole.xhtml"
+    TARGET="rules:#ui#system#manageRole.xhtml" TITLE="manageRole" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="manageLabTestCategory::#ui#manage#labTestCategory#manageLabTestCategory.xhtml"
     NAME="output8"
@@ -39,14 +38,14 @@
     TARGET="rules:#ui#manage#labTestCategory#manageLabTestCategory.xhtml"
     TITLE="manageLabTestCategory" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="addNewUnit::#ui#manage#unit#addNewUnit.xhtml" NAME="output9"
-    PATH="/ui/manage/unit/addNewUnit.xhtml"
-    TARGET="rules:#ui#manage#unit#addNewUnit.xhtml" TITLE="addNewUnit" model-entity="JSFProcessItemOutput"/>
+    ID="manageUnit::#ui#manage#unit#manageUnit.xhtml" NAME="output9"
+    PATH="/ui/manage/unit/manageUnit.xhtml"
+    TARGET="rules:#ui#manage#unit#manageUnit.xhtml" TITLE="manageUnit" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="addNewRelation::#ui#manage#relation#addNewRelation.xhtml"
-    NAME="output10" PATH="/ui/manage/relation/addNewRelation.xhtml"
-    TARGET="rules:#ui#manage#relation#addNewRelation.xhtml"
-    TITLE="addNewRelation" model-entity="JSFProcessItemOutput"/>
+    ID="manageRelation::#ui#manage#relation#manageRelation.xhtml"
+    NAME="output10" PATH="/ui/manage/relation/manageRelation.xhtml"
+    TARGET="rules:#ui#manage#relation#manageRelation.xhtml"
+    TITLE="manageRelation" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="manageGeneric::#ui#manage#generic#manageGeneric.xhtml"
     NAME="output11" PATH="/ui/manage/generic/manageGeneric.xhtml"
@@ -85,11 +84,10 @@
     TARGET="rules:#ui#manage#position#managePosition.xhtml"
     TITLE="managePosition" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="managepackageUnitRelation::#ui#manage#packageUnitRelation#managePackageUnitRelation.xhtml"
-    NAME="output18"
-    PATH="/ui/manage/packageUnitRelation/managePackageUnitRelation.xhtml"
-    TARGET="rules:#ui#manage#packageUnitRelation#managePackageUnitRelation.xhtml"
-    TITLE="managepackageUnitRelation" model-entity="JSFProcessItemOutput"/>
+    ID="addNewPosition::#ui#manage#position#addnewPosition.xhtml"
+    NAME="output18" PATH="/ui/manage/position/addnewPosition.xhtml"
+    TARGET="rules:#ui#manage#position#addnewPosition.xhtml"
+    TITLE="addNewPosition" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="manageUnit::#ui#manage#unit#manageunit.xhtml" NAME="output19"
     PATH="/ui/manage/unit/manageunit.xhtml"
@@ -132,10 +130,10 @@
     TARGET="rules:#dialog#packagingunitDialog.xhtml"
     TITLE="packagingunitDialog" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="addNewCountry::#ui#manage#Country#addNewCountry.xhtml"
-    NAME="output27" PATH="/ui/manage/Country/addNewCountry.xhtml"
-    TARGET="rules:#ui#manage#Country#addNewCountry.xhtml"
-    TITLE="addNewCountry" model-entity="JSFProcessItemOutput"/>
+    ID="manageCountry::#ui#manage#Country#manageCountry.xhtml"
+    NAME="output27" PATH="/ui/manage/Country/manageCountry.xhtml"
+    TARGET="rules:#ui#manage#Country#manageCountry.xhtml"
+    TITLE="manageCountry" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT ID="countryDialog::#dialog#countryDialog.xhtml"
     NAME="output28" PATH="/dialog/countryDialog.xhtml"
     TARGET="rules:#dialog#countryDialog.xhtml" TITLE="countryDialog" model-entity="JSFProcessItemOutput"/>
@@ -392,6 +390,6 @@
   PATH="/ui/manage/currency/managecurrency.xhtml" SHAPE="304,1585,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#ui#currencyrate#managecurrencyrate.xhtml"
   PATH="/ui/currencyrate/managecurrencyrate.xhtml" SHAPE="304,1681,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#ui#codesetup#managecodesetup.xhtml"
-  PATH="/ui/codesetup/managecodesetup.xhtml" SHAPE="304,1745,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#codesetup#managecodestepup.xhtml"
+  PATH="/ui/codesetup/managecodestepup.xhtml" SHAPE="304,1745,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

@@ -27,7 +27,7 @@ import org.tech.java.component.idgen.service.IDInterceptor;
 @Table(name = TableName.CODESETUP)
 @TableGenerator(name = "CODESETUP_GEN", table = "ID_GEN", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL", pkColumnValue = "CODESETUP_GEN", allocationSize = 10)
 @NamedQueries(value = { @NamedQuery(name = "CodeSetup.findAll", query = "SELECT c FROM CodeSetup c  ORDER BY c.name ASC"),
-		@NamedQuery(name = "Currency.findById", query = "SELECT c FROM CodeSetup c WHERE c.id = :id") })
+		@NamedQuery(name = "CodeSetup.findById", query = "SELECT c FROM CodeSetup c WHERE c.id = :id") })
 @EntityListeners(IDInterceptor.class)
 public class CodeSetup implements Serializable {
 
@@ -37,7 +37,7 @@ public class CodeSetup implements Serializable {
 	@GeneratedValue(strategy = GenerationType.TABLE, generator = "CODESETUP_GEN")
 	private String id;
 
-	@Column(name = "CUR", unique = true)
+	@Column(name = "name", unique = true)
 	private String name;
 	private String description;
 

@@ -32,7 +32,7 @@ public class CodeSetupService extends BaseService implements ICodeSetupService {
 		try {
 			result = codeSetupDAO.findAll();
 		} catch (DAOException e) {
-			throw new SystemException(e.getErrorCode(), "Failed to find all of Currency)", e);
+			throw new SystemException(e.getErrorCode(), "Failed to find all of Code)", e);
 		}
 		return result;
 	}

@@ -19,7 +19,7 @@
 						
 						<h:panelGrid columns="1" styleClass="jsfgrid">
 							<h:outputText for="description" value="#{label['MANAGE_BRAND_DESCRIPTION_LABEL']}" styleClass="input-label" escape="false" />
-							<p:inputText value="#{ManageCodeSetupActionBean.CodeSetup.description}" id="description" required="true">
+							<p:inputText value="#{ManageCodeSetupActionBean.codeSetup.description}" id="description" required="true">
 								<f:validateLength maximum="50" />
 							</p:inputText>
 							<p:message display="text" for="description" />
@@ -44,7 +44,7 @@
 						<h:outputText value="#{index + 1}" />
 					</p:column>
 					<p:column filterBy="#{codesetup.name}" filterMatchMode="contains" headerText="CodeSetup Name">
-						<h:outputText value="#{codesetup.code}" />
+						<h:outputText value="#{codesetup.name}" />
 					</p:column>
 					<p:column filterBy="#{codesetup.description}" filterMatchMode="contains" headerText="#{label['MANAGE_BRAND_DESCRIPTION_LABEL']}">
 						<h:outputText value="#{codesetup.description}" />
