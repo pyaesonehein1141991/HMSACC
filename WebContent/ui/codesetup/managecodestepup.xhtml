@@ -1,0 +1,72 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/common/commonLayout.xhtml">
+	<ui:param name="header" value="CodeSetup Management" />
+	<ui:param name="headerRendered" value="false" />
+	<ui:define name="content">
+		<div class="pageContent">
+			<h:form id="codesetupEntryForm">
+				<p:growl globalOnly="true" id="messages" showDetail="true"/>
+				
+				<p:panel>
+					<p:panelGrid id="codeaddform" columns="2" columnClasses="ui-g-12 ui-md-6 ui-lg-6, ui-g-12 ui-md-6 ui-lg-6" 
+						layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+						<h:panelGrid columns="1" styleClass="jsfgrid">
+							<h:outputText for="codename" value="CodeSetup Name" styleClass="input-label mandatory" escape="false" />
+							<p:inputText value="#{ManageCodeSetupActionBean.codeSetup.name}" id="codename" required="true">
+							</p:inputText>
+							<p:message display="text" for="codename" />
+						</h:panelGrid>
+						
+						<h:panelGrid columns="1" styleClass="jsfgrid">
+							<h:outputText for="description" value="#{label['MANAGE_BRAND_DESCRIPTION_LABEL']}" styleClass="input-label" escape="false" />
+							<p:inputText value="#{ManageCodeSetupActionBean.codeSetup.description}" id="description" required="true">
+								<f:validateLength maximum="50" />
+							</p:inputText>
+							<p:message display="text" for="description" />
+						</h:panelGrid>
+						
+					</p:panelGrid>
+				</p:panel>
+				<h:panelGrid columns="3" style="margin-top:-2px;">
+	   			<p:commandButton id="addBtn" value="#{label['COMMON_ADDNEW_BTN']}" action="#{ManageCodeSetupActionBean.addNewCodeSetup}"
+								rendered="#{ManageCodeSetupActionBean.createNew}" oncomplete="PF('codesetupTable').clearFilters();" update=":codesetupTableForm :codesetupEntryForm" style="width:65px;" />
+				<p:commandButton id="editBtn" value="#{label['COMMON_UPDATE_BTN']}" action="#{ManageCodeSetupActionBean.updateCodeSetup}"
+								rendered="#{!ManageCodeSetupActionBean.createNew}" oncomplete="PF('codesetupTable').filter();" update="@form" style="width:70px;" /><br/>
+				<p:commandButton id="cancleButton" immediate="true" process="@this" value="Cancel" action="#{ManageCodeSetupActionBean.createNewCodeSetup}" update=":codesetupEntryForm" style="width:70px;margin-left:-8px;"/>
+			</h:panelGrid>
+			<p:separator style="height:3px;"/>
+			</h:form>
+			<h:form id="codesetupTableForm">
+				<p:dataTable var="codesetup" value="#{ManageCodeSetupActionBean.codeSetupList}" id="codesetupTable" paginator="true" rows="15" widgetVar="codesetupTable"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10, 15,20,25,30" rowIndexVar="index" rowKey="index" emptyMessage="Nothing found with given criteria" reflow="true" paginatorPosition="bottom">
+					<p:column style="width:3%;" headerText="#{label['COMMON_TABLE_SR_NO']}" styleClass="textOnRight">
+						<h:outputText value="#{index + 1}" />
+					</p:column>
+					<p:column filterBy="#{codesetup.name}" filterMatchMode="contains" headerText="CodeSetup Name">
+						<h:outputText value="#{codesetup.name}" />
+					</p:column>
+					<p:column filterBy="#{codesetup.description}" filterMatchMode="contains" headerText="#{label['MANAGE_BRAND_DESCRIPTION_LABEL']}">
+						<h:outputText value="#{codesetup.description}" />
+					</p:column>
+					<p:column style="width:3%; margin:center" styleClass="textOnCenter">
+						<p:commandButton styleClass="white-button" icon="fa fa-paint-brush" action="#{ManageCodeSetupActionBean.prepareUpdateCodeSetup(codesetup)}" update=":codesetupEntryForm"/>
+					</p:column>
+					<p:column style="width:3%; max-width: 5px;" styleClass="textOnCenter">
+						<p:commandButton styleClass="red-button" icon="pi pi-times" action="#{ManageCodeSetupActionBean.deleteCodeSetup(codesetup)}" 
+							oncomplete="PF('codesetupTable').filter();" update=":codesetupEntryForm :codesetupTableForm" >
+							<p:confirm header="Confirmation"  message="#{label['COMMON_MSG_DELETE_CONFIRM_LABEL']}" icon="pi pi-exclamation-triangle" />
+						</p:commandButton>
+					</p:column>
+					
+					
+				</p:dataTable>
+			</h:form>
+			<!-- Confirmation Dialog -->
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes green-button" icon="pi pi-check" />
+				<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no red-button" icon="pi pi-times" />
+			</p:confirmDialog>
+		</div>
+	</ui:define>
+</ui:composition>

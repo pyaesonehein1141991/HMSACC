@@ -1,4 +1,4 @@
-package org.tech.hms.currency;
+package org.tech.hms.codesetup;
 
 
 
@@ -24,26 +24,23 @@ import org.tech.java.component.idgen.service.IDInterceptor;
 
 
 @Entity
-@Table(name = TableName.CUR)
-@TableGenerator(name = "CURRENCY_GEN", table = "ID_GEN", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL", pkColumnValue = "CURRENCY_GEN", allocationSize = 10)
-@NamedQueries(value = { @NamedQuery(name = "Currency.findAll", query = "SELECT c FROM Currency c  ORDER BY c.code ASC"),
-		@NamedQuery(name = "Currency.findById", query = "SELECT c FROM Currency c WHERE c.id = :id"),
-		@NamedQuery(name = "Currency.findForeignCurrency", query = "SELECT c FROM Currency c WHERE c.isHomeCur=false ORDER BY c.code ASC"),
-		@NamedQuery(name = "Currency.findHomeCurrency", query = "SELECT c FROM Currency c WHERE c.isHomeCur = true") })
+@Table(name = TableName.CODESETUP)
+@TableGenerator(name = "CODESETUP_GEN", table = "ID_GEN", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL", pkColumnValue = "CODESETUP_GEN", allocationSize = 10)
+@NamedQueries(value = { @NamedQuery(name = "CodeSetup.findAll", query = "SELECT c FROM CodeSetup c  ORDER BY c.name ASC"),
+		@NamedQuery(name = "CodeSetup.findById", query = "SELECT c FROM CodeSetup c WHERE c.id = :id") })
 @EntityListeners(IDInterceptor.class)
-public class Currency implements Serializable {
+public class CodeSetup implements Serializable {
 
 	private static final long serialVersionUID = -5785537862626257490L;
 
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE, generator = "CURRENCY_GEN")
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "CODESETUP_GEN")
 	private String id;
 
-	@Column(name = "CUR", unique = true)
-	private String code;
+	@Column(name = "name", unique = true)
+	private String name;
 	private String description;
-	private String symbol;
-	private Boolean isHomeCur;
+
 
 	@Version
 	private int version;
@@ -51,7 +48,7 @@ public class Currency implements Serializable {
 	@Embedded
 	private UserRecorder userRecorder;
 
-	public Currency() {
+	public CodeSetup() {
 		
 	}
 
@@ -63,14 +60,13 @@ public class Currency implements Serializable {
 		this.id = id;
 	}
 
-	
 
-	public String getCode() {
-		return code;
+	public String getName() {
+		return name;
 	}
 
-	public void setCode(String code) {
-		this.code = code;
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getDescription() {
@@ -79,22 +75,6 @@ public class Currency implements Serializable {
 
 	public void setDescription(String description) {
 		this.description = description;
-	}
-
-	public String getSymbol() {
-		return symbol;
-	}
-
-	public void setSymbol(String symbol) {
-		this.symbol = symbol;
-	}
-
-	public Boolean getIsHomeCur() {
-		return isHomeCur;
-	}
-
-	public void setIsHomeCur(Boolean isHomeCur) {
-		this.isHomeCur = isHomeCur;
 	}
 
 	public int getVersion() {
@@ -113,10 +93,19 @@ public class Currency implements Serializable {
 		this.userRecorder = userRecorder;
 	}
 
+	/* (non-Javadoc)
+	 * @see java.lang.Object#hashCode()
+	 */
+	
 	@Override
 	public int hashCode() {
-		return Objects.hash(code, description, id, isHomeCur, symbol, userRecorder, version);
+		return Objects.hash(description, id, name, userRecorder, version);
 	}
+
+	/* (non-Javadoc)
+	 * @see java.lang.Object#equals(java.lang.Object)
+	 */
+	
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj) {
@@ -128,13 +117,13 @@ public class Currency implements Serializable {
 		if (getClass() != obj.getClass()) {
 			return false;
 		}
-		Currency other = (Currency) obj;
-		return Objects.equals(code, other.code) && Objects.equals(description, other.description)
-				&& Objects.equals(id, other.id) && Objects.equals(isHomeCur, other.isHomeCur)
-				&& Objects.equals(symbol, other.symbol) && Objects.equals(userRecorder, other.userRecorder)
+		CodeSetup other = (CodeSetup) obj;
+		return Objects.equals(description, other.description) && Objects.equals(id, other.id)
+				&& Objects.equals(name, other.name) && Objects.equals(userRecorder, other.userRecorder)
 				&& version == other.version;
 	}
 
+	
 	
 
 }
