@@ -40,7 +40,8 @@
 	<class>org.tech.hms.specialization.Specialization</class>
 	<class>org.tech.hms.currency.Currency</class>
 	<class>org.tech.hms.currencydailyrate.RateInfo</class>
-	<class>org.tech.hms.codesetup.CodeSetup</class>
+	<class>org.tech.hms.codesetup.AccountCodeType</class>
+	<class>org.tech.hms.coa.ChartOfAccount</class>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
     	<property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost;databaseName=HMS;selectMethod=cursor" />
