@@ -3,6 +3,7 @@ package org.tech.hms.common.dto.coaDto;
 import java.util.Date;
 
 import org.tech.hms.coa.ChartOfAccount;
+import org.tech.hms.codesetup.AccountCodeType;
 import org.tech.hms.common.AccountType;
 
 import lombok.AllArgsConstructor;
@@ -24,6 +25,7 @@ public class CoaDTO {
 	/*
 	 * @Enumerated(value = EnumType.STRING) private AccountCodeType acCodeType;
 	 */
+	private AccountCodeType acCodeType;
 
 	private Date pDate;
 

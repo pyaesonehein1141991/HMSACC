@@ -34,8 +34,8 @@ public class RateDailyCurActionBean extends BaseBean implements Serializable {
 	private IRateInfoService rateInfoService;
 
 	
-	@Autowired
-	private IDataRepService<RateInfo> dataRepService;
+	//@Autowired
+	//private IDataRepService<RateInfo> dataRepService;
 
 
 	private RateInfo rateInfo;
@@ -55,7 +55,9 @@ public class RateDailyCurActionBean extends BaseBean implements Serializable {
 		createNew = true;
 		rateInfo = new RateInfo();
 	}
-
+public String createNewCurrencyRate() {
+	return "manageNewcurrencyrate.xhtml?faces-redirect=true";
+}
 	public void loadCurrency() {
 		currencyList = currencyService.findForeignCurrency();
 	}
@@ -68,7 +70,7 @@ public class RateDailyCurActionBean extends BaseBean implements Serializable {
 		return RateType.values();
 	}
 
-	public void addNewRateInfo() {
+	public String addNewRateInfo() {
 		if (ValidateRateInfo()) {
 			try {
 				rateInfoService.addNewDailyRateInfo(rateInfo);
@@ -79,12 +81,13 @@ public class RateDailyCurActionBean extends BaseBean implements Serializable {
 				handleSysException(e);
 			}
 		}
+		return "managecurrencyrate.xhtml?faces-redirect=true";
 	}
 
 	public void deleteRateInfo() {
 		try {
 			rateInfo.setLastModify(false);
-			dataRepService.update(rateInfo);
+			//dataRepService.update(rateInfo);
 			addInfoMessage(null, MessageId.DELETE_SUCCESS, rateInfo.getCurrency().getCode());
 			createNewRateInfo();
 			rebindData();

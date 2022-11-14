@@ -4,38 +4,11 @@
 	<ui:param name="headerRendered" value="false" />
 	<ui:define name="content">
 		<div class="pageContent">
-			<h:form id="codesetupEntryForm">
 				<p:growl globalOnly="true" id="messages" showDetail="true"/>
+				<p:panelGrid columns="2" styleClass="ui-panelgrid-blank ui-fluid">
+					<p:commandButton id="addBtn" value="#{label['COMMON_ADDNEW_LINK']}" action="#{ManageCodeSetupActionBean.createNewaccodeType}" icon="pi pi-plus" />
+				</p:panelGrid>
 				
-				<p:panel>
-					<p:panelGrid id="codeaddform" columns="2" columnClasses="ui-g-12 ui-md-6 ui-lg-6, ui-g-12 ui-md-6 ui-lg-6" 
-						layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
-						<h:panelGrid columns="1" styleClass="jsfgrid">
-							<h:outputText for="codename" value="CodeSetup Name" styleClass="input-label mandatory" escape="false" />
-							<p:inputText value="#{ManageCodeSetupActionBean.codeSetup.name}" id="codename" required="true">
-							</p:inputText>
-							<p:message display="text" for="codename" />
-						</h:panelGrid>
-						
-						<h:panelGrid columns="1" styleClass="jsfgrid">
-							<h:outputText for="description" value="#{label['MANAGE_BRAND_DESCRIPTION_LABEL']}" styleClass="input-label" escape="false" />
-							<p:inputText value="#{ManageCodeSetupActionBean.codeSetup.description}" id="description" required="true">
-								<f:validateLength maximum="50" />
-							</p:inputText>
-							<p:message display="text" for="description" />
-						</h:panelGrid>
-						
-					</p:panelGrid>
-				</p:panel>
-				<h:panelGrid columns="3" style="margin-top:-2px;">
-	   			<p:commandButton id="addBtn" value="#{label['COMMON_ADDNEW_BTN']}" action="#{ManageCodeSetupActionBean.addNewCodeSetup}"
-								rendered="#{ManageCodeSetupActionBean.createNew}" oncomplete="PF('codesetupTable').clearFilters();" update=":codesetupTableForm :codesetupEntryForm" style="width:65px;" />
-				<p:commandButton id="editBtn" value="#{label['COMMON_UPDATE_BTN']}" action="#{ManageCodeSetupActionBean.updateCodeSetup}"
-								rendered="#{!ManageCodeSetupActionBean.createNew}" oncomplete="PF('codesetupTable').filter();" update="@form" style="width:70px;" /><br/>
-				<p:commandButton id="cancleButton" immediate="true" process="@this" value="Cancel" action="#{ManageCodeSetupActionBean.createNewCodeSetup}" update=":codesetupEntryForm" style="width:70px;margin-left:-8px;"/>
-			</h:panelGrid>
-			<p:separator style="height:3px;"/>
-			</h:form>
 			<h:form id="codesetupTableForm">
 				<p:dataTable var="codesetup" value="#{ManageCodeSetupActionBean.codeSetupList}" id="codesetupTable" paginator="true" rows="15" widgetVar="codesetupTable"
 					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
@@ -50,11 +23,11 @@
 						<h:outputText value="#{codesetup.description}" />
 					</p:column>
 					<p:column style="width:3%; margin:center" styleClass="textOnCenter">
-						<p:commandButton styleClass="white-button" icon="fa fa-paint-brush" action="#{ManageCodeSetupActionBean.prepareUpdateCodeSetup(codesetup)}" update=":codesetupEntryForm"/>
+						<p:commandButton styleClass="white-button" icon="fa fa-paint-brush" action="#{ManageCodeSetupActionBean.prepareUpdateCodeSetup(codesetup)}" />
 					</p:column>
 					<p:column style="width:3%; max-width: 5px;" styleClass="textOnCenter">
 						<p:commandButton styleClass="red-button" icon="pi pi-times" action="#{ManageCodeSetupActionBean.deleteCodeSetup(codesetup)}" 
-							oncomplete="PF('codesetupTable').filter();" update=":codesetupEntryForm :codesetupTableForm" >
+							oncomplete="PF('codesetupTable').filter();" update=":codesetupTableForm" >
 							<p:confirm header="Confirmation"  message="#{label['COMMON_MSG_DELETE_CONFIRM_LABEL']}" icon="pi pi-exclamation-triangle" />
 						</p:commandButton>
 					</p:column>

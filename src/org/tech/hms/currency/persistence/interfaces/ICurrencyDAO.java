@@ -8,4 +8,6 @@ import org.tech.java.component.persistence.exception.DAOException;
 public interface ICurrencyDAO {
 
 	public List<Currency> findForeignCurrency() throws DAOException;
+	
+	public List<Currency> findAll() throws DAOException;
 }

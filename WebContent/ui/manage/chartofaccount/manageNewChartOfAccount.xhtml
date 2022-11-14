@@ -4,6 +4,7 @@
 	<ui:param name="headerRendered" value="false" />
 	<ui:define name="content">
 		<h:form id="coaEntryForm">
+		<p:growl globalOnly="true" id="messages" showDetail="true"/>
 			<p:panel>
 				<p:panelGrid id="panelDept" columns="3" columnClasses="ui-g-12 ui-md-6 ui-lg-4, ui-g-12 ui-md-6 ui-lg-4, ui-g-12 ui-md-6 ui-lg-4" layout="grid"
 					styleClass="ui-panelgrid-blank ui-fluid">
@@ -24,8 +25,8 @@
 					</h:panelGrid>
 					<h:panelGrid columns="1" styleClass="jsfgrid">
 						<h:outputText for="acCodeType" value="Account Code Type" styleClass="input-label mandatory" escape="false" />
-						<p:selectOneMenu converter="omnifaces.SelectItemsIndexConverter" id="acCodeType" value="#{ManageCreateNewCoaAction.coaDTO.acType}" required="true">
-							<f:selectItems itemLabel="#{type.label}" itemValue="#{type}" value="#{ManageCreateNewCoaAction.acTypes}" var="type" />
+						<p:selectOneMenu converter="omnifaces.SelectItemsIndexConverter" id="acCodeType" value="#{ManageCreateNewCoaAction.coaDTO.acCodeType}" required="true">
+							<f:selectItems itemLabel="#{type.name}" itemValue="#{type}" value="#{ManageCreateNewCoaAction.codeSetupList}" var="type" />
 						</p:selectOneMenu>
 						<p:message display="text" for="acCodeType" />
 					</h:panelGrid>
@@ -37,19 +38,18 @@
 						<p:message display="text" for="ibsbCode" />
 					</h:panelGrid>
 					<h:panelGrid columns="1" styleClass="jsfgrid">
-						<h:outputText for="parentAccount" value="Parent Account" styleClass="input-label mandatory" escape="false" />
-						<p:panelGrid styleClass="ui-panelgrid-blank" id = "parentAccount">
-							<div style="margin-top: -5px; margin-left: -5px;" class="ui-g ui-fluid" id="parentAccount">
-								<div class="ui-inputgroup ui-g-12 ui-lg-12 ui-lg-12">
-									<p:commandButton styleClass="green-button" icon="fa fa-search" actionListener="#" id="selectRoleDialogLink" process="@this">
-										<p:ajax event="dialogReturn" update="role" />
-									</p:commandButton>
-									<p:inputText id="role" readonly="true" required="true" value="Test" />
-									<p:commandButton styleClass="red-button" icon="fa fa-times" action="#" process="@this" update="role" />
-								</div>
-							</div>
-						</p:panelGrid>
-						<p:message display="text" for="role" />
+					<h:outputText value="ParentAccount" styleClass="input-label mandatory" />
+					<p:panelGrid styleClass="ui-panelgrid-blank" id="acCodePanel">
+						<p:tree style="width: 100%;height:150px;overflow: auto; display:block" value="#{ManageCreateNewCoaAction.root}" var="node" id="parentAccount" selectionMode="checkbox"
+							selection="#{ManageCreateNewCoaAction.selectedNodes}" filterBy="#{node}" filterMatchMode="contains" required="true">
+							<p:treeNode>
+								<h:outputText value="#{node}" />
+							</p:treeNode>
+						</p:tree>
+					</p:panelGrid>
+					<p:message display="text" for="parentAccount" />
+						
+						
 					</h:panelGrid>
 					<h:panelGrid columns="1" styleClass="jsfgrid">
 						<h:outputText for="acName" value="Description" styleClass="input-label mandatory" escape="false" />

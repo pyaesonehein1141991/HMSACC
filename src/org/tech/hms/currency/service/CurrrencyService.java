@@ -23,7 +23,7 @@ public class CurrrencyService extends DataRepService<Currency> implements ICurre
 	@Transactional(propagation = Propagation.REQUIRED)
 	@Override
 	public List<Currency> findAllCurrency() throws SystemException {
-		return findAll();
+		return currencyDAO.findAll();
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED)

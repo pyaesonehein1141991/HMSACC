@@ -63,7 +63,7 @@ public class CoaService extends DataRepService<ChartOfAccount> implements ICoaSe
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<ChartOfAccount> findAllCoa() {
 		try {
-			return findAll();
+			return coaDAO.findAll();
 		} catch (DAOException e) {
 			throw new SystemException(e.getErrorCode(), "Failed to find all of ChartOfAccount)", e);
 		}

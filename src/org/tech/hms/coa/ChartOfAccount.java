@@ -22,6 +22,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+import org.tech.hms.codesetup.AccountCodeType;
 import org.tech.hms.common.AccountType;
 import org.tech.hms.common.TableName;
 import org.tech.hms.common.UserRecorder;
@@ -52,9 +53,11 @@ public class ChartOfAccount implements Serializable {
 	@Enumerated(value = EnumType.STRING)
 	private AccountType acType;
 
-	/*
-	 * @Enumerated(value = EnumType.STRING) private AccountCodeType acCodeType;
-	 */
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "ACCODETYPE", referencedColumnName = "ID")
+	 private AccountCodeType acCodeType;
+	 
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date pDate;

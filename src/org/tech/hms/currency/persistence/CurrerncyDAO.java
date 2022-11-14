@@ -31,5 +31,18 @@ public class CurrerncyDAO extends BasicDAO implements ICurrencyDAO{
 		return result;
 	}
 
+	@Override
+	public List<Currency> findAll() throws DAOException {
+		List<Currency> result = null;
+		try {
+			Query q = em.createNamedQuery("Currency.findAll");
+			result = q.getResultList();
+			em.flush();
+		} catch (PersistenceException pe) {
+			throw translate("Failed to find all of Currency", pe);
+		}
+		return result;
+	}
+
 	
 }

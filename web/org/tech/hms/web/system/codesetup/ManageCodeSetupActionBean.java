@@ -8,13 +8,17 @@ import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
-import org.tech.hms.codesetup.CodeSetup;
+import org.tech.hms.codesetup.AccountCodeType;
 import org.tech.hms.codesetup.service.interfaces.ICodeSetupService;
+import org.tech.hms.common.dto.coaDto.CoaDTO;
 import org.tech.hms.common.validation.MessageId;
 import org.tech.hms.currency.Currency;
 import org.tech.hms.currency.service.interfaces.ICurrencyService;
 import org.tech.java.component.SystemException;
 import org.tech.java.web.common.BaseBean;
+
+import lombok.Getter;
+import lombok.Setter;
 
 @Named(value = "ManageCodeSetupActionBean")
 @Scope(value = "view")
@@ -26,20 +30,28 @@ public class ManageCodeSetupActionBean extends BaseBean implements Serializable 
 	protected ICodeSetupService codesetupService;
 
 	
-
+	@Getter
+	@Setter
 	private boolean createNew;
-	private CodeSetup codeSetup;
-	private List<CodeSetup> codeSetupList;
+	@Getter
+	@Setter
+	private AccountCodeType accountCodeType;
+	@Getter
+	@Setter
+	private List<AccountCodeType> codeSetupList;
 
 	@PostConstruct
 	public void init() {
 		createNewCodeSetup();
 		loadCodeSetup();
 	}
-
+	
+	public String createNewaccodeType() {
+		return "manageCreateNewacCodeType.xhtml?faces-redirect=true";
+	}
 	public void createNewCodeSetup() {
 		createNew = true;
-		codeSetup = new CodeSetup();
+		accountCodeType = new AccountCodeType();
 	}
 
 	public void loadCodeSetup() {
@@ -47,41 +59,42 @@ public class ManageCodeSetupActionBean extends BaseBean implements Serializable 
 	}
 
 
-	public void addNewCodeSetup() {
+	public String addNewCodeSetup() {
 		try {
 			if (createNew) {
-				codesetupService.addNewCodeSetup(codeSetup);
+				codesetupService.addNewCodeSetup(accountCodeType);
 				loadCodeSetup();
 			} else {
-				codesetupService.updateCodeSetup(codeSetup);
+				codesetupService.updateCodeSetup(accountCodeType);
 				loadCodeSetup();
 			}
-			addInfoMessage(null, MessageId.SAVE_SUCCESS, codeSetup.getName());
+			addInfoMessage(null, MessageId.SAVE_SUCCESS, accountCodeType.getName());
 			createNewCodeSetup();
 		} catch (SystemException ex) {
 			handleSysException(ex);
 		}
+		return "managecodestepup.xhtml?faces-redirect=true";
 	}
 
-	public String deleteCodeSetup(CodeSetup codeSetup) {
+	public String deleteCodeSetup(AccountCodeType accountCodeType) {
 		try {
-			codesetupService.deleteCodeSetup(codeSetup);
-			addInfoMessage(null, MessageId.DELETE_SUCCESS, codeSetup.getName());
-			codeSetupList.remove(codeSetup);
+			codesetupService.deleteCodeSetup(accountCodeType);
+			addInfoMessage(null, MessageId.DELETE_SUCCESS, accountCodeType.getName());
+			codeSetupList.remove(accountCodeType);
 		} catch (SystemException ex) {
 			handleSysException(ex);
 		}
 		return null;
 	}
 	
-	public void prepareUpdateCodeSetup(CodeSetup codeSetup) {
+	public void prepareUpdateCodeSetup(AccountCodeType accountCodeType) {
 		createNew = false;
-		this.codeSetup = codeSetup;
+		this.accountCodeType = accountCodeType;
 	}
 	public void updateCodeSetup() {
 			try {
-				codesetupService.updateCodeSetup(codeSetup);
-				addInfoMessage(null, MessageId.UPDATE_SUCCESS, codeSetup.getName());
+				codesetupService.updateCodeSetup(accountCodeType);
+				addInfoMessage(null, MessageId.UPDATE_SUCCESS, accountCodeType.getName());
 				createNewCodeSetup();
 				loadCodeSetup();
 			} catch (SystemException ex) {
@@ -90,56 +103,7 @@ public class ManageCodeSetupActionBean extends BaseBean implements Serializable 
 			loadCodeSetup();
 		}
 
-			
-	public boolean isCreateNew() {
-		return createNew;
-	}
-
-	public void setCreateNew(boolean createNew) {
-		this.createNew = createNew;
-	}
-
-	/**
-	 * @return the codesetupService
-	 */
-	public ICodeSetupService getCodesetupService() {
-		return codesetupService;
-	}
-
-	/**
-	 * @param codesetupService the codesetupService to set
-	 */
-	public void setCodesetupService(ICodeSetupService codesetupService) {
-		this.codesetupService = codesetupService;
-	}
-
-	/**
-	 * @return the codeSetup
-	 */
-	public CodeSetup getCodeSetup() {
-		return codeSetup;
-	}
-
-	/**
-	 * @param codeSetup the codeSetup to set
-	 */
-	public void setCodeSetup(CodeSetup codeSetup) {
-		this.codeSetup = codeSetup;
-	}
-
-	/**
-	 * @return the codeSetupList
-	 */
-	public List<CodeSetup> getCodeSetupList() {
-		return codeSetupList;
-	}
-
-	/**
-	 * @param codeSetupList the codeSetupList to set
-	 */
-	public void setCodeSetupList(List<CodeSetup> codeSetupList) {
-		this.codeSetupList = codeSetupList;
-	}
+	
 
 
 }
