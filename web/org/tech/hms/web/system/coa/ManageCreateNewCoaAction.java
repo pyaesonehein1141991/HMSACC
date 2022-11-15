@@ -1,11 +1,16 @@
 package org.tech.hms.web.system.coa;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
 
+import org.primefaces.PrimeFaces;
+import org.primefaces.event.SelectEvent;
 import org.primefaces.model.DefaultTreeNode;
 import org.primefaces.model.TreeNode;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +21,8 @@ import org.tech.hms.codesetup.AccountCodeType;
 import org.tech.hms.codesetup.service.interfaces.ICodeSetupService;
 import org.tech.hms.common.AccountType;
 import org.tech.hms.common.dto.coaDto.CoaDTO;
+import org.tech.hms.role.Role;
+import org.tech.java.component.SystemException;
 import org.tech.java.web.common.BaseBean;
 
 import lombok.Getter;
@@ -41,11 +48,7 @@ public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 	@Setter
 	private TreeNode[] selectedNodes;
 	@Getter
-	@Setter
-	private List<AccountCodeType> codeSetupList;
-	@Getter
-	@Setter
-	private List<ChartOfAccount> coaList;
+	private List<AccountCodeType> acCodeTypeList;
 	
 
 	public void initialization() {
@@ -55,22 +58,30 @@ public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 	@PostConstruct
 	public void init() {
 		coaDTO = new CoaDTO();
-		codeSetupList = codesetupService.findAllCodeSetup();
-		root = new DefaultTreeNode("Root", null);
-		selectedNodes = null;
-		rebindData();
+		acCodeTypeList = codesetupService.findAllCodeSetup();
 	}
-	public void rebindData() {
-		coaList = coaService.findAllCoa();
-		TreeNode node = new DefaultTreeNode("ChartOfAccount", root);
 
-		coaList.forEach(coa -> {
-			node.getChildren().add(new DefaultTreeNode(coa, root));
-		});
-	}
+	
 
 	public AccountType[] getAcTypes() {
 		return AccountType.values();
 	}
+	
+	public String createCoa() {
+		try {
+			ChartOfAccount coa = new ChartOfAccount(coaDTO);
+			
+			coaService.createCoa(coa);
+		} catch (SystemException e) {
+			handleSysException(e);
+		}
+		return null;
+	}
+	
+	public String navManageCoa() {
+		return null;
+	}
+	
+
 
 }

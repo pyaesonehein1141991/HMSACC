@@ -22,9 +22,6 @@ public class CoaDTO {
 
 	private AccountType acType;
 
-	/*
-	 * @Enumerated(value = EnumType.STRING) private AccountCodeType acCodeType;
-	 */
 	private AccountCodeType acCodeType;
 
 	private Date pDate;

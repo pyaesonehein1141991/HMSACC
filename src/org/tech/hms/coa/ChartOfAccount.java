@@ -2,6 +2,8 @@ package org.tech.hms.coa;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
@@ -20,15 +22,18 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.persistence.Version;
 
 import org.tech.hms.codesetup.AccountCodeType;
 import org.tech.hms.common.AccountType;
 import org.tech.hms.common.TableName;
 import org.tech.hms.common.UserRecorder;
+import org.tech.hms.common.dto.coaDto.CoaDTO;
 import org.tech.java.component.idgen.service.IDInterceptor;
 
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = TableName.COA)
@@ -38,6 +43,7 @@ import lombok.Data;
 		@NamedQuery(name = "ChartOfAccount.findById", query = "SELECT c FROM ChartOfAccount c WHERE c.id = :id") })
 @EntityListeners(IDInterceptor.class)
 @Data
+@NoArgsConstructor
 public class ChartOfAccount implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -53,25 +59,50 @@ public class ChartOfAccount implements Serializable {
 	@Enumerated(value = EnumType.STRING)
 	private AccountType acType;
 
-	
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ACCODETYPE", referencedColumnName = "ID")
-	 private AccountCodeType acCodeType;
-	 
+	private AccountCodeType acCodeType;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date pDate;
 
 	private String ibsbACode;
-	
+
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "PARENTID", referencedColumnName = "ID")
-	private ChartOfAccount partent;
+	private ChartOfAccount parent;
+	
+	@Transient
+	private Set<ChartOfAccount> subList;
 
 	@Version
 	private int version;
 
 	@Embedded
-	private UserRecorder recorder;
+	private UserRecorder userRecorder;
+	
+	
+	public ChartOfAccount(CoaDTO dto) {
+		this.acName = dto.getAcName();
+		this.acCode = dto.getAcCode();
+		this.acType = dto.getAcType();
+		this.acCodeType = dto.getAcCodeType();
+		this.pDate = dto.getPDate();
+		this.ibsbACode = dto.getIbsbACode();
+		this.parent = dto.getParent();
+	}
+	
+	@Override
+	public String toString() {
+		return acCode + "-" + acName;
+	}
+	
+	public Set<ChartOfAccount> getSubList(){
+		if(subList == null) {
+			return new HashSet<>();
+		}else {
+			return subList;
+		}
+	}
 
 }

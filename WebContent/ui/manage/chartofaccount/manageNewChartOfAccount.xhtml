@@ -4,7 +4,7 @@
 	<ui:param name="headerRendered" value="false" />
 	<ui:define name="content">
 		<h:form id="coaEntryForm">
-		<p:growl globalOnly="true" id="messages" showDetail="true"/>
+			<p:growl globalOnly="true" id="messages" showDetail="true" />
 			<p:panel>
 				<p:panelGrid id="panelDept" columns="3" columnClasses="ui-g-12 ui-md-6 ui-lg-4, ui-g-12 ui-md-6 ui-lg-4, ui-g-12 ui-md-6 ui-lg-4" layout="grid"
 					styleClass="ui-panelgrid-blank ui-fluid">
@@ -23,10 +23,12 @@
 						</p:selectOneMenu>
 						<p:message display="text" for="acType" />
 					</h:panelGrid>
+					
 					<h:panelGrid columns="1" styleClass="jsfgrid">
 						<h:outputText for="acCodeType" value="Account Code Type" styleClass="input-label mandatory" escape="false" />
 						<p:selectOneMenu converter="omnifaces.SelectItemsIndexConverter" id="acCodeType" value="#{ManageCreateNewCoaAction.coaDTO.acCodeType}" required="true">
-							<f:selectItems itemLabel="#{type.name}" itemValue="#{type}" value="#{ManageCreateNewCoaAction.codeSetupList}" var="type" />
+							<f:selectItem itemLabel="Select One Account Code Type" noSelectionOption="true" />
+							<f:selectItems itemLabel="#{type.name}" itemValue="#{type}" value="#{ManageCreateNewCoaAction.acCodeTypeList}" var="type" />
 						</p:selectOneMenu>
 						<p:message display="text" for="acCodeType" />
 					</h:panelGrid>
@@ -38,18 +40,19 @@
 						<p:message display="text" for="ibsbCode" />
 					</h:panelGrid>
 					<h:panelGrid columns="1" styleClass="jsfgrid">
-					<h:outputText value="ParentAccount" styleClass="input-label mandatory" />
-					<p:panelGrid styleClass="ui-panelgrid-blank" id="acCodePanel">
-						<p:tree style="width: 100%;height:150px;overflow: auto; display:block" value="#{ManageCreateNewCoaAction.root}" var="node" id="parentAccount" selectionMode="checkbox"
-							selection="#{ManageCreateNewCoaAction.selectedNodes}" filterBy="#{node}" filterMatchMode="contains" required="true">
-							<p:treeNode>
-								<h:outputText value="#{node}" />
-							</p:treeNode>
-						</p:tree>
-					</p:panelGrid>
-					<p:message display="text" for="parentAccount" />
-						
-						
+						<h:outputText value="Parent Account" />
+						<p:panelGrid styleClass="ui-panelgrid-blank">
+							<div style="margin-top: -5px; margin-left: -5px;" class="ui-g ui-fluid" id="parentAccount1">
+								<div class="ui-inputgroup ui-g-12 ui-lg-12 ui-lg-12">
+									<p:commandButton styleClass="blue-button" icon="fa fa-search" actionListener="#{ManageCreateNewCoaAction.selectParentCoa()}" id="selectParentDialogLink" process="@this">
+										<p:ajax event="dialogReturn" update="parentAccount" />
+									</p:commandButton>
+									<p:inputText id="parentAccount" readonly="true" required="true" value="Test" />
+									<p:commandButton styleClass="blue-button" icon="fa fa-times" action="#" process="@this" update="parentAccount" />
+								</div>
+							</div>
+						</p:panelGrid>
+						<p:message display="text" for="parentAccount" />
 					</h:panelGrid>
 					<h:panelGrid columns="1" styleClass="jsfgrid">
 						<h:outputText for="acName" value="Description" styleClass="input-label mandatory" escape="false" />
@@ -61,8 +64,8 @@
 				</p:panelGrid>
 			</p:panel>
 			<p:panelGrid columns="4" styleClass="ui-panelgrid-blank ui-fluid">
-				<p:commandButton id="addBtn" value="#{label['COMMON_SAVE_BTN']}" action="#{AddNewUserActionBean.saveUser}" icon="pi pi-save" update="@form" />
-				<p:commandButton id="editBtn" value="#{label['COMMON_CANCEL_BTN']}" action="#{AddNewUserActionBean.navManageUser}" icon="pi pi-list" update="@form" immediate="true" />
+				<p:commandButton id="addBtn" value="#{label['COMMON_SAVE_BTN']}" action="#{ManageCreateNewCoaAction.createCoa}" icon="pi pi-save" update="@form" />
+				<p:commandButton id="editBtn" value="#{label['COMMON_CANCEL_BTN']}" action="#{ManageCreateNewCoaAction.navManageCoa}" icon="pi pi-list" update="@form" immediate="true" />
 			</p:panelGrid>
 		</h:form>
 	</ui:define>
