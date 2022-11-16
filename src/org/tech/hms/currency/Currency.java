@@ -28,6 +28,7 @@ import org.tech.java.component.idgen.service.IDInterceptor;
 @TableGenerator(name = "CURRENCY_GEN", table = "ID_GEN", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL", pkColumnValue = "CURRENCY_GEN", allocationSize = 10)
 @NamedQueries(value = { @NamedQuery(name = "Currency.findAll", query = "SELECT c FROM Currency c  ORDER BY c.code ASC"),
 		@NamedQuery(name = "Currency.findById", query = "SELECT c FROM Currency c WHERE c.id = :id"),
+		@NamedQuery(name = "Currency.findForeignCurrency", query = "SELECT c FROM Currency c WHERE c.isHomeCur=false ORDER BY c.code ASC"),
 		@NamedQuery(name = "Currency.findHomeCurrency", query = "SELECT c FROM Currency c WHERE c.isHomeCur = true") })
 @EntityListeners(IDInterceptor.class)
 public class Currency implements Serializable {

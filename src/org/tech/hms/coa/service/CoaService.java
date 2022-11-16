@@ -27,8 +27,8 @@ public class CoaService extends DataRepService<ChartOfAccount> implements ICoaSe
 	public void createCoa(ChartOfAccount coa) {
 		try {
 			//TODO Business Logic
-			insert(coa);
 		} catch (DAOException e) {
+			insert(coa);
 			throw new SystemException(e.getErrorCode(),"Fail to create Chart of Account",e);
 		}
 	}
@@ -63,7 +63,7 @@ public class CoaService extends DataRepService<ChartOfAccount> implements ICoaSe
 	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
 	public List<ChartOfAccount> findAllCoa() {
 		try {
-			return findAll();
+			return coaDAO.findAll();
 		} catch (DAOException e) {
 			throw new SystemException(e.getErrorCode(), "Failed to find all of ChartOfAccount)", e);
 		}
@@ -79,5 +79,27 @@ public class CoaService extends DataRepService<ChartOfAccount> implements ICoaSe
 		}
 	}
 
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public ChartOfAccount findCoaByAcCode(String acCode) {
+		ChartOfAccount chartOfAccount = null;
+		try {
+			chartOfAccount = coaDAO.findByAcCode(acCode);
+		} catch (DAOException e) {
+			throw new SystemException(e.getErrorCode(), "Failed to find COA By AcCode.)", e);
+		}
+		return chartOfAccount;
+	}
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public ChartOfAccount findCoaByibsbAcCode(String ibsbACode) {
+		ChartOfAccount chartOfAccount = null;
+		try {
+			chartOfAccount = coaDAO.findByIbsbACode(ibsbACode);
+		} catch (DAOException e) {
+			throw new SystemException(e.getErrorCode(), "Failed to find COA By IBSBCode.)", e);
+		}
+		return chartOfAccount;
+	}
 
 }

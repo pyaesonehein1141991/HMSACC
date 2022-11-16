@@ -1,0 +1,35 @@
+USE [FNIGP-ACC]
+GO
+
+/****** Object:  Table [dbo].[CUR]    Script Date: 11/5/2022 12:17:39 PM ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[CUR](
+	[ID] [varchar](255) NOT NULL,
+	[CUR] [varchar](255) NULL,
+	[DESCRIPTION] [varchar](255) NULL,
+	[ISHOMECUR] [bit] NULL,
+	[SYMBOL] [varchar](255) NULL,
+	[VERSION] [int] NULL,
+	[CREATEDDATE] [datetime] NULL,
+	[CREATEDUSERID] [varchar](255) NULL,
+	[UPDATEDDATE] [datetime] NULL,
+	[UPDATEDUSERID] [varchar](255) NULL,
+ CONSTRAINT [PK__CUR__3214EC2731C67B51] PRIMARY KEY CLUSTERED 
+(
+	[ID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+
+
+select * from CUSTOM_ID_GEN
+select * from ID_GEN
+select * from CUR
+
+insert into ID_GEN values('CURRENCY_GEN',0)
+
