@@ -1,0 +1,39 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/common/commonLayout.xhtml">
+	<ui:param name="header" value="CodeSetup Management" />
+	<ui:param name="headerRendered" value="false" />
+	<ui:define name="content">
+		<div class="pageContent">
+			<h:form id="codesetupEntryForm">
+							<p:growl globalOnly="true" id="messages" showDetail="true"/>
+				<p:panel>
+					<p:panelGrid id="codeaddform" columns="2" columnClasses="ui-g-12 ui-md-6 ui-lg-6, ui-g-12 ui-md-6 ui-lg-6" 
+						layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+						<h:panelGrid columns="1" styleClass="jsfgrid">
+							<h:outputText for="codename" value="AccountCodeType Name" styleClass="input-label mandatory" escape="false" />
+							<p:inputText value="#{ManageCodeSetupActionBean.accountCodeType.name}" id="codename" required="true">
+							</p:inputText>
+							<p:message display="text" for="codename" />
+						</h:panelGrid>
+						
+						<h:panelGrid columns="1" styleClass="jsfgrid">
+							<h:outputText for="description" value="#{label['MANAGE_BRAND_DESCRIPTION_LABEL']}" styleClass="input-label" escape="false" />
+							<p:inputText value="#{ManageCodeSetupActionBean.accountCodeType.description}" id="description" required="true">
+								<f:validateLength maximum="50" />
+							</p:inputText>
+							<p:message display="text" for="description" />
+						</h:panelGrid>
+						
+					</p:panelGrid>
+				</p:panel>
+				<p:panelGrid columns="4" styleClass="ui-panelgrid-blank ui-fluid">
+	   			<p:commandButton id="addBtn" value="#{label['COMMON_ADDNEW_BTN']}" action="#{ManageCodeSetupActionBean.addNewCodeSetup}"
+								rendered="#{ManageCodeSetupActionBean.createNew}" oncomplete="PF('codesetupTable').clearFilters();" update="codesetupEntryForm" style="width:65px;" />
+				<p:commandButton id="editBtn" value="#{label['COMMON_UPDATE_BTN']}" action="#{ManageCodeSetupActionBean.updateCodeSetup}"
+								rendered="#{!ManageCodeSetupActionBean.createNew}" oncomplete="PF('codesetupTable').filter();" update="@form" style="width:70px;" /><br/>
+				<p:commandButton id="cancleButton" immediate="true" process="@this" value="Cancel" action="#{ManageCodeSetupActionBean.createNewCodeSetup}" update=":codesetupEntryForm" style="width:70px;margin-left:-8px;"/>
+			</p:panelGrid>
+			</h:form>
+		</div>
+	</ui:define>
+</ui:composition>

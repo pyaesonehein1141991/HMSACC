@@ -53,7 +53,9 @@ public class ManageCurrencyActionBean extends BaseBean implements Serializable {
 		currency = new Currency();
 		currency.setIsHomeCur(false);
 	}
-
+public String createCurrency() {
+	return "manageNewcurrency.xhtml?faces-redirect=true";
+}
 	public void loadCurrency() {
 		currencyList = currencyService.findAllCurrency();
 		Currency currency = currencyService.findHomeCurrency();
@@ -61,7 +63,7 @@ public class ManageCurrencyActionBean extends BaseBean implements Serializable {
 	}
 
 
-	public void addNewCurrency() {
+	public String addNewCurrency() {
 		try {
 			if (createNew) {
 				currencyService.addNewCurrency(currency);
@@ -75,6 +77,7 @@ public class ManageCurrencyActionBean extends BaseBean implements Serializable {
 		} catch (SystemException ex) {
 			handleSysException(ex);
 		}
+		return "managecurrency.xhtml?faces-redirect=true";
 	}
 
 	public String deleteCurrency(Currency currency) {
