@@ -17,5 +17,9 @@ public interface ICoaService {
 
 	List<CoaDTO> findAllDTO();
 	
+	public ChartOfAccount findCoaByibsbAcCode(String ibsbACode);
+	
+	public ChartOfAccount findCoaByAcCode(String acCode);
+	
 
 }

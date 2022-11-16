@@ -79,5 +79,27 @@ public class CoaService extends DataRepService<ChartOfAccount> implements ICoaSe
 		}
 	}
 
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public ChartOfAccount findCoaByAcCode(String acCode) {
+		ChartOfAccount chartOfAccount = null;
+		try {
+			chartOfAccount = coaDAO.findByAcCode(acCode);
+		} catch (DAOException e) {
+			throw new SystemException(e.getErrorCode(), "Failed to find COA By AcCode.)", e);
+		}
+		return chartOfAccount;
+	}
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public ChartOfAccount findCoaByibsbAcCode(String ibsbACode) {
+		ChartOfAccount chartOfAccount = null;
+		try {
+			chartOfAccount = coaDAO.findByIbsbACode(ibsbACode);
+		} catch (DAOException e) {
+			throw new SystemException(e.getErrorCode(), "Failed to find COA By IBSBCode.)", e);
+		}
+		return chartOfAccount;
+	}
 
 }

@@ -22,14 +22,14 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.Transient;
+
 import javax.persistence.Version;
 
 import org.tech.hms.codesetup.AccountCodeType;
 import org.tech.hms.common.AccountType;
 import org.tech.hms.common.TableName;
 import org.tech.hms.common.UserRecorder;
-import org.tech.hms.common.dto.coaDto.CoaDTO;
+
 import org.tech.java.component.idgen.service.IDInterceptor;
 
 import lombok.Data;
@@ -59,22 +59,19 @@ public class ChartOfAccount implements Serializable {
 	@Enumerated(value = EnumType.STRING)
 	private AccountType acType;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "ACCODETYPE", referencedColumnName = "ID")
+	@Enumerated(value = EnumType.STRING)
 	private AccountCodeType acCodeType;
-
+	
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date pDate;
 
 	private String ibsbACode;
-
-	@OneToOne(fetch = FetchType.LAZY)
-	@JoinColumn(name = "PARENTID", referencedColumnName = "ID")
-	private ChartOfAccount parent;
 	
-	@Transient
-	private Set<ChartOfAccount> subList;
+	private String headId;
 
+	private String groupId;
+	
+	
 	@Version
 	private int version;
 
@@ -82,27 +79,11 @@ public class ChartOfAccount implements Serializable {
 	private UserRecorder userRecorder;
 	
 	
-	public ChartOfAccount(CoaDTO dto) {
-		this.acName = dto.getAcName();
-		this.acCode = dto.getAcCode();
-		this.acType = dto.getAcType();
-		this.acCodeType = dto.getAcCodeType();
-		this.pDate = dto.getPDate();
-		this.ibsbACode = dto.getIbsbACode();
-		this.parent = dto.getParent();
-	}
-	
 	@Override
 	public String toString() {
 		return acCode + "-" + acName;
 	}
 	
-	public Set<ChartOfAccount> getSubList(){
-		if(subList == null) {
-			return new HashSet<>();
-		}else {
-			return subList;
-		}
-	}
+
 
 }

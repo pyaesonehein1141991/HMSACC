@@ -50,56 +50,11 @@ public class ManageCoaDialogActionBean extends BaseBean implements Serializable{
 
 	@PostConstruct
 	public void init() {
-		root = new DefaultTreeNode("Root", null);
-		selectedNodes = null;
 		coaList = coaService.findAllCoa();
-		createParentNode();
 	}
 
 	
-	
-	public void createParentNode() {
-		coaList.forEach(child->{
-			createParentChild(child);
-		});
-		List<ChartOfAccount> parentList = new ArrayList<>();
-		parentList = coaList.stream().filter(c->c.getParent() == null).collect(Collectors.toList());
-		
-		TreeNode node = new DefaultTreeNode("ChartOfAccount", root);
-		parentList.forEach(coa -> {
-			TreeNode pNode = new DefaultTreeNode(coa, node);
-			node.getChildren().add(pNode);
-			if(coa.getSubList().isEmpty() || null != coa.getSubList()) {
-				for(ChartOfAccount subCoa :coa.getSubList()) {
-					createSubNode(subCoa,pNode);
-				}
-			}
-		});
-		
-		
-		
-		
-	}
-	
-	public void createParentChild(ChartOfAccount coa) {
-		if(null != coa.getParent()) {
-			coa.getParent().getSubList().add(coa);
-			createParentChild(coa.getParent());
-		}
-		
-	}
-	
-	
-	public void createSubNode(ChartOfAccount coa,TreeNode rootNode) {
-		TreeNode pNode = new DefaultTreeNode(coa, rootNode);
-		rootNode.getChildren().add(pNode);
-		if(coa.getSubList().isEmpty() || null != coa.getSubList()) {
-			for(ChartOfAccount subCoa :coa.getSubList()) {
-				createSubNode(subCoa,pNode);
-			}
-		}
-			
-	}
+
 	
 	public String navManageCoa() {
 		return null;

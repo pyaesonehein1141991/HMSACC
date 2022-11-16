@@ -13,7 +13,6 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.tech.hms.coa.ChartOfAccount;
 import org.tech.hms.coa.persistence.interfaces.ICoaDAO;
-import org.tech.hms.codesetup.AccountCodeType;
 import org.tech.hms.common.dto.coaDto.CoaDTO;
 import org.tech.java.component.persistence.BasicDAO;
 import org.tech.java.component.persistence.exception.DAOException;
@@ -46,6 +45,39 @@ public class CoaDAO extends BasicDAO implements ICoaDAO {
 			em.flush();
 		} catch (PersistenceException pe) {
 			throw translate("Failed to find all of CodeSetup", pe);
+		}
+		return result;
+
+	}
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public ChartOfAccount findByAcCode(String acCode) throws DAOException {
+		ChartOfAccount result = null;
+		try {
+			Query q = em.createNamedQuery("ChartOfAccount.findByAcCode");
+			q.setParameter("acCode", acCode);
+			result = (ChartOfAccount) q.getSingleResult();
+			em.flush();
+		} catch (NoResultException pe) {
+			return null;
+		} catch (PersistenceException pe) {
+			throw translate("Failed to find ChartOfAccount with acCode : " + acCode, pe);
+		}
+		return result;
+	}
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public ChartOfAccount findByIbsbACode(String ibsbACode) throws DAOException {
+		ChartOfAccount result = null;
+		try {
+			Query q = em.createNamedQuery("ChartOfAccount.findByIbsbACode");
+			q.setParameter("ibsbACode", ibsbACode);
+			result = (ChartOfAccount) q.getSingleResult();
+			em.flush();
+		} catch (NoResultException pe) {
+			return null;
+		} catch (PersistenceException pe) {
+			throw translate("Failed to find ChartOfAccount with ibsbACode : " + ibsbACode, pe);
 		}
 		return result;
 	}
