@@ -36,7 +36,7 @@ public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 	private ICoaService coaService;
 	
 	@Autowired
-	private IDataValidator<ChartOfAccount> coaValidator;
+	private IDataValidator<ChartOfAccount> accountCodeValidator;
 	
 	private static final long serialVersionUID = 1L;
     @Getter
@@ -131,7 +131,7 @@ public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 	}
 
 	public void addNewCoa() {
-		ValidationResult result = coaValidator.validate(coa, false);
+		ValidationResult result = accountCodeValidator.validate(coa, false);
 		if (result.isVerified()) {
 			try {
 				coaService.createCoa(coa);
@@ -149,7 +149,7 @@ public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 	}
 
 	public void updateCoa() {
-		ValidationResult result = coaValidator.validate(coa, false);
+		ValidationResult result = accountCodeValidator.validate(coa, false);
 		if (result.isVerified()) {
 			try {
 				coaService.updateCoa(coa);
@@ -169,7 +169,7 @@ public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 
 	public String deleteCoa(ChartOfAccount coa) {
 		this.coa = coa;
-		ValidationResult result = coaValidator.validate(coa, true);
+		ValidationResult result = accountCodeValidator.validate(coa, true);
 		if (result.isVerified()) {
 			try {
 				coaService.deleteChartOfAccount(coa);

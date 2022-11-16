@@ -2,6 +2,7 @@ package org.tech.hms.common.validation;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.tech.hms.coa.ChartOfAccount;
 import org.tech.hms.coa.service.interfaces.ICoaService;
@@ -10,7 +11,7 @@ import org.tech.hms.coa.service.interfaces.ICoaService;
 @Service(value = "AccountCodeValidator")
 public class AccountCodeValidator implements IDataValidator<ChartOfAccount> {
 
-	@Resource(name = "CoaService")
+	@Autowired
 	private ICoaService coaService;
 
 	@Resource(name = "TranValiDAO")
