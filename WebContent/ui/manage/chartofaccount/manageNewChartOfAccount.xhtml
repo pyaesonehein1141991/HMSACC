@@ -1,0 +1,93 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/common/commonLayout.xhtml">
+	<ui:param name="header" value="Chart Of Account Management" />
+	<ui:param name="headerRendered" value="false" />
+	<ui:define name="content">
+		<h:form enctype="multipart/form-data" id="coaEntryForm">
+			<p:growl escape="false" globalOnly="true" id="messages" showDetail="true"/>
+			<h:outputText value="#{label['MANAGE_COA_ADDNEW_LABEL']}" rendered="#{ManageCreateNewCoaAction.createNew}" styleClass="title" />
+			<h:outputText value="#{label['MANAGE_COA_EDIT_LABEL']}" rendered="#{!ManageCreateNewCoaAction.createNew}" styleClass="title" />
+		
+			<p:panel>
+				<p:panelGrid id="panelCoa" columns="3" columnClasses="ui-grid-col-4,ui-grid-col-4,ui-grid-col-4" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+					
+					<p:panelGrid  columns="2" columnClasses="ui-grid-col-3,ui-grid-col-9" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+						
+						<h:outputText value="" />
+						<p:message for="acCode" />
+						<h:outputText for="acCode" value="#{label['MANAGE_ACCOUNT_CODE_LABEL']}" escape="false" styleClass="input-label mandatory" />
+						<p:inputText value="#{ManageCreateNewCoaAction.coa.acCode}" id="acCode" required="true" disabled="#{ManageCreateNewCoaAction.acCodeDisabled}">
+							<f:validateLength maximum="20" />
+						</p:inputText>
+						
+						<h:outputText value="" />
+						<p:message for="acType" />
+						<h:outputText for="acType" escape="false" styleClass="input-label mandatory" value="#{label['MANAGE_ACTYPE_LABEL']}" />
+						<p:selectOneMenu converter="omnifaces.SelectItemsIndexConverter" id="acType" value="#{ManageCreateNewCoaAction.coa.acType}" required="true">
+							<f:selectItems itemLabel="#{type.label}" itemValue="#{type}" value="#{ManageCreateNewCoaAction.acTypes}" var="type" />
+							<p:ajax event="change" listener="#{ManageCreateNewCoaAction.loadHeadList()}" process="@this" update="@form"/>
+						</p:selectOneMenu>
+						
+						<h:outputText value="" />
+						<p:message for="ibsbACode" />
+						<h:outputText for="ibsbACode" value="#{label['MANAGE_IBSB_CODE_LABEL']}" styleClass="input-label" />
+						<p:inputText value="#{ManageCreateNewCoaAction.coa.ibsbACode}" id="ibsbACode">
+							<f:validateLength maximum="50" />
+						</p:inputText>
+						
+					</p:panelGrid>
+					<p:panelGrid  columns="2" columnClasses="ui-grid-col-3,ui-grid-col-9" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+						
+						<h:outputText value="" />
+						<p:message for="acCodeType" />
+						<h:outputText for="acCodeType" value="#{label['MANAGE_COA_CODE_TYPE']}" styleClass="input-label mandatory" />
+						<p:selectOneRadio id="acCodeType" converter="omnifaces.SelectItemsIndexConverter" required="true" value="#{ManageCreateNewCoaAction.coa.acCodeType}">
+							<f:selectItems itemLabel="#{type.label}" itemValue="#{type}" value="#{ManageCreateNewCoaAction.accountCodeTypes}" var="type" />
+							<p:ajax event="change" listener="#{ManageCreateNewCoaAction.eventAcCodeType()}" process="@this" update="headCode groupCode"/>
+						</p:selectOneRadio>
+						
+						<h:outputText value="" />
+						<p:message for="headCode" />
+						<h:outputText for="headCode" value="#{label['MANAGE_COA_HEAD_CODE']}" styleClass="input-label" />
+						<p:selectOneMenu id="headCode" converter="omnifaces.SelectItemsConverter" value="#{ManageCreateNewCoaAction.coa.headId}" disabled="#{ManageCreateNewCoaAction.headCodeDisable}">
+							<f:selectItem itemLabel="" noSelectionOption="true"/>
+							<f:selectItems value="#{ManageCreateNewCoaAction.headList}" var="headCoa" itemLabel="#{headCoa.acCode}" itemValue="#{headCoa.id}" />
+							<p:ajax event="change" listener="#{ManageCreateNewCoaAction.loadGroupList()}"  process="@this" update="groupCode"/>
+						</p:selectOneMenu>
+						
+						<h:outputText value="" />
+						<p:message for="groupCode" />
+						<h:outputText for="groupCode" value="#{label['MANAGE_COA_GROUP_CODE']}" styleClass="input-label" />
+						<p:selectOneMenu id="groupCode" converter="omnifaces.SelectItemsConverter" value="#{ManageCreateNewCoaAction.coa.groupId}" disabled="#{ManageCreateNewCoaAction.groupCodeDisable}">
+							<f:selectItem itemLabel="" noSelectionOption="true"/>
+							<f:selectItems value="#{ManageCreateNewCoaAction.groupList}" var="groupCoa" itemLabel="#{groupCoa.acCode}" itemValue="#{groupCoa.id}" />
+						</p:selectOneMenu>
+					
+					
+					</p:panelGrid>
+					<p:panelGrid columns="2" columnClasses="ui-grid-col-3,ui-grid-col-9" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+						
+						<h:outputText value="" />
+						<p:message for="acName" />
+		
+						<h:outputText for="acName" value="#{label['MANAGE_DESC_LABEL']}" styleClass="input-label" />
+						<p:inputTextarea rows="3"  value="#{ManageCreateNewCoaAction.coa.acName}" id="acName">
+							<p:ajax process="@this" />
+						</p:inputTextarea>
+					
+					</p:panelGrid>
+				</p:panelGrid>
+			</p:panel>
+			<br />
+			<p:commandButton id="addBtn" value="#{label['COMMON_ADDNEW_BTN']}" action="#{ManageCreateNewCoaAction.addNewCoa()}" rendered="#{ManageCreateNewCoaAction.createNew}"
+				update="coaEntryForm" style="width:65px;" oncomplete="PF('coaTable').filter()" />
+
+			<p:commandButton id="editBtn" value="#{label['COMMON_UPDATE_BTN']}" action="#{ManageCreateNewCoaAction.updateCoa()}" rendered="#{!ManageCreateNewCoaAction.createNew}"
+				update=":coaEntryForm" style="width:70px;" oncomplete="PF('coaTable').filter()" />
+			<br />
+
+			<p:separator style="height:3px;" />
+			<br />
+		</h:form>
+	</ui:define>
+</ui:composition>

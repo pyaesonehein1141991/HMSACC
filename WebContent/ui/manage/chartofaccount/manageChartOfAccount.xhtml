@@ -1,0 +1,41 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/common/commonLayout.xhtml">
+	<ui:param name="header" value="Chart Of Account Management" />
+	<ui:param name="headerRendered" value="false" />
+	<ui:define name="content">
+		<h:form id="coaEntryTableForm">
+		
+		<p:growl globalOnly="true" id="messages" showDetail="true"/>
+				<p:panelGrid columns="2" styleClass="ui-panelgrid-blank ui-fluid">
+					<p:commandButton id="addBtn" value="#{label['COMMON_ADDNEW_LINK']}" action="#{ManageCoaActionBean.createNewCoa}" icon="pi pi-plus" />
+				</p:panelGrid>
+		
+			<p:dataTable var="coa" value="#{ManageCoaActionBean.coaDTOList}" id="coaTable" paginator="true" rows="10" style="width:100%;" widgetVar="coaTable"
+				paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10, 15"
+				rowKey="#{coa.id}"  emptyMessage="Nothing found with given criteria" paginatorPosition="bottom"	reflow="true">
+				<p:column filterBy="#{coa.acCode}" filterMatchMode="contains" headerText="#{label['MANAGE_ACCOUNT_CODE_LABEL']}"  style="width:90px;text-align: center;">
+					<h:outputText value="#{coa.acCode}" />
+				</p:column>
+				<p:column filterBy="#{coa.acName}" filterMatchMode="contains" headerText="#{label['MANAGE_DESC_LABEL']}"  style="width:300px;">
+					<h:outputText value="#{coa.acName}" />
+				</p:column>
+				<p:column filterBy="#{coa.acType}" filterMatchMode="exact" headerText="#{label['MANAGE_ACTYPE_LABEL']}" style="width:100px;">
+					<f:facet name="filter">
+		                <p:selectOneMenu converter="omnifaces.SelectItemsIndexConverter"  onchange="PF('coaTable').filter()" >
+		                    <f:selectItem itemLabel="All" itemValue="#{null}" noSelectionOption="true" />
+		                    <f:selectItems value="#{ManageCoaActionBean.acTypes}" itemValue="#{type}"  itemLabel="#{type}" var="type"/>
+		                </p:selectOneMenu>
+		            </f:facet>
+					<h:outputText value="#{coa.acType.label}" />
+				</p:column>
+				
+				<p:column headerText="#{label['MANAGE_IBSB_CODE_LABEL']}" style="width:90px;text-align: center;">
+					<h:outputText value="#{coa.ibsbACode}" />
+				</p:column>
+				
+				
+			</p:dataTable>
+		</h:form>
+		
+	</ui:define>
+</ui:composition>

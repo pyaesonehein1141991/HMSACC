@@ -65,6 +65,16 @@
 			<redirect />
 		</navigation-case>
 		<navigation-case>
+			<from-outcome>managedailyrate</from-outcome>
+			<to-view-id>/ui/currencyrate/managecurrencyrate.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>managecodesetup</from-outcome>
+			<to-view-id>/ui/codesetup/managecodestepup.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
 			<from-outcome>manageRole</from-outcome>
 			<to-view-id>/ui/system/manageRole.xhtml</to-view-id>
 			<redirect />
@@ -74,6 +84,12 @@
 			<to-view-id>/ui/manage/menu/manageMenu.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
+		<navigation-case>
+			<from-outcome>manageCoa</from-outcome>
+			<to-view-id>/ui/manage/chartofaccount/manageChartOfAccount.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
 		<navigation-case>
 			<from-outcome>manageLabTestCategory</from-outcome>
 			<to-view-id>/ui/manage/labTestCategory/manageLabTestCategory.xhtml</to-view-id>
@@ -184,6 +200,12 @@
 		<navigation-case>
 			<from-outcome>addNewPackagingUnit</from-outcome>
 			<to-view-id>/ui/manage/PackagingUnit/addNewPackagingUnit.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>coaDialog</from-outcome>
+			<to-view-id>/dialog/coaDialog.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		
