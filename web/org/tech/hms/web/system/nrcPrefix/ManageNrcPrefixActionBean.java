@@ -4,10 +4,10 @@ import java.io.Serializable;
 import java.util.List;
 
 import javax.annotation.PostConstruct;
-import javax.faces.view.ViewScoped;
 import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Scope;
 import org.tech.hms.common.validation.MessageId;
 import org.tech.hms.nrcPrefix.NrcPrefix;
 import org.tech.hms.nrcPrefix.service.interfaces.INrcPrefixService;
@@ -16,7 +16,7 @@ import org.tech.java.web.common.BaseBean;
 
 
 @Named(value = "ManageNrcPrefixActionBean")
-@ViewScoped
+@Scope("view")
 public class ManageNrcPrefixActionBean extends BaseBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;

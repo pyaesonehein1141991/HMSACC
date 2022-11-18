@@ -17,7 +17,6 @@ import org.tech.hms.currencydailyrate.RateInfo;
 import org.tech.hms.currencydailyrate.RateType;
 import org.tech.hms.currencydailyrate.service.interfaces.IRateInfoService;
 import org.tech.java.component.SystemException;
-import org.tech.java.component.service.interfaces.IDataRepService;
 import org.tech.java.web.common.BaseBean;
 
 @Named(value = "RateDailyCurActionBean")
