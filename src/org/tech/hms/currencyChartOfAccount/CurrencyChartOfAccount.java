@@ -27,25 +27,51 @@ import org.tech.hms.currency.Currency;
 import org.tech.java.component.idgen.service.IDInterceptor;
 
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 
 @Entity
 @Table(name = TableName.CCOA)
 @TableGenerator(name = "CCOA_GEN", table = "ID_GEN", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL", pkColumnValue = "CCOA_GEN", allocationSize = 10)
-@NamedQueries(value = { @NamedQuery(name = "CurrencyChartOfAccount.findAll", query = "SELECT c FROM CurrencyChartOfAccount c ORDER BY c.coa.acCode,c.currency.currencyCode ASC"),
-		@NamedQuery(name = "CurrencyChartOfAccount.findCCOAByCOAid", query = "SELECT c FROM CurrencyChartOfAccount c where c.coa.id=:id"),
-		@NamedQuery(name = "CurrencyChartOfAccount.findCOAByBranchID", query = "SELECT DISTINCT NEW org.ace.accounting.system.chartaccount.CurrencyChartOfAccount(c.coa) FROM CurrencyChartOfAccount c WHERE c.branch.id=:branchId and c.coa.acCodeType != org.tech.hms.codesetup.AccountCodeType.HEAD AND c.coa.acCodeType != org.tech.hms.codesetup.AccountCodeType.GROUP "),
-		@NamedQuery(name = "CurrencyChartOfAccount.findByAcCodeAndBranchId", query = "SELECT c FROM CurrencyChartOfAccount c WHERE c.coa.acCode=:acCode AND c.branch.id=:branchId ORDER BY c.currency.currencyCode ASC"),
-		@NamedQuery(name = "CurrencyChartOfAccount.updateBudgetYearByID", query = "UPDATE CurrencyChartOfAccount c SET c.bF=:bF WHERE c.id=:id"),
-		@NamedQuery(name = "CurrencyChartOfAccount.findCCOAByIdAndBranch", query = "Select ccoa from CurrencyChartOfAccount ccoa WHERE ccoa.coa.id=:coaId AND ccoa.branch=:branch AND ccoa.currency=:currency "),
-		@NamedQuery(name = "CurrencyChartOfAccount.findAllBudget", query = "Select distinct ccoa.budget from CurrencyChartOfAccount ccoa WHERE ccoa.budget IS NOT NULL UNION ALL Select distinct ccoahist.budget from CcoaHistory ccoahist WHERE ccoahist.budget IS NOT NULL"),
-		@NamedQuery(name = "CurrencyChartOfAccount.findCCOAByCurrencyID", query = "SELECT c FROM CurrencyChartOfAccount c where c.currency.id=:curid"),
-		@NamedQuery(name = "CurrencyChartOfAccount.findCCOAByBranchID", query = "SELECT c FROM CurrencyChartOfAccount c where c.branch.id=:branchid") ,
-		@NamedQuery(name = "CurrencyChartOfAccount.updateByBranchId", query = "UPDATE CurrencyChartOfAccount c SET c.acName=:acName, c.department=:departmentId WHERE c.coa.acCode = :acCode AND c.branch.branchCode = :branchCode") })
+/*
+ * @NamedQueries(value = { @NamedQuery(name = "CurrencyChartOfAccount.findAll",
+ * query =
+ * "SELECT c FROM CurrencyChartOfAccount c ORDER BY c.coa.acCode,c.currency.currencyCode ASC"
+ * ),
+ * 
+ * @NamedQuery(name = "CurrencyChartOfAccount.findCCOAByCOAid", query =
+ * "SELECT c FROM CurrencyChartOfAccount c where c.coa.id=:id"),
+ * 
+ * @NamedQuery(name = "CurrencyChartOfAccount.findCOAByBranchID", query =
+ * "SELECT DISTINCT NEW org.tech.hms.currencyChartOfAccount.CurrencyChartOfAccount(c.coa) FROM CurrencyChartOfAccount c WHERE c.branch.id=:branchId and c.coa.acCodeType != org.tech.hms.codesetup.AccountCodeType.HEAD AND c.coa.acCodeType != org.tech.hms.codesetup.AccountCodeType.GROUP "
+ * ),
+ * 
+ * @NamedQuery(name = "CurrencyChartOfAccount.findByAcCodeAndBranchId", query =
+ * "SELECT c FROM CurrencyChartOfAccount c WHERE c.coa.acCode=:acCode AND c.branch.id=:branchId ORDER BY c.currency.currencyCode ASC"
+ * ),
+ * 
+ * @NamedQuery(name = "CurrencyChartOfAccount.updateBudgetYearByID", query =
+ * "UPDATE CurrencyChartOfAccount c SET c.bF=:bF WHERE c.id=:id"),
+ * 
+ * @NamedQuery(name = "CurrencyChartOfAccount.findCCOAByIdAndBranch", query =
+ * "Select ccoa from CurrencyChartOfAccount ccoa WHERE ccoa.coa.id=:coaId AND ccoa.branch=:branch AND ccoa.currency=:currency "
+ * ),
+ * 
+ * @NamedQuery(name = "CurrencyChartOfAccount.findAllBudget", query =
+ * "Select distinct ccoa.budget from CurrencyChartOfAccount ccoa WHERE ccoa.budget IS NOT NULL UNION ALL Select distinct ccoahist.budget from CcoaHistory ccoahist WHERE ccoahist.budget IS NOT NULL"
+ * ),
+ * 
+ * @NamedQuery(name = "CurrencyChartOfAccount.findCCOAByCurrencyID", query =
+ * "SELECT c FROM CurrencyChartOfAccount c where c.currency.id=:curid"),
+ * 
+ * @NamedQuery(name = "CurrencyChartOfAccount.findCCOAByBranchID", query =
+ * "SELECT c FROM CurrencyChartOfAccount c where c.branch.id=:branchid") ,
+ * 
+ * @NamedQuery(name = "CurrencyChartOfAccount.updateByBranchId", query =
+ * "UPDATE CurrencyChartOfAccount c SET c.acName=:acName, c.department=:departmentId WHERE c.coa.acCode = :acCode AND c.branch.branchCode = :branchCode"
+ * ) })
+ */
 @EntityListeners(IDInterceptor.class)
 @Data
-@NoArgsConstructor
 public class CurrencyChartOfAccount implements Serializable {
 	private static final long serialVersionUID = -5230388877783166738L;
 
@@ -123,6 +149,21 @@ public class CurrencyChartOfAccount implements Serializable {
 
 	@Embedded
 	private UserRecorder userRecorder;
+	
+	public CurrencyChartOfAccount() {
+		bF = BigDecimal.ZERO;
+		oBal = BigDecimal.ZERO;
+		hOBal = BigDecimal.ZERO;
+		cBal = BigDecimal.ZERO;
+		sccrBal = BigDecimal.ZERO;
+		accrued = BigDecimal.ZERO;
+		monthlyRate = new MonthlyRate();
+		msrcRate = new MSrcRate();
+		bfRate = new BfRate();
+		bfsrcRate = new BfSrcRate();
+		mrevRate = new MrevRate();
+		lymsrcRate = new LymSrcRate();
+	}
 	
 	
 
