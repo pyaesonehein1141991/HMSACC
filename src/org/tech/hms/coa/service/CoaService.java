@@ -26,7 +26,6 @@ public class CoaService extends DataRepService<ChartOfAccount> implements ICoaSe
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void createCoa(ChartOfAccount coa) {
 		try {
-			//TODO Business Logic
 			insert(coa);
 		} catch (DAOException e) {
 			throw new SystemException(e.getErrorCode(),"Fail to create Chart of Account",e);

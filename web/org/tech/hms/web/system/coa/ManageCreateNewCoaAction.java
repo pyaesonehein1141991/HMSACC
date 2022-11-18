@@ -1,14 +1,13 @@
 package org.tech.hms.web.system.coa;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -30,17 +29,23 @@ import lombok.Setter;
 @Scope(value = "view")
 public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 
+	
+	private static final long serialVersionUID = 1L;
+
+
 	@Autowired
 	private ICoaService coaService;
 
 	@Autowired
 	private IDataValidator<ChartOfAccount> accountCodeValidator;
-
-	private static final long serialVersionUID = 1L;
 	@Getter
 	@Setter
 	private boolean createNew;
+	@Getter
+	@Setter
 	private ChartOfAccount coa;
+	@Getter
+	@Setter
 	private List<ChartOfAccount> coaList;
 	@Getter
 	@Setter
@@ -57,9 +62,6 @@ public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 	@Getter
 	@Setter
 	private boolean acCodeDisabled = false;
-
-	@Enumerated(value = EnumType.STRING)
-	private AccountCodeType acCodeType;
 
 	@PostConstruct
 	public void init() {
@@ -92,9 +94,15 @@ public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 	}
 
 	public void loadHeadList() {
-		headList = coaList.stream().filter(
-				temp -> temp.getAcCodeType().equals(AccountCodeType.HEAD) && temp.getAcType().equals(coa.getAcType()))
-				.collect(Collectors.toList());
+
+		if(null != coaList || !coaList.isEmpty()) {
+			headList = coaList.stream().filter(
+					temp -> temp.getAcCodeType().equals(AccountCodeType.HEAD) && temp.getAcType().equals(coa.getAcType()))
+					.collect(Collectors.toList());
+		}else {
+			headList = new ArrayList<>();
+		}
+
 	}
 
 	public void eventAcCodeType() {
@@ -203,12 +211,15 @@ public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 		coaList.sort(c);
 	}
 
-	public AccountCodeType getAcCodeType() {
-		return acCodeType;
+	public AccountType[] getAcTypes() {
+		return AccountType.values();
 	}
 
-	public void setAcCodeType(AccountCodeType acCodeType) {
-		this.acCodeType = acCodeType;
+
+	public AccountCodeType[] getAcCodeTypes() {
+		return AccountCodeType.values();
+
 	}
+
 
 }

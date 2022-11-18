@@ -15,6 +15,7 @@ import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Transient;
 import javax.persistence.Version;
+
 import org.tech.hms.common.TableName;
 import org.tech.java.component.idgen.service.IDInterceptor;
 
