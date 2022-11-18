@@ -8,8 +8,6 @@ import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
 import javax.inject.Named;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
