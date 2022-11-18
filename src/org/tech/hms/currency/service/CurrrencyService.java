@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.tech.hms.common.dto.coaDto.MonthlyRateDto;
 import org.tech.hms.currency.Currency;
 import org.tech.hms.currency.persistence.interfaces.ICurrencyDAO;
 import org.tech.hms.currency.service.interfaces.ICurrencyService;
@@ -78,6 +79,24 @@ public class CurrrencyService extends DataRepService<Currency> implements ICurre
 		}
 		return result;
 	}
-
-
+	@Transactional(propagation = Propagation.REQUIRED)
+	public List<MonthlyRateDto> findForeignCurrencyDto() {
+		List<MonthlyRateDto> result = null;
+		try {
+			result = currencyDAO.findForeignCurrencyDto();
+		} catch (DAOException e) {
+			throw new SystemException(e.getErrorCode(), "Failed to find all of Currency)", e);
+		}
+		return result;
+	}
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void updateAllMonthlyRate(List<MonthlyRateDto> currencyList) {
+		try {
+			for (MonthlyRateDto currency : currencyList) {
+				currencyDAO.updateMonthlyRate(currency);
+			}
+		} catch (DAOException e) {
+			throw new SystemException(e.getErrorCode(), "Failed to update multiple currency", e);
+		}
+	}
 }

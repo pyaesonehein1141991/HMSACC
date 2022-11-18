@@ -50,5 +50,8 @@ public class TableName {
 	public static final String BRANCH = "BRANCH";
 	
 	public static final String COA = "COA";
+	public static final String EXCHANGECONFIG="EXCHANGECONFIG";
+	public static final String CCOA="CCOA";
+	public static final String SETUP="SETUP";
 
 }

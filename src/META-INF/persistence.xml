@@ -40,15 +40,18 @@
 	<class>org.tech.hms.specialization.Specialization</class>
 	<class>org.tech.hms.currency.Currency</class>
 	<class>org.tech.hms.currencydailyrate.RateInfo</class>
-	<class>org.tech.hms.codesetup.AccountCodeType</class>
-	<class>org.tech.hms.coa.ChartOfAccount</class>
+		<class>org.tech.hms.coa.ChartOfAccount</class>
+		<class>org.tech.hms.currencyChartOfAccount.CurrencyChartOfAccount</class>
+		<class>org.tech.hms.exchangeconfig.ExchangeConfig</class>
+		<class>org.tech.hms.setup.Setup</class>
+		<class>org.tech.hms.branch.Branch</class>
     <shared-cache-mode>NONE</shared-cache-mode>
     <properties>
     	<property name="javax.persistence.jdbc.url" value="jdbc:sqlserver://localhost;databaseName=HMS;selectMethod=cursor" />
 		<property name="javax.persistence.jdbc.driver" value="com.microsoft.sqlserver.jdbc.SQLServerDriver"/>  
 		<property name="javax.persistence.jdbc.user" value="sa"/>  
 
-		<property name="javax.persistence.jdbc.password" value="sasa"/> 
+		<property name="javax.persistence.jdbc.password" value="123@ace"/> 
 
 		<!--Performance Tuning-->
 		<property name="eclipselink.orm.throw.exceptions" value="true"/>

@@ -2,6 +2,7 @@ package org.tech.hms.common;
 
 import java.io.Serializable;
 import java.util.Date;
+
 import javax.persistence.Embeddable;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;

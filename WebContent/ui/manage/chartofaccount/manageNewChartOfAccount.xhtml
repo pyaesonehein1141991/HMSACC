@@ -42,7 +42,7 @@
 						<p:message for="acCodeType" />
 						<h:outputText for="acCodeType" value="#{label['MANAGE_COA_CODE_TYPE']}" styleClass="input-label mandatory" />
 						<p:selectOneRadio id="acCodeType" converter="omnifaces.SelectItemsIndexConverter" required="true" value="#{ManageCreateNewCoaAction.coa.acCodeType}">
-							<f:selectItems itemLabel="#{type.label}" itemValue="#{type}" value="#{ManageCreateNewCoaAction.accountCodeTypes}" var="type" />
+							<f:selectItems itemLabel="#{type.label}" itemValue="#{type}" value="#{ManageCreateNewCoaAction.acCodeType}" var="type" />
 							<p:ajax event="change" listener="#{ManageCreateNewCoaAction.eventAcCodeType()}" process="@this" update="headCode groupCode"/>
 						</p:selectOneRadio>
 						
@@ -80,10 +80,10 @@
 			</p:panel>
 			<br />
 			<p:commandButton id="addBtn" value="#{label['COMMON_ADDNEW_BTN']}" action="#{ManageCreateNewCoaAction.addNewCoa()}" rendered="#{ManageCreateNewCoaAction.createNew}"
-				update="coaEntryForm" style="width:65px;" oncomplete="PF('coaTable').filter()" />
+				update=":coaEntryForm" style="width:65px;"/>
 
 			<p:commandButton id="editBtn" value="#{label['COMMON_UPDATE_BTN']}" action="#{ManageCreateNewCoaAction.updateCoa()}" rendered="#{!ManageCreateNewCoaAction.createNew}"
-				update=":coaEntryForm" style="width:70px;" oncomplete="PF('coaTable').filter()" />
+				update=":coaEntryForm" style="width:70px;" />
 			<br />
 
 			<p:separator style="height:3px;" />

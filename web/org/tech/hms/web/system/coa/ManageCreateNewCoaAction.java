@@ -42,7 +42,11 @@ public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
     @Getter
     @Setter
 	private boolean createNew;
+    @Getter
+    @Setter
 	private ChartOfAccount coa;
+    @Getter
+    @Setter
 	private List<ChartOfAccount> coaList;
 	 @Getter
 	    @Setter
@@ -62,8 +66,10 @@ public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 	
 	@Enumerated(value = EnumType.STRING)
 	private AccountCodeType acCodeType;
-	
-	
+	@Getter
+	  @Setter
+	@Enumerated(value = EnumType.STRING)
+	private AccountType acTypes;
 
 	@PostConstruct
 	public void init() {
