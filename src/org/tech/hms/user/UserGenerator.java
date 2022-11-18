@@ -1,8 +1,8 @@
  package org.tech.hms.user;
 
  import org.springframework.beans.factory.BeanFactory;
- import org.springframework.context.ApplicationContext;
- import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.tech.java.component.service.PasswordCodecHandler;
 import org.tech.java.component.service.interfaces.IDataRepService;
 

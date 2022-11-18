@@ -2,34 +2,27 @@ package org.tech.hms.coa;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
 
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-
 import javax.persistence.Version;
 
 import org.tech.hms.codesetup.AccountCodeType;
 import org.tech.hms.common.AccountType;
 import org.tech.hms.common.TableName;
 import org.tech.hms.common.UserRecorder;
-
 import org.tech.java.component.idgen.service.IDInterceptor;
 
 import lombok.Data;

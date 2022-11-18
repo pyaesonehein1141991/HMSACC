@@ -3,7 +3,6 @@ package org.tech.hms.nrcPrefix.persistence.interfaces;
 import java.util.List;
 
 import org.tech.hms.nrcPrefix.NrcPrefix;
-import org.tech.hms.user.User;
 import org.tech.java.component.persistence.exception.DAOException;
 
 public interface INrcPrefixDAO  {

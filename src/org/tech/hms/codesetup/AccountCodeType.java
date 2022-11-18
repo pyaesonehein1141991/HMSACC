@@ -1,7 +1,5 @@
 package org.tech.hms.codesetup;
 
-
-
 public enum AccountCodeType {
 
 	HEAD("Head Code"), GROUP("Group Code"), DETAIL("Detail");

@@ -3,7 +3,6 @@ package org.tech.hms.nrcPrefix.service.interfaces;
 import java.util.List;
 
 import org.tech.hms.nrcPrefix.NrcPrefix;
-import org.tech.hms.user.User;
 import org.tech.java.component.SystemException;
 
 public interface INrcPrefixService {

@@ -3,14 +3,12 @@ package org.tech.hms.currencyChartOfAccount.service;
 import java.math.BigDecimal;
 import java.util.List;
 
-import javax.annotation.Resource;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.tech.hms.branch.Branch;
 import org.tech.hms.coa.ChartOfAccount;
-import org.tech.hms.coa.persistence.interfaces.ICoaDAO;
 import org.tech.hms.common.dto.coaDto.CcoaDto;
 import org.tech.hms.common.dto.coaDto.YearlyBudgetDto;
 import org.tech.hms.currency.Currency;
@@ -20,22 +18,12 @@ import org.tech.hms.currencyChartOfAccount.service.interfaces.ICcoaService;
 import org.tech.java.component.SystemException;
 import org.tech.java.component.persistence.exception.DAOException;
 import org.tech.java.component.service.BaseService;
-import org.tech.java.component.service.interfaces.IDataRepService;
 
 @Service(value = "CcoaService")
 public class CcoaService extends BaseService implements ICcoaService {
-	@Resource(name = "CcoaDAO")
+	@Autowired
 	private ICcoaDAO ccoaDAO;
 
-	@Resource(name = "CoaDAO")
-	private ICoaDAO coaDAO;
-
-	/*
-	 * @Resource(name = "CCOA_HistoryDAO") private ICCOA_HistoryDAO ccoaHistoryDAO;
-	 */
-
-	@Resource(name = "DataRepService")
-	private IDataRepService<CurrencyChartOfAccount> ccoaDataRepService;
 
 	@Transactional(propagation = Propagation.REQUIRED)
 	public List<CurrencyChartOfAccount> findAll() {

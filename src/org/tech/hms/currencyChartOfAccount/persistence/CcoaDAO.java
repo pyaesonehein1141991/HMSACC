@@ -2,9 +2,6 @@ package org.tech.hms.currencyChartOfAccount.persistence;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -13,21 +10,16 @@ import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
 
-import org.jboss.security.auth.spi.Users.User;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.tech.hms.branch.Branch;
 import org.tech.hms.coa.ChartOfAccount;
-import org.tech.hms.codesetup.AccountCodeType;
-import org.tech.hms.common.DateUtils;
-import org.tech.hms.common.dto.coaDto.CcoaDto;
 import org.tech.hms.common.dto.coaDto.YearlyBudgetDto;
 import org.tech.hms.currency.Currency;
 import org.tech.hms.currencyChartOfAccount.CurrencyChartOfAccount;
 import org.tech.hms.currencyChartOfAccount.persistence.interfaces.ICcoaDAO;
 import org.tech.hms.process.interfaces.IUserProcessService;
-import org.tech.java.component.SystemException;
 import org.tech.java.component.persistence.BasicDAO;
 import org.tech.java.component.persistence.exception.DAOException;
 import org.tech.java.component.service.interfaces.IDataRepService;

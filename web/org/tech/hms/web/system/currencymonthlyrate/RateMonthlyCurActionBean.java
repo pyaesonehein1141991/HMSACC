@@ -1,26 +1,13 @@
 package org.tech.hms.web.system.currencymonthlyrate;
 
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.math.BigDecimal;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.EnumSet;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.stream.Stream;
 
 import javax.annotation.PostConstruct;
-import javax.faces.context.ExternalContext;
-import javax.faces.context.FacesContext;
 import javax.inject.Named;
 
-import org.apache.commons.io.FileUtils;
-import org.primefaces.model.DefaultStreamedContent;
 import org.primefaces.model.DefaultTreeNode;
-import org.primefaces.model.StreamedContent;
 import org.primefaces.model.TreeNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
@@ -28,7 +15,6 @@ import org.tech.hms.branch.Branch;
 import org.tech.hms.branch.services.interfaces.IBranchService;
 import org.tech.hms.coa.ChartOfAccount;
 import org.tech.hms.coa.service.interfaces.ICoaService;
-import org.tech.hms.common.AccountType;
 import org.tech.hms.common.DateUtils;
 import org.tech.hms.common.dto.coaDto.MonthNames;
 import org.tech.hms.common.dto.coaDto.MonthlyRateDto;
@@ -44,20 +30,6 @@ import org.tech.hms.process.interfaces.IUserProcessService;
 import org.tech.java.component.SystemException;
 import org.tech.java.component.service.interfaces.IDataRepService;
 import org.tech.java.web.common.BaseBean;
-
-import net.sf.jasperreports.engine.JREmptyDataSource;
-import net.sf.jasperreports.engine.JasperCompileManager;
-import net.sf.jasperreports.engine.JasperExportManager;
-import net.sf.jasperreports.engine.JasperFillManager;
-import net.sf.jasperreports.engine.JasperPrint;
-import net.sf.jasperreports.engine.JasperReport;
-import net.sf.jasperreports.engine.data.JRBeanCollectionDataSource;
-import net.sf.jasperreports.engine.design.JasperDesign;
-import net.sf.jasperreports.engine.export.JRXlsExporter;
-import net.sf.jasperreports.engine.xml.JRXmlLoader;
-import net.sf.jasperreports.export.SimpleExporterInput;
-import net.sf.jasperreports.export.SimpleOutputStreamExporterOutput;
-import net.sf.jasperreports.export.SimpleXlsReportConfiguration;
 
 @Named(value = "RateMonthlyCurActionBean")
 @Scope(value = "view")
