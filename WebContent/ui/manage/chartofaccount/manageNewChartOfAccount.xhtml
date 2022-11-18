@@ -36,13 +36,14 @@
 						</p:inputText>
 						
 					</p:panelGrid>
+					
 					<p:panelGrid  columns="2" columnClasses="ui-grid-col-3,ui-grid-col-9" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
 						
 						<h:outputText value="" />
 						<p:message for="acCodeType" />
 						<h:outputText for="acCodeType" value="#{label['MANAGE_COA_CODE_TYPE']}" styleClass="input-label mandatory" />
 						<p:selectOneRadio id="acCodeType" converter="omnifaces.SelectItemsIndexConverter" required="true" value="#{ManageCreateNewCoaAction.coa.acCodeType}">
-							<f:selectItems itemLabel="#{type.label}" itemValue="#{type}" value="#{ManageCreateNewCoaAction.acCodeType}" var="type" />
+							<f:selectItems itemLabel="#{type.label}" itemValue="#{type}" value="#{ManageCreateNewCoaAction.acCodeTypes}" var="type" />
 							<p:ajax event="change" listener="#{ManageCreateNewCoaAction.eventAcCodeType()}" process="@this" update="headCode groupCode"/>
 						</p:selectOneRadio>
 						
@@ -65,6 +66,7 @@
 					
 					
 					</p:panelGrid>
+					
 					<p:panelGrid columns="2" columnClasses="ui-grid-col-3,ui-grid-col-9" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
 						
 						<h:outputText value="" />

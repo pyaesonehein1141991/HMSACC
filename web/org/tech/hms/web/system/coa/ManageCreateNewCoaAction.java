@@ -1,6 +1,7 @@
 package org.tech.hms.web.system.coa;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -26,50 +27,44 @@ import org.tech.java.web.common.BaseBean;
 import lombok.Getter;
 import lombok.Setter;
 
-
-
 @Named(value = "ManageCreateNewCoaAction")
 @Scope(value = "view")
 public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 	
+	private static final long serialVersionUID = 1L;
+
 	@Autowired
 	private ICoaService coaService;
-	
+
 	@Autowired
 	private IDataValidator<ChartOfAccount> accountCodeValidator;
+
 	
-	private static final long serialVersionUID = 1L;
-    @Getter
-    @Setter
-	private boolean createNew;
-    @Getter
-    @Setter
-	private ChartOfAccount coa;
-    @Getter
-    @Setter
-	private List<ChartOfAccount> coaList;
-	 @Getter
-	    @Setter
-	private List<ChartOfAccount> groupList;
-	 @Getter
-	    @Setter
-	private List<ChartOfAccount> headList;
-	 @Getter
-	    @Setter
-	private boolean headCodeDisable = false;
-	 @Getter
-	    @Setter
-	private boolean groupCodeDisable = true;
-	 @Getter
-	  @Setter
-	private boolean acCodeDisabled = false;
-	
-	@Enumerated(value = EnumType.STRING)
-	private AccountCodeType acCodeType;
 	@Getter
-	  @Setter
-	@Enumerated(value = EnumType.STRING)
-	private AccountType acTypes;
+	@Setter
+	private boolean createNew;
+	@Getter
+	@Setter
+	private ChartOfAccount coa;
+	@Getter
+	@Setter
+	private List<ChartOfAccount> coaList;
+	@Getter
+	@Setter
+	private List<ChartOfAccount> groupList;
+	@Getter
+	@Setter
+	private List<ChartOfAccount> headList;
+	@Getter
+	@Setter
+	private boolean headCodeDisable = false;
+	@Getter
+	@Setter
+	private boolean groupCodeDisable = true;
+	@Getter
+	@Setter
+	private boolean acCodeDisabled = false;
+
 
 	@PostConstruct
 	public void init() {
@@ -89,7 +84,7 @@ public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 
 	private void loadData() {
 		coaList = coaService.findAllCoa();
-		//sort();
+		// sort();
 	}
 
 	public void prepareUpdateCoa(ChartOfAccount coa) {
@@ -102,34 +97,41 @@ public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 	}
 
 	public void loadHeadList() {
-		headList = coaList.stream().filter(temp -> temp.getAcCodeType().equals(AccountCodeType.HEAD) && temp.getAcType().equals(coa.getAcType())).collect(Collectors.toList());
+		if(null != coaList || !coaList.isEmpty()) {
+			headList = coaList.stream().filter(
+					temp -> temp.getAcCodeType().equals(AccountCodeType.HEAD) && temp.getAcType().equals(coa.getAcType()))
+					.collect(Collectors.toList());
+		}else {
+			headList = new ArrayList<>();
+		}
+		
 	}
 
 	public void eventAcCodeType() {
 		switch (coa.getAcCodeType()) {
-			case DETAIL:
-				headCodeDisable = false;
-				groupCodeDisable = false;
-				break;
-			case GROUP:
-				headCodeDisable = false;
-				groupCodeDisable = true;
-				coa.setGroupId(null);
-				break;
-			case HEAD:
-				headCodeDisable = true;
-				groupCodeDisable = true;
-				coa.setGroupId(null);
-				coa.setHeadId(null);
-				break;
+		case DETAIL:
+			headCodeDisable = false;
+			groupCodeDisable = false;
+			break;
+		case GROUP:
+			headCodeDisable = false;
+			groupCodeDisable = true;
+			coa.setGroupId(null);
+			break;
+		case HEAD:
+			headCodeDisable = true;
+			groupCodeDisable = true;
+			coa.setGroupId(null);
+			coa.setHeadId(null);
+			break;
 		}
 
 	}
 
 	public void loadGroupList() {
 		if (coa.getAcCodeType().equals(AccountCodeType.DETAIL)) {
-			groupList = coaList.stream().filter(temp -> (temp.getAcCodeType().equals(AccountCodeType.GROUP) && temp.getHeadId().equals(coa.getHeadId())))
-					.collect(Collectors.toList());
+			groupList = coaList.stream().filter(temp -> (temp.getAcCodeType().equals(AccountCodeType.GROUP)
+					&& temp.getHeadId().equals(coa.getHeadId()))).collect(Collectors.toList());
 			groupCodeDisable = false;
 		} else {
 			groupCodeDisable = true;
@@ -196,25 +198,28 @@ public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 	}
 
 	private void updateList(ChartOfAccount coa) {
-		ChartOfAccount tempCoa = ((List<ChartOfAccount>) coaList.stream().filter(p -> p.getId().equals(coa.getId())).collect(Collectors.toList())).get(0);
+		ChartOfAccount tempCoa = ((List<ChartOfAccount>) coaList.stream().filter(p -> p.getId().equals(coa.getId()))
+				.collect(Collectors.toList())).get(0);
 		coaList.remove(tempCoa);
-		//ChartOfAccount newCoa = dataservice.findById(ChartOfAccount.class, coa.getId());
-		//coaList.add(newCoa);
+		// ChartOfAccount newCoa = dataservice.findById(ChartOfAccount.class,
+		// coa.getId());
+		// coaList.add(newCoa);
 		sort();
 	}
 
 	private void sort() {
-		Comparator<ChartOfAccount> c = Comparator.comparing(ChartOfAccount::getAcType).thenComparing(ChartOfAccount::getAcCodeType).thenComparing(ChartOfAccount::getAcCode);
+		Comparator<ChartOfAccount> c = Comparator.comparing(ChartOfAccount::getAcType)
+				.thenComparing(ChartOfAccount::getAcCodeType).thenComparing(ChartOfAccount::getAcCode);
 		coaList.sort(c);
 	}
 
-	public AccountCodeType getAcCodeType() {
-		return acCodeType;
+	public AccountType[] getAcTypes() {
+		return AccountType.values();
 	}
 
-	
-	public void setAcCodeType(AccountCodeType acCodeType) {
-		this.acCodeType = acCodeType;
+	public AccountCodeType[] getAcCodeTypes() {
+		return AccountCodeType.values();
 	}
+
 
 }

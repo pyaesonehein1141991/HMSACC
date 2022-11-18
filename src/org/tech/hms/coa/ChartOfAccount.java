@@ -33,7 +33,9 @@ import lombok.NoArgsConstructor;
 @TableGenerator(name = "COA_GEN", table = "ID_GEN", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL", pkColumnValue = "COA_GEN", allocationSize = 10)
 @NamedQueries(value = {
 		@NamedQuery(name = "ChartOfAccount.findAll", query = "SELECT c FROM ChartOfAccount c  ORDER BY c.acName ASC"),
-		@NamedQuery(name = "ChartOfAccount.findById", query = "SELECT c FROM ChartOfAccount c WHERE c.id = :id") })
+		@NamedQuery(name = "ChartOfAccount.findById", query = "SELECT c FROM ChartOfAccount c WHERE c.id = :id"),
+		@NamedQuery(name = "ChartOfAccount.findByAcCode", query = "SELECT c FROM ChartOfAccount c WHERE c.acCode = :acCode"),
+		@NamedQuery(name = "ChartOfAccount.findByIbsbACode", query = "SELECT c FROM ChartOfAccount c WHERE c.ibsbACode = :ibsbACode ")})
 @EntityListeners(IDInterceptor.class)
 @Data
 @NoArgsConstructor
