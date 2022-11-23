@@ -56,9 +56,16 @@ public class ManageOpeningBalance extends BaseBean implements Serializable {
 	@Getter
 	@Setter
 	private ObalDto dtoToDelete;
+	@Getter
+	@Setter
 	private List<ObalDto> dtoList;
 
+	@Setter
 	private BigDecimal balDiff;
+
+	@Getter
+	@Setter
+	private List<ObalDto> filteredList;
 
 	@PostConstruct
 	public void init() {
@@ -106,7 +113,7 @@ public class ManageOpeningBalance extends BaseBean implements Serializable {
 
 	public void save() {
 		try {
-			calBalDiff();
+			calculateBalanceDifferent();
 			if (balDiff.compareTo(BigDecimal.ZERO) != 0) {
 				addErrorMessage("openingBalanceForm:openingBalanceTable", MessageId.OUT_OF_BALANCE);
 				PrimeFaces.current().ajax().update("openingBalanceForm");
@@ -123,7 +130,7 @@ public class ManageOpeningBalance extends BaseBean implements Serializable {
 		}
 	}
 
-	public void calBalDiff() {
+	public void calculateBalanceDifferent() {
 		BigDecimal assetTotal = BigDecimal.ZERO;
 		BigDecimal liabilityTotal = BigDecimal.ZERO;
 		for (ObalDto dto : dtoList) {
@@ -136,30 +143,8 @@ public class ManageOpeningBalance extends BaseBean implements Serializable {
 		balDiff = assetTotal.subtract(liabilityTotal);
 	}
 
-	public void setDtoList(List<ObalDto> dtoList) {
-		this.dtoList = dtoList;
-	}
-
-	public List<ObalDto> getDtoList() {
-		return dtoList;
-	}
-
 	public double getBalDiff() {
 		return balDiff.doubleValue();
-	}
-
-	public void setBalDiff(BigDecimal balDiff) {
-		this.balDiff = balDiff;
-	}
-
-	private List<ObalDto> filteredList;
-
-	public List<ObalDto> getFilteredList() {
-		return filteredList;
-	}
-
-	public void setFilteredList(List<ObalDto> filteredList) {
-		this.filteredList = filteredList;
 	}
 
 	public void openCoaDialog() {
