@@ -32,7 +32,7 @@ public class ObalDto {
 		this.acCode = acCode;
 		this.acName = acName;
 		this.oBal = oBal;
-		this.oldOBal = new BigDecimal(getoBal().doubleValue());
+		this.oldOBal = new BigDecimal(getOBal().doubleValue());
 		this.hoBal = hoBal;
 		this.oldHoBal = new BigDecimal(getHoBal().doubleValue());
 		this.acType = acType;
@@ -44,7 +44,7 @@ public class ObalDto {
 		this.groupId = groupId;
 	}
 
-	public BigDecimal getoBal() {
+	public BigDecimal getOBal() {
 		return oBal == null ? BigDecimal.ZERO : oBal;
 	}
 
@@ -65,7 +65,7 @@ public class ObalDto {
 	}
 
 	public double getoBalDoubleValue() {
-		return getoBal().doubleValue();
+		return getOBal().doubleValue();
 	}
 
 	public double getHoBalDoubleValue() {
@@ -74,7 +74,7 @@ public class ObalDto {
 
 	public boolean isUpdated() {
 		boolean result = false;
-		if (getoBal().doubleValue() != oldOBal.doubleValue()) {
+		if (getOBal().doubleValue() != oldOBal.doubleValue()) {
 			result = true;
 		} else if (getHoBal().doubleValue() != oldHoBal.doubleValue()) {
 			result = true;

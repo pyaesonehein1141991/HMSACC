@@ -48,6 +48,7 @@ public class TableName {
 	public static final String ACCODETYPE="ACCODETYPE";
 	
 	public static final String BRANCH = "BRANCH";
+	public static final String DEPARTMENT = "DEPTCODE";
 	
 	public static final String COA = "COA";
 	public static final String EXCHANGECONFIG="EXCHANGECONFIG";

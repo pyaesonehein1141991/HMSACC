@@ -11,6 +11,8 @@ import org.tech.hms.branch.Branch;
 import org.tech.hms.coa.ChartOfAccount;
 import org.tech.hms.common.dto.coaDto.CcoaDto;
 import org.tech.hms.common.dto.coaDto.YearlyBudgetDto;
+import org.tech.hms.common.dto.obal.ObalCriteriaDto;
+import org.tech.hms.common.dto.obal.ObalDto;
 import org.tech.hms.currency.Currency;
 import org.tech.hms.currencyChartOfAccount.CurrencyChartOfAccount;
 import org.tech.hms.currencyChartOfAccount.persistence.interfaces.ICcoaDAO;
@@ -23,7 +25,6 @@ import org.tech.java.component.service.BaseService;
 public class CcoaService extends BaseService implements ICcoaService {
 	@Autowired
 	private ICcoaDAO ccoaDAO;
-
 
 	@Transactional(propagation = Propagation.REQUIRED)
 	public List<CurrencyChartOfAccount> findAll() {
@@ -50,7 +51,8 @@ public class CcoaService extends BaseService implements ICcoaService {
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED)
-	public CurrencyChartOfAccount findSpecificCCOA(String coaId, String currencyId, String branchId, String optionalDepartmentId) {
+	public CurrencyChartOfAccount findSpecificCCOA(String coaId, String currencyId, String branchId,
+			String optionalDepartmentId) {
 		CurrencyChartOfAccount result = null;
 		try {
 			result = ccoaDAO.findSpecificCCOA(coaId, currencyId, branchId, optionalDepartmentId);
@@ -71,8 +73,6 @@ public class CcoaService extends BaseService implements ICcoaService {
 		}
 		return list;
 	}
-
-	
 
 	@Transactional(propagation = Propagation.REQUIRED)
 	public List<YearlyBudgetDto> findAllYearlyBudget(YearlyBudgetDto dto) {
@@ -96,7 +96,6 @@ public class CcoaService extends BaseService implements ICcoaService {
 		}
 	}
 
-
 	@Transactional(propagation = Propagation.REQUIRED)
 	public List<CurrencyChartOfAccount> findCOAByBranchID(String branchID) {
 		List<CurrencyChartOfAccount> list = null;
@@ -107,7 +106,6 @@ public class CcoaService extends BaseService implements ICcoaService {
 		}
 		return list;
 	}
-
 
 	@Transactional(propagation = Propagation.REQUIRED)
 	public List<CurrencyChartOfAccount> findCCOAByCurrencyID(String currencyID) {
@@ -131,11 +129,10 @@ public class CcoaService extends BaseService implements ICcoaService {
 
 		return list;
 	}
-	
-	
+
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public List<CurrencyChartOfAccount> findCCOAforBranchClosing(String branchId)throws SystemException{
+	public List<CurrencyChartOfAccount> findCCOAforBranchClosing(String branchId) throws SystemException {
 		try {
 			return ccoaDAO.findCCOAforBranchClosing(branchId);
 		} catch (DAOException e) {
@@ -165,8 +162,29 @@ public class CcoaService extends BaseService implements ICcoaService {
 	@Override
 	public void updateCCOAByAllBranch(CurrencyChartOfAccount ccoa) {
 		// TODO Auto-generated method stub
-		
+
 	}
-	
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public List<ObalDto> findOpeningBalance(ObalCriteriaDto dto) {
+		List<ObalDto> dtos = null;
+		try {
+			dtos = ccoaDAO.findObal(dto);
+		} catch (DAOException e) {
+			throw new SystemException(e.getErrorCode(), "Failed to find opening balance", e);
+		}
+		return dtos;
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public void updateObalByDtos(List<ObalDto> dtoList) {
+		try {
+			ccoaDAO.updateCcoaByObalDtos(dtoList);
+		} catch (DAOException e) {
+			throw new SystemException(e.getErrorCode(), "Failed to update opening balance", e);
+		}
+	}
 
 }
