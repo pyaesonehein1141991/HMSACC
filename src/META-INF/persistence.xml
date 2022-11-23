@@ -60,7 +60,7 @@
 			<property name="javax.persistence.jdbc.user" value="sa" />
 
 			<property name="javax.persistence.jdbc.password"
-				value="123@ace" />
+				value="sasa" />
 
 			<!--Performance Tuning -->
 			<property name="eclipselink.orm.throw.exceptions"
