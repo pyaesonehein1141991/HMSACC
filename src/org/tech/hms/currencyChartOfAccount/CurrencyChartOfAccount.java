@@ -12,6 +12,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.persistence.TableGenerator;
@@ -30,6 +32,9 @@ import lombok.Data;
 @Entity
 @Table(name = TableName.CCOA)
 @TableGenerator(name = "CCOA_GEN", table = "ID_GEN", pkColumnName = "GEN_NAME", valueColumnName = "GEN_VAL", pkColumnValue = "CCOA_GEN", allocationSize = 10)
+@NamedQueries(value = { @NamedQuery(name = "CurrencyChartOfAccount.findAllBudget",
+ query = "Select distinct ccoa.budget from CurrencyChartOfAccount ccoa WHERE ccoa.budget IS NOT NULL")})
+ 
 /*
  * @NamedQueries(value = { @NamedQuery(name = "CurrencyChartOfAccount.findAll",
  * query =

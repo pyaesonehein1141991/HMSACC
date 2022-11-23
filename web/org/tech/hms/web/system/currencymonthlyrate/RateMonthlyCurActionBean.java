@@ -12,7 +12,6 @@ import org.primefaces.model.TreeNode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.tech.hms.branch.Branch;
-import org.tech.hms.branch.services.interfaces.IBranchService;
 import org.tech.hms.coa.ChartOfAccount;
 import org.tech.hms.coa.service.interfaces.ICoaService;
 import org.tech.hms.common.DateUtils;
@@ -28,7 +27,6 @@ import org.tech.hms.exchangeconfig.ExchangeConfig;
 import org.tech.hms.exchangeconfig.service.interfaces.IExchangeConfigService;
 import org.tech.hms.process.interfaces.IUserProcessService;
 import org.tech.java.component.SystemException;
-import org.tech.java.component.service.interfaces.IDataRepService;
 import org.tech.java.web.common.BaseBean;
 
 @Named(value = "RateMonthlyCurActionBean")
@@ -39,20 +37,10 @@ public class RateMonthlyCurActionBean extends BaseBean {
 	private ICurrencyService currencyService;
 
 	@Autowired
-	private IDataRepService<Currency> dataRepService;
-
-	@Autowired
 	private IUserProcessService userProcessService;
 
 	@Autowired
 	private ICoaService coaService;
-
-	@Autowired
-	private IBranchService branchService;
-
-	public void setBranchService(IBranchService branchService) {
-		this.branchService = branchService;
-	}
 
 	@Autowired
 	private IExchangeConfigService exchangeService;
@@ -87,7 +75,7 @@ public class RateMonthlyCurActionBean extends BaseBean {
 
 		currencyListValue = new ArrayList<>();
 		monthSet = EnumSet.allOf(MonthNames.class);
-		yearList = DateUtils.getActiveYears();
+		//yearList = DateUtils.getActiveYears();
 		root = new DefaultTreeNode("Root", null);
 		selectedNodes = null;
 		rebindData();
@@ -375,6 +363,153 @@ public class RateMonthlyCurActionBean extends BaseBean {
 
 	public List<Integer> getYearList() {
 		return yearList;
+	}
+
+	/**
+	 * @return the currencyService
+	 */
+	public ICurrencyService getCurrencyService() {
+		return currencyService;
+	}
+
+	/**
+	 * @param currencyService the currencyService to set
+	 */
+	public void setCurrencyService(ICurrencyService currencyService) {
+		this.currencyService = currencyService;
+	}
+
+	/**
+	 * @return the userProcessService
+	 */
+	public IUserProcessService getUserProcessService() {
+		return userProcessService;
+	}
+
+	/**
+	 * @param userProcessService the userProcessService to set
+	 */
+	public void setUserProcessService(IUserProcessService userProcessService) {
+		this.userProcessService = userProcessService;
+	}
+
+	/**
+	 * @return the coaService
+	 */
+	public ICoaService getCoaService() {
+		return coaService;
+	}
+
+	/**
+	 * @param coaService the coaService to set
+	 */
+	public void setCoaService(ICoaService coaService) {
+		this.coaService = coaService;
+	}
+
+	/**
+	 * @return the exchangeService
+	 */
+	public IExchangeConfigService getExchangeService() {
+		return exchangeService;
+	}
+
+	/**
+	 * @param exchangeService the exchangeService to set
+	 */
+	public void setExchangeService(IExchangeConfigService exchangeService) {
+		this.exchangeService = exchangeService;
+	}
+
+	/**
+	 * @return the exchangeConfigList
+	 */
+	public List<ExchangeConfig> getExchangeConfigList() {
+		return exchangeConfigList;
+	}
+
+	/**
+	 * @param exchangeConfigList the exchangeConfigList to set
+	 */
+	public void setExchangeConfigList(List<ExchangeConfig> exchangeConfigList) {
+		this.exchangeConfigList = exchangeConfigList;
+	}
+
+	/**
+	 * @return the reportName
+	 */
+	public String getReportName() {
+		return reportName;
+	}
+
+	/**
+	 * @return the pdfDirPath
+	 */
+	public String getPdfDirPath() {
+		return pdfDirPath;
+	}
+
+	/**
+	 * @return the dirPath
+	 */
+	public String getDirPath() {
+		return dirPath;
+	}
+
+	/**
+	 * @return the fileName
+	 */
+	public String getFileName() {
+		return fileName;
+	}
+
+	/**
+	 * @param voucherDto the voucherDto to set
+	 */
+	public void setVoucherDto(VoucherDTO voucherDto) {
+		this.voucherDto = voucherDto;
+	}
+
+	/**
+	 * @param ratedto the ratedto to set
+	 */
+	public void setRatedto(RateDTO ratedto) {
+		this.ratedto = ratedto;
+	}
+
+	/**
+	 * @param monthSet the monthSet to set
+	 */
+	public void setMonthSet(EnumSet<MonthNames> monthSet) {
+		this.monthSet = monthSet;
+	}
+
+	/**
+	 * @param currencyListValue the currencyListValue to set
+	 */
+	public void setCurrencyListValue(List<Currency> currencyListValue) {
+		this.currencyListValue = currencyListValue;
+	}
+
+	/**
+	 * @param yearList the yearList to set
+	 */
+	public void setYearList(List<Integer> yearList) {
+		this.yearList = yearList;
+	}
+
+	/**
+	 * @param coaList the coaList to set
+	 */
+	public void setCoaList(List<ChartOfAccount> coaList) {
+		this.coaList = coaList;
+	}
+
+	/**
+	 * @param branchList the branchList to set
+	 */
+	public void setBranchList(List<Branch> branchList) {
+		this.branchList = branchList;
 	}
 
 }

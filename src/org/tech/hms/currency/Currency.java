@@ -3,6 +3,7 @@ package org.tech.hms.currency;
 
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.Objects;
 
 import javax.persistence.Column;
@@ -22,6 +23,8 @@ import org.tech.hms.common.TableName;
 import org.tech.hms.common.UserRecorder;
 import org.tech.java.component.idgen.service.IDInterceptor;
 
+import lombok.Data;
+
 
 @Entity
 @Table(name = TableName.CUR)
@@ -31,6 +34,7 @@ import org.tech.java.component.idgen.service.IDInterceptor;
 		@NamedQuery(name = "Currency.findForeignCurrency", query = "SELECT c FROM Currency c WHERE c.isHomeCur=false ORDER BY c.code ASC"),
 		@NamedQuery(name = "Currency.findHomeCurrency", query = "SELECT c FROM Currency c WHERE c.isHomeCur = true") })
 @EntityListeners(IDInterceptor.class)
+@Data
 public class Currency implements Serializable {
 
 	private static final long serialVersionUID = -5785537862626257490L;
@@ -44,6 +48,19 @@ public class Currency implements Serializable {
 	private String description;
 	private String symbol;
 	private Boolean isHomeCur;
+	private BigDecimal m1;
+	private BigDecimal m2;
+	private BigDecimal m3;
+	private BigDecimal m4;
+	private BigDecimal m5;
+	private BigDecimal m6;
+	private BigDecimal m7;
+	private BigDecimal m8;
+	private BigDecimal m9;
+	private BigDecimal m10;
+	private BigDecimal m11;
+	private BigDecimal m12;
+	private BigDecimal m13;
 
 	@Version
 	private int version;
@@ -51,90 +68,5 @@ public class Currency implements Serializable {
 	@Embedded
 	private UserRecorder userRecorder;
 
-	public Currency() {
-		
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	
-
-	public String getCode() {
-		return code;
-	}
-
-	public void setCode(String code) {
-		this.code = code;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	public String getSymbol() {
-		return symbol;
-	}
-
-	public void setSymbol(String symbol) {
-		this.symbol = symbol;
-	}
-
-	public Boolean getIsHomeCur() {
-		return isHomeCur;
-	}
-
-	public void setIsHomeCur(Boolean isHomeCur) {
-		this.isHomeCur = isHomeCur;
-	}
-
-	public int getVersion() {
-		return version;
-	}
-
-	public void setVersion(int version) {
-		this.version = version;
-	}
-
-	public UserRecorder getUserRecorder() {
-		return userRecorder;
-	}
-
-	public void setUserRecorder(UserRecorder userRecorder) {
-		this.userRecorder = userRecorder;
-	}
-
-	@Override
-	public int hashCode() {
-		return Objects.hash(code, description, id, isHomeCur, symbol, userRecorder, version);
-	}
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj) {
-			return true;
-		}
-		if (obj == null) {
-			return false;
-		}
-		if (getClass() != obj.getClass()) {
-			return false;
-		}
-		Currency other = (Currency) obj;
-		return Objects.equals(code, other.code) && Objects.equals(description, other.description)
-				&& Objects.equals(id, other.id) && Objects.equals(isHomeCur, other.isHomeCur)
-				&& Objects.equals(symbol, other.symbol) && Objects.equals(userRecorder, other.userRecorder)
-				&& version == other.version;
-	}
-
-	
 
 }

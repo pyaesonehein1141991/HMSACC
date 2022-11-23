@@ -51,12 +51,12 @@ public class CurrerncyDAO extends BasicDAO implements ICurrencyDAO{
 		List<MonthlyRateDto> result = null;
 		try {
 			StringBuffer sf = new StringBuffer();
-			sf.append("SELECT NEW org.ace.accounting.dto.MonthlyRateDto(c.id,c.currencyCode,c.description,");
+			sf.append("SELECT NEW org.ace.accounting.dto.MonthlyRateDto(c.id,c.code,c.description,");
 			sf.append("c." + BusinessUtil.getMonthlyRateFormula(1) + ",c." + BusinessUtil.getMonthlyRateFormula(2) + ",c." + BusinessUtil.getMonthlyRateFormula(3) + ",c.");
 			sf.append(BusinessUtil.getMonthlyRateFormula(4) + ",c." + BusinessUtil.getMonthlyRateFormula(5) + ",c." + BusinessUtil.getMonthlyRateFormula(6) + ",c.");
 			sf.append(BusinessUtil.getMonthlyRateFormula(7) + ",c." + BusinessUtil.getMonthlyRateFormula(8) + ",c." + BusinessUtil.getMonthlyRateFormula(9) + ",c.");
 			sf.append(BusinessUtil.getMonthlyRateFormula(10) + ",c." + BusinessUtil.getMonthlyRateFormula(11) + ",c." + BusinessUtil.getMonthlyRateFormula(12) + ")");
-			sf.append(" FROM Currency c WHERE c.isHomeCur=false ORDER BY c.currencyCode ASC");
+			sf.append(" FROM Currency c WHERE c.isHomeCur=false ORDER BY c.code ASC");
 			Query q = em.createQuery(sf.toString());
 			result = q.getResultList();
 			em.flush();
