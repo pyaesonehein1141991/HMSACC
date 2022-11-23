@@ -21,11 +21,14 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+import org.tech.hms.branch.Branch;
 import org.tech.hms.common.ContactInfo;
 import org.tech.hms.common.TableName;
 import org.tech.hms.common.UserRecorder;
 import org.tech.hms.role.Role;
 import org.tech.java.component.idgen.service.IDInterceptor;
+
+import lombok.Data;
 
 @Entity
 @Table(name = TableName.USER)
@@ -36,10 +39,8 @@ import org.tech.java.component.idgen.service.IDInterceptor;
 		@NamedQuery(name = "User.deleteById", query = "DELETE FROM User u WHERE u.id = :id"),
 		@NamedQuery(name = "User.findUserId", query = "SELECT u.id FROM User u ORDER BY u.name ASC") })
 @EntityListeners(IDInterceptor.class)
+@Data
 public class User implements Serializable {
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
 
 	@Id
@@ -61,6 +62,10 @@ public class User implements Serializable {
 	@OneToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ROLEID", referencedColumnName = "ID")
 	private Role role;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "BRANCHID", referencedColumnName = "ID")
+	private Branch branch;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date dateOfBirth;
@@ -83,102 +88,6 @@ public class User implements Serializable {
 		this.userCode = usercode;
 		this.password = password;
 		this.name = name;
-	}
-
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public String getUserCode() {
-		return userCode;
-	}
-
-	public void setUserCode(String userCode) {
-		this.userCode = userCode;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		this.password = password;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
-
-	public Date getDateOfBirth() {
-		return dateOfBirth;
-	}
-
-	public void setDateOfBirth(Date dateOfBirth) {
-		this.dateOfBirth = dateOfBirth;
-	}
-
-	public int getVersion() {
-		return version;
-	}
-
-	public void setVersion(int version) {
-		this.version = version;
-	}
-
-	public UserRecorder getUserRecorder() {
-		return userRecorder;
-	}
-
-	public void setUserRecorder(UserRecorder userRecorder) {
-		this.userRecorder = userRecorder;
-	}
-
-	public void setContactInfo(ContactInfo contactInfo) {
-		this.contactInfo = contactInfo;
-	}
-
-	public ContactInfo getContactInfo() {
-		return contactInfo;
-	}
-
-	public boolean isAdmin() {
-		return isAdmin;
-	}
-
-	public void setAdmin(boolean isAdmin) {
-		this.isAdmin = isAdmin;
-	}
-
-	public boolean isEditAllow() {
-		return isEditAllow;
-	}
-
-	public void setEditAllow(boolean isEditAllow) {
-		this.isEditAllow = isEditAllow;
-	}
-
-	public boolean isDeleteAllow() {
-		return isDeleteAllow;
-	}
-
-	public void setDeleteAllow(boolean isDeleteAllow) {
-		this.isDeleteAllow = isDeleteAllow;
 	}
 
 	@Override
