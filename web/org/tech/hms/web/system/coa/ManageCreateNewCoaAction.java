@@ -28,16 +28,16 @@ import lombok.Setter;
 @Named(value = "ManageCreateNewCoaAction")
 @Scope(value = "view")
 public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
+
 	
 	private static final long serialVersionUID = 1L;
+
 
 	@Autowired
 	private ICoaService coaService;
 
 	@Autowired
 	private IDataValidator<ChartOfAccount> accountCodeValidator;
-
-	
 	@Getter
 	@Setter
 	private boolean createNew;
@@ -62,7 +62,6 @@ public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 	@Getter
 	@Setter
 	private boolean acCodeDisabled = false;
-
 
 	@PostConstruct
 	public void init() {
@@ -95,6 +94,7 @@ public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 	}
 
 	public void loadHeadList() {
+
 		if(null != coaList || !coaList.isEmpty()) {
 			headList = coaList.stream().filter(
 					temp -> temp.getAcCodeType().equals(AccountCodeType.HEAD) && temp.getAcType().equals(coa.getAcType()))
@@ -102,7 +102,7 @@ public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 		}else {
 			headList = new ArrayList<>();
 		}
-		
+
 	}
 
 	public void eventAcCodeType() {
@@ -215,8 +215,10 @@ public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 		return AccountType.values();
 	}
 
+
 	public AccountCodeType[] getAcCodeTypes() {
 		return AccountCodeType.values();
+
 	}
 
 

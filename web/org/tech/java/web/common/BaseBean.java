@@ -189,5 +189,8 @@ public class BaseBean {
 	public void selectParentCoa() {
 		PrimeFaces.current().dialog().openDynamic("coaDialog", getDialogOptions(), null);
 	}
+	  public void selectCoa() {
+	        PrimeFaces.current().dialog().openDynamic(DialogId.COA_DIALOG, getDialogOptions(), null);
+	    }
 
 }
