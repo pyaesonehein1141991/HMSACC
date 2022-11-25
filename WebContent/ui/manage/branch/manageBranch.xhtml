@@ -1,0 +1,48 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/common/commonLayout.xhtml">
+	<ui:param name="header" value="Branch Management" />
+	<ui:param name="headerRendered" value="false" />
+	<ui:define name="content">
+		<div class="pageContent">
+				<p:growl globalOnly="true" id="messages" showDetail="true"/>
+				<p:panelGrid columns="2" styleClass="ui-panelgrid-blank ui-fluid">
+					<p:commandButton id="addBtn" value="#{label['COMMON_ADDNEW_LINK']}" action="#{ManageBranchActionBean.navigateBranchSetup}" icon="pi pi-plus" />
+				</p:panelGrid>
+				
+			<h:form id="branchTableForm">
+				<p:dataTable var="branch" value="#{ManageBranchActionBean.branchDtoList}" id="branchTable" paginator="true" rows="15" widgetVar="branchTable"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="5,10, 15,20,25,30" rowIndexVar="index" rowKey="index" emptyMessage="Nothing found with given criteria" reflow="true" paginatorPosition="bottom">
+					<p:column style="width:3%;" headerText="#{label['COMMON_TABLE_SR_NO']}" styleClass="textOnRight">
+						<h:outputText value="#{index + 1}" />
+					</p:column>
+					<p:column filterBy="#{branch.name}" filterMatchMode="contains" headerText="Name">
+						<h:outputText value="#{branch.name}" />
+					</p:column>
+					<p:column filterBy="#{branch.code}" filterMatchMode="contains" headerText="Code">
+						<h:outputText value="#{branch.code}" />
+					</p:column>
+					<p:column filterBy="#{branch.description}" filterMatchMode="contains" headerText="Description">
+						<h:outputText value="#{branch.description}" />
+					</p:column>
+					<p:column style="width:3%; margin:center" styleClass="textOnCenter">
+						<p:commandButton styleClass="white-button" icon="fa fa-paint-brush" action="#{ManageBranchActionBean.prepareEditBranch(branch.id)}" />
+					</p:column>
+					<p:column style="width:3%; max-width: 5px;" styleClass="textOnCenter">
+						<p:commandButton styleClass="red-button" icon="pi pi-times" action="#{ManageBranchActionBean.deleteBranch(branch.id)}" 
+							oncomplete="PF('branchTable').filter();" update=":branchTableForm" >
+							<p:confirm header="Confirmation"  message="#{label['COMMON_MSG_DELETE_CONFIRM_LABEL']}" icon="pi pi-exclamation-triangle" />
+						</p:commandButton>
+					</p:column>
+					
+					
+				</p:dataTable>
+			</h:form>
+			<!-- Confirmation Dialog -->
+			<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+				<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes green-button" icon="pi pi-check" />
+				<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no red-button" icon="pi pi-times" />
+			</p:confirmDialog>
+		</div>
+	</ui:define>
+</ui:composition>
