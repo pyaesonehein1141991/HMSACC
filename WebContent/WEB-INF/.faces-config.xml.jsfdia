@@ -1,0 +1,444 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<PROCESS model-entity="JSFProcess">
+ <PROCESS-ITEM NAME="rules:*" PATH="*" SHAPE="32,17,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:*:0" NAME="item" PATH="*" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT ID="login::#index.xhtml" NAME="output"
+    PATH="/index.xhtml" TARGET="rules:#index.xhtml" TITLE="login" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="home::#ui#system#home.xhtml" NAME="output1"
+    PATH="/ui/system/home.xhtml" TARGET="rules:#ui#system#home.xhtml"
+    TITLE="home" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="manageUser::#ui#system#manageUser.xhtml"
+    NAME="output2" PATH="/ui/system/manageUser.xhtml"
+    TARGET="rules:#ui#system#manageUser.xhtml" TITLE="manageUser" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="addNewUser::#ui#system#addNewUser.xhtml"
+    NAME="output3" PATH="/ui/system/addNewUser.xhtml"
+    TARGET="rules:#ui#system#addNewUser.xhtml" TITLE="addNewUser" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="manageCurrency::#ui#manage#currency#managecurrency.xhtml"
+    NAME="output4" PATH="/ui/manage/currency/managecurrency.xhtml"
+    TARGET="rules:#ui#manage#currency#managecurrency.xhtml"
+    TITLE="manageCurrency" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="managedailyrate::#ui#currencyrate#managecurrencyrate.xhtml"
+    NAME="output5" PATH="/ui/currencyrate/managecurrencyrate.xhtml"
+    TARGET="rules:#ui#currencyrate#managecurrencyrate.xhtml"
+    TITLE="managedailyrate" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="managemonthlyrate::#ui#currencyrate#rateMonthlyCurrency.xhtml"
+    NAME="output6" PATH="/ui/currencyrate/rateMonthlyCurrency.xhtml"
+    TARGET="rules:#ui#currencyrate#rateMonthlyCurrency.xhtml"
+    TITLE="managemonthlyrate" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="managecodesetup::#ui#codesetup#managecodestepup.xhtml"
+    NAME="output7" PATH="/ui/codesetup/managecodestepup.xhtml"
+    TARGET="rules:#ui#codesetup#managecodestepup.xhtml"
+    TITLE="managecodesetup" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="manageRole::#ui#system#manageRole.xhtml"
+    NAME="output8" PATH="/ui/system/manageRole.xhtml"
+    TARGET="rules:#ui#system#manageRole.xhtml" TITLE="manageRole" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="manageMenu::#ui#manage#menu#manageMenu.xhtml" NAME="output9"
+    PATH="/ui/manage/menu/manageMenu.xhtml"
+    TARGET="rules:#ui#manage#menu#manageMenu.xhtml" TITLE="manageMenu" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="manageCoa::#ui#manage#chartofaccount#manageChartOfAccount.xhtml"
+    NAME="output10"
+    PATH="/ui/manage/chartofaccount/manageChartOfAccount.xhtml"
+    TARGET="rules:#ui#manage#chartofaccount#manageChartOfAccount.xhtml"
+    TITLE="manageCoa" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="openingBalanceEntry::#ui#manage#openingbalance.xhtml"
+    NAME="output11" PATH="/ui/manage/openingbalance.xhtml"
+    TARGET="rules:#ui#manage#openingbalance.xhtml"
+    TITLE="openingBalanceEntry" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="manageLabTestCategory::#ui#manage#labTestCategory#manageLabTestCategory.xhtml"
+    NAME="output12"
+    PATH="/ui/manage/labTestCategory/manageLabTestCategory.xhtml"
+    TARGET="rules:#ui#manage#labTestCategory#manageLabTestCategory.xhtml"
+    TITLE="manageLabTestCategory" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="manageUnit::#ui#manage#unit#manageUnit.xhtml" NAME="output13"
+    PATH="/ui/manage/unit/manageUnit.xhtml"
+    TARGET="rules:#ui#manage#unit#manageUnit.xhtml" TITLE="manageUnit" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="manageRelation::#ui#manage#relation#manageRelation.xhtml"
+    NAME="output14" PATH="/ui/manage/relation/manageRelation.xhtml"
+    TARGET="rules:#ui#manage#relation#manageRelation.xhtml"
+    TITLE="manageRelation" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="addNewRelation::#ui#manage#relation#addNewRelation.xhtml"
+    NAME="output15" PATH="/ui/manage/relation/addNewRelation.xhtml"
+    TARGET="rules:#ui#manage#relation#addNewRelation.xhtml"
+    TITLE="addNewRelation" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="manageGeneric::#ui#manage#generic#manageGeneric.xhtml"
+    NAME="output16" PATH="/ui/manage/generic/manageGeneric.xhtml"
+    TARGET="rules:#ui#manage#generic#manageGeneric.xhtml"
+    TITLE="manageGeneric" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="addNewGeneric::#ui#manage#generic#addnewGeneric.xhtml"
+    NAME="output17" PATH="/ui/manage/generic/addnewGeneric.xhtml"
+    TARGET="rules:#ui#manage#generic#addnewGeneric.xhtml"
+    TITLE="addNewGeneric" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="manageSpecialist::#ui#manage#specialist#manageSpecialist.xhtml"
+    NAME="output18" PATH="/ui/manage/specialist/manageSpecialist.xhtml"
+    TARGET="rules:#ui#manage#specialist#manageSpecialist.xhtml"
+    TITLE="manageSpecialist" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="addNewSpecialist::#ui#manage#specialist#addnewSpecialist.xhtml"
+    NAME="output19" PATH="/ui/manage/specialist/addnewSpecialist.xhtml"
+    TARGET="rules:#ui#manage#specialist#addnewSpecialist.xhtml"
+    TITLE="addNewSpecialist" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="manageSpecialization::#ui#manage#specialization#manageSpecialization.xhtml"
+    NAME="output20"
+    PATH="/ui/manage/specialization/manageSpecialization.xhtml"
+    TARGET="rules:#ui#manage#specialization#manageSpecialization.xhtml"
+    TITLE="manageSpecialization" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="addNewSpecialization::#ui#manage#specialization#addnewSpecialization.xhtml"
+    NAME="output21"
+    PATH="/ui/manage/specialization/addnewSpecialization.xhtml"
+    TARGET="rules:#ui#manage#specialization#addnewSpecialization.xhtml"
+    TITLE="addNewSpecialization" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="managePosition::#ui#manage#position#managePosition.xhtml"
+    NAME="output22" PATH="/ui/manage/position/managePosition.xhtml"
+    TARGET="rules:#ui#manage#position#managePosition.xhtml"
+    TITLE="managePosition" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="addNewPosition::#ui#manage#position#addnewPosition.xhtml"
+    NAME="output23" PATH="/ui/manage/position/addnewPosition.xhtml"
+    TARGET="rules:#ui#manage#position#addnewPosition.xhtml"
+    TITLE="addNewPosition" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="managepackageUnitRelation::#ui#manage#packageUnitRelation#managePackageUnitRelation.xhtml"
+    NAME="output24"
+    PATH="/ui/manage/packageUnitRelation/managePackageUnitRelation.xhtml"
+    TARGET="rules:#ui#manage#packageUnitRelation#managePackageUnitRelation.xhtml"
+    TITLE="managepackageUnitRelation" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="manageUnit::#ui#manage#unit#manageunit.xhtml" NAME="output25"
+    PATH="/ui/manage/unit/manageunit.xhtml"
+    TARGET="rules:#ui#manage#unit#manageunit.xhtml" TITLE="manageUnit" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="manageBrand::#ui#manage#Brand#manageBrand.xhtml" NAME="output26"
+    PATH="/ui/manage/Brand/manageBrand.xhtml"
+    TARGET="rules:#ui#manage#Brand#manageBrand.xhtml"
+    TITLE="manageBrand" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="addNewBrand::#ui#manage#Brand#addNewBrand.xhtml" NAME="output27"
+    PATH="/ui/manage/Brand/addNewBrand.xhtml"
+    TARGET="rules:#ui#manage#Brand#addNewBrand.xhtml"
+    TITLE="addNewBrand" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="manageFacility::#ui#manage#Facility#manageFacility.xhtml"
+    NAME="output28" PATH="/ui/manage/Facility/manageFacility.xhtml"
+    TARGET="rules:#ui#manage#Facility#manageFacility.xhtml"
+    TITLE="manageFacility" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="manageRoomClass::#ui#manage#RoomClass#manageRoomClass.xhtml"
+    NAME="output29" PATH="/ui/manage/RoomClass/manageRoomClass.xhtml"
+    TARGET="rules:#ui#manage#RoomClass#manageRoomClass.xhtml"
+    TITLE="manageRoomClass" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="managePackagingUnit::#ui#manage#PackagingUnit#managePackagingUnit.xhtml"
+    NAME="output30"
+    PATH="/ui/manage/PackagingUnit/managePackagingUnit.xhtml"
+    TARGET="rules:#ui#manage#PackagingUnit#managePackagingUnit.xhtml"
+    TITLE="managePackagingUnit" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="addNewPackagingUnit::#ui#manage#PackagingUnit#addNewPackagingUnit.xhtml"
+    NAME="output31"
+    PATH="/ui/manage/PackagingUnit/addNewPackagingUnit.xhtml"
+    TARGET="rules:#ui#manage#PackagingUnit#addNewPackagingUnit.xhtml"
+    TITLE="addNewPackagingUnit" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="coaDialog::#dialog#coaDialog.xhtml"
+    NAME="output32" PATH="/dialog/coaDialog.xhtml"
+    TARGET="rules:#dialog#coaDialog.xhtml" TITLE="coaDialog" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="packagingunitDialog::#dialog#packagingunitDialog.xhtml"
+    NAME="output33" PATH="/dialog/packagingunitDialog.xhtml"
+    TARGET="rules:#dialog#packagingunitDialog.xhtml"
+    TITLE="packagingunitDialog" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="manageCountry::#ui#manage#Country#manageCountry.xhtml"
+    NAME="output34" PATH="/ui/manage/Country/manageCountry.xhtml"
+    TARGET="rules:#ui#manage#Country#manageCountry.xhtml"
+    TITLE="manageCountry" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="addNewCountry::#ui#manage#Country#addNewCountry.xhtml"
+    NAME="output35" PATH="/ui/manage/Country/addNewCountry.xhtml"
+    TARGET="rules:#ui#manage#Country#addNewCountry.xhtml"
+    TITLE="addNewCountry" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="countryDialog::#dialog#countryDialog.xhtml"
+    NAME="output36" PATH="/dialog/countryDialog.xhtml"
+    TARGET="rules:#dialog#countryDialog.xhtml" TITLE="countryDialog" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="manageProvince::#ui#manage#Province#manageProvince.xhtml"
+    NAME="output37" PATH="/ui/manage/Province/manageProvince.xhtml"
+    TARGET="rules:#ui#manage#Province#manageProvince.xhtml"
+    TITLE="manageProvince" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="addNewProvince::#ui#manage#Province#addNewProvince.xhtml"
+    NAME="output38" PATH="/ui/manage/Province/addNewProvince.xhtml"
+    TARGET="rules:#ui#manage#Province#addNewProvince.xhtml"
+    TITLE="addNewProvince" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="provinceDialog::#dialog#provinceDialog.xhtml" NAME="output39"
+    PATH="/dialog/provinceDialog.xhtml"
+    TARGET="rules:#dialog#provinceDialog.xhtml" TITLE="provinceDialog" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="manageDistrict::#ui#manage#District#manageDistrict.xhtml"
+    NAME="output40" PATH="/ui/manage/District/manageDistrict.xhtml"
+    TARGET="rules:#ui#manage#District#manageDistrict.xhtml"
+    TITLE="manageDistrict" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="addNewDistrict::#ui#manage#District#addNewDistrict.xhtml"
+    NAME="output41" PATH="/ui/manage/District/addNewDistrict.xhtml"
+    TARGET="rules:#ui#manage#District#addNewDistrict.xhtml"
+    TITLE="addNewDistrict" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="districtDialog::#dialog#districtDialog.xhtml" NAME="output42"
+    PATH="/dialog/districtDialog.xhtml"
+    TARGET="rules:#dialog#districtDialog.xhtml" TITLE="districtDialog" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="manageTownship::#ui#manage#Township#manageTownship.xhtml"
+    NAME="output43" PATH="/ui/manage/Township/manageTownship.xhtml"
+    TARGET="rules:#ui#manage#Township#manageTownship.xhtml"
+    TITLE="manageTownship" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="addNewTownship::#ui#manage#Township#addNewTownship.xhtml"
+    NAME="output44" PATH="/ui/manage/Township/addNewTownship.xhtml"
+    TARGET="rules:#ui#manage#Township#addNewTownship.xhtml"
+    TITLE="addNewTownship" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="townshipDialog::#dialog#townshipDialog.xhtml" NAME="output45"
+    PATH="/dialog/townshipDialog.xhtml"
+    TARGET="rules:#dialog#townshipDialog.xhtml" TITLE="townshipDialog" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="Test::#ui#manage#Test#Test.xhtml"
+    NAME="output46" PATH="/ui/manage/Test/Test.xhtml"
+    TARGET="rules:#ui#manage#Test#Test.xhtml" TITLE="Test" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="manageRelation::#ui#manage#relation#managerelation.xhtml"
+    NAME="output47" PATH="/ui/manage/relation/managerelation.xhtml"
+    TARGET="rules:#ui#manage#relation#managerelation.xhtml"
+    TITLE="manageRelation" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="roleDialog::#dialog#roleDialog.xhtml"
+    NAME="output48" PATH="/dialog/roleDialog.xhtml"
+    TARGET="rules:#dialog#roleDialog.xhtml" TITLE="roleDialog" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT ID="unitDialog::#dialog#unitDialog.xhtml"
+    NAME="output49" PATH="/dialog/unitDialog.xhtml"
+    TARGET="rules:#dialog#unitDialog.xhtml" TITLE="unitDialog" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="labTestCategoryDialog::#dialog#labTestCategoryDialog.xhtml"
+    NAME="output50" PATH="/dialog/labTestCategoryDialog.xhtml"
+    TARGET="rules:#dialog#labTestCategoryDialog.xhtml"
+    TITLE="labTestCategoryDialog" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="manageNrcPrefix::#ui#manage#nrcPrefix#manageNrcPrefix.xhtml"
+    NAME="output51" PATH="/ui/manage/nrcPrefix/manageNrcPrefix.xhtml"
+    TARGET="rules:#ui#manage#nrcPrefix#manageNrcPrefix.xhtml"
+    TITLE="manageNrcPrefix" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="addNewNrcPrefix::#ui#manage#nrcPrefix#addNewNrcPrefix.xhtml"
+    NAME="output52" PATH="/ui/manage/nrcPrefix/addNewNrcPrefix.xhtml"
+    TARGET="rules:#ui#manage#nrcPrefix#addNewNrcPrefix.xhtml"
+    TITLE="addNewNrcPrefix" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="manageSupplier::#ui#manage#supplier#manageSupplier.xhtml"
+    NAME="output53" PATH="/ui/manage/supplier/manageSupplier.xhtml"
+    TARGET="rules:#ui#manage#supplier#manageSupplier.xhtml"
+    TITLE="manageSupplier" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="addNewSupplier::#ui#manage#supplier#addNewSupplier.xhtml"
+    NAME="output54" PATH="/ui/manage/supplier/addNewSupplier.xhtml"
+    TARGET="rules:#ui#manage#supplier#addNewSupplier.xhtml"
+    TITLE="addNewSupplier" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="managelabtest::#ui#manage#labTest#managelabtest.xhtml"
+    NAME="output55" PATH="/ui/manage/labTest/managelabtest.xhtml"
+    TARGET="rules:#ui#manage#labTest#managelabtest.xhtml"
+    TITLE="managelabtest" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="managePatient::#ui#manage#patient#managePatient.xhtml"
+    NAME="output56" PATH="/ui/manage/patient/managePatient.xhtml"
+    TARGET="rules:#ui#manage#patient#managePatient.xhtml"
+    TITLE="managePatient" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="patientInquiry::#ui#manage#patient#patientInquiry.xhtml"
+    NAME="output57" PATH="/ui/manage/patient/patientInquiry.xhtml"
+    TARGET="rules:#ui#manage#patient#patientInquiry.xhtml"
+    TITLE="patientInquiry" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="manageEmployee::#ui#manage#employee#manageEmployee.xhtml"
+    NAME="output58" PATH="/ui/manage/employee/manageEmployee.xhtml"
+    TARGET="rules:#ui#manage#employee#manageEmployee.xhtml"
+    TITLE="manageEmployee" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#ui#manage#menu#manageMenu.xhtml"
+  PATH="/ui/manage/menu/manageMenu.xhtml" SHAPE="304,2897,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM ID="rules:#ui#manage#menu#manageMenu.xhtml:0"
+   NAME="item" PATH="/ui/manage/menu/manageMenu.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="addNewMenu::#ui#manage#menu#addNewMenu.xhtml" NAME="output"
+    PATH="/ui/manage/menu/addNewMenu.xhtml"
+    TARGET="rules:#ui#manage#menu#addNewMenu.xhtml" TITLE="addNewMenu" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM
+  NAME="rules:#ui#manage#labTestCategory#manageLabTestCategory.xhtml"
+  PATH="/ui/manage/labTestCategory/manageLabTestCategory.xhtml"
+  SHAPE="304,3121,0,0" model-entity="JSFProcessGroup">
+  <PROCESS-ITEM
+   ID="rules:#ui#manage#labTestCategory#manageLabTestCategory.xhtml:0"
+   NAME="item"
+   PATH="/ui/manage/labTestCategory/manageLabTestCategory.xhtml" model-entity="JSFProcessItem">
+   <PROCESS-ITEM-OUTPUT
+    ID="addNewLabTestCategory::#ui#manage#labTestCategory#addNewLabTestCategory.xhtml"
+    NAME="output"
+    PATH="/ui/manage/labTestCategory/addNewLabTestCategory.xhtml"
+    TARGET="rules:#ui#manage#labTestCategory#addNewLabTestCategory.xhtml"
+    TITLE="addNewLabTestCategory" model-entity="JSFProcessItemOutput"/>
+  </PROCESS-ITEM>
+ </PROCESS-ITEM>
+ <PROCESS-ITEM NAME="rules:#ui#manage#position#addnewPosition.xhtml"
+  PATH="/ui/manage/position/addnewPosition.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#dialog#townshipDialog.xhtml"
+  PATH="/dialog/townshipDialog.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#patient#patientInquiry.xhtml"
+  PATH="/ui/manage/patient/patientInquiry.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#unit#manageUnit.xhtml"
+  PATH="/ui/manage/unit/manageUnit.xhtml" SHAPE="304,3233,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#supplier#manageSupplier.xhtml"
+  PATH="/ui/manage/supplier/manageSupplier.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#Country#addNewCountry.xhtml"
+  PATH="/ui/manage/Country/addNewCountry.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#ui#manage#chartofaccount#manageChartOfAccount.xhtml"
+  PATH="/ui/manage/chartofaccount/manageChartOfAccount.xhtml"
+  SHAPE="304,3009,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#employee#manageEmployee.xhtml"
+  PATH="/ui/manage/employee/manageEmployee.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#Brand#manageBrand.xhtml"
+  PATH="/ui/manage/Brand/manageBrand.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#currency#managecurrency.xhtml"
+  PATH="/ui/manage/currency/managecurrency.xhtml" SHAPE="304,2337,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#dialog#countryDialog.xhtml"
+  PATH="/dialog/countryDialog.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#supplier#addNewSupplier.xhtml"
+  PATH="/ui/manage/supplier/addNewSupplier.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#system#manageUser.xhtml"
+  PATH="/ui/system/manageUser.xhtml" SHAPE="304,2113,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#ui#manage#PackagingUnit#managePackagingUnit.xhtml"
+  PATH="/ui/manage/PackagingUnit/managePackagingUnit.xhtml"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#dialog#packagingunitDialog.xhtml"
+  PATH="/dialog/packagingunitDialog.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#dialog#coaDialog.xhtml"
+  PATH="/dialog/coaDialog.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#Province#addNewProvince.xhtml"
+  PATH="/ui/manage/Province/addNewProvince.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#generic#manageGeneric.xhtml"
+  PATH="/ui/manage/generic/manageGeneric.xhtml" SHAPE="304,3681,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#Facility#manageFacility.xhtml"
+  PATH="/ui/manage/Facility/manageFacility.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#dialog#districtDialog.xhtml"
+  PATH="/dialog/districtDialog.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#District#addNewDistrict.xhtml"
+  PATH="/ui/manage/District/addNewDistrict.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#dialog#roleDialog.xhtml"
+  PATH="/dialog/roleDialog.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#relation#managerelation.xhtml"
+  PATH="/ui/manage/relation/managerelation.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#dialog#labTestCategoryDialog.xhtml"
+  PATH="/dialog/labTestCategoryDialog.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#dialog#unitDialog.xhtml"
+  PATH="/dialog/unitDialog.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#unit#addNewUnit.xhtml"
+  PATH="/ui/manage/unit/addNewUnit.xhtml" SHAPE="304,3345,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#Township#manageTownship.xhtml"
+  PATH="/ui/manage/Township/manageTownship.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#ui#manage#PackagingUnit#addNewPackagingUnit.xhtml"
+  PATH="/ui/manage/PackagingUnit/addNewPackagingUnit.xhtml"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#system#home.xhtml"
+  PATH="/ui/system/home.xhtml" SHAPE="304,2001,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#generic#addnewGeneric.xhtml"
+  PATH="/ui/manage/generic/addnewGeneric.xhtml" SHAPE="304,3793,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#system#addNewUser.xhtml"
+  PATH="/ui/system/addNewUser.xhtml" SHAPE="304,2225,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#Brand#addNewBrand.xhtml"
+  PATH="/ui/manage/Brand/addNewBrand.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#specialist#manageSpecialist.xhtml"
+  PATH="/ui/manage/specialist/manageSpecialist.xhtml"
+  SHAPE="304,3905,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#index.xhtml" PATH="/index.xhtml"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#relation#manageRelation.xhtml"
+  PATH="/ui/manage/relation/manageRelation.xhtml" SHAPE="304,3457,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#relation#addNewRelation.xhtml"
+  PATH="/ui/manage/relation/addNewRelation.xhtml" SHAPE="304,3569,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#ui#manage#specialization#manageSpecialization.xhtml"
+  PATH="/ui/manage/specialization/manageSpecialization.xhtml"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#currencyrate#managecurrencyrate.xhtml"
+  PATH="/ui/currencyrate/managecurrencyrate.xhtml" SHAPE="304,2449,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#Township#addNewTownship.xhtml"
+  PATH="/ui/manage/Township/addNewTownship.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#system#manageRole.xhtml"
+  PATH="/ui/system/manageRole.xhtml" SHAPE="304,2785,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#nrcPrefix#manageNrcPrefix.xhtml"
+  PATH="/ui/manage/nrcPrefix/manageNrcPrefix.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#District#manageDistrict.xhtml"
+  PATH="/ui/manage/District/manageDistrict.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#specialist#addnewSpecialist.xhtml"
+  PATH="/ui/manage/specialist/addnewSpecialist.xhtml"
+  SHAPE="304,4017,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#RoomClass#manageRoomClass.xhtml"
+  PATH="/ui/manage/RoomClass/manageRoomClass.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#labTest#managelabtest.xhtml"
+  PATH="/ui/manage/labTest/managelabtest.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#unit#manageunit.xhtml"
+  PATH="/ui/manage/unit/manageunit.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#ui#manage#labTestCategory#addNewLabTestCategory.xhtml"
+  PATH="/ui/manage/labTestCategory/addNewLabTestCategory.xhtml"
+  SHAPE="512,3105,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#position#managePosition.xhtml"
+  PATH="/ui/manage/position/managePosition.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#codesetup#managecodestepup.xhtml"
+  PATH="/ui/codesetup/managecodestepup.xhtml" SHAPE="304,2673,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#menu#addNewMenu.xhtml"
+  PATH="/ui/manage/menu/addNewMenu.xhtml" SHAPE="512,2881,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#nrcPrefix#addNewNrcPrefix.xhtml"
+  PATH="/ui/manage/nrcPrefix/addNewNrcPrefix.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#ui#manage#packageUnitRelation#managePackageUnitRelation.xhtml"
+  PATH="/ui/manage/packageUnitRelation/managePackageUnitRelation.xhtml"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#ui#manage#specialization#addnewSpecialization.xhtml"
+  PATH="/ui/manage/specialization/addnewSpecialization.xhtml"
+  SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#Test#Test.xhtml"
+  PATH="/ui/manage/Test/Test.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#Country#manageCountry.xhtml"
+  PATH="/ui/manage/Country/manageCountry.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#Province#manageProvince.xhtml"
+  PATH="/ui/manage/Province/manageProvince.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#patient#managePatient.xhtml"
+  PATH="/ui/manage/patient/managePatient.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#dialog#provinceDialog.xhtml"
+  PATH="/dialog/provinceDialog.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#currencyrate#rateMonthlyCurrency.xhtml"
+  PATH="/ui/currencyrate/rateMonthlyCurrency.xhtml" SHAPE="304,2001,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#openingbalance.xhtml"
+  PATH="/ui/manage/openingbalance.xhtml" SHAPE="304,2001,0,0" model-entity="JSFProcessGroup"/>
+</PROCESS>

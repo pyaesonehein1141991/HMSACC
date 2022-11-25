@@ -14,7 +14,6 @@ import org.tech.hms.currency.service.interfaces.ICurrencyService;
 import org.tech.java.component.SystemException;
 import org.tech.java.web.common.BaseBean;
 
-import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 

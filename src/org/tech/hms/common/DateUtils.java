@@ -7,17 +7,18 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-
 import org.joda.time.DateTime;
 import org.joda.time.DateTimeZone;
 import org.joda.time.Days;
-
 import org.joda.time.Months;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.tech.hms.currencyChartOfAccount.persistence.interfaces.ICcoaDAO;
 
 @Component
 public class DateUtils {
+	@Autowired
+	private static ICcoaDAO ccoaDAO;
 	private static SimpleDateFormat formatter = new SimpleDateFormat("dd-MM-yyyy");
 	private static SimpleDateFormat timeFormatter = new SimpleDateFormat("h:mm:ss a");
 
@@ -200,6 +201,34 @@ public class DateUtils {
 		}
 		return monthList;
 	}
+	public static List<Integer> getActiveYears() {
+		List<String> budgetYearList = ccoaDAO.findAllBudgetYear();
+		List<Integer> yearList = new ArrayList<>();
+		int startYear = 3000;
+		int endYear = 0;
+		for (String budgetYear : budgetYearList) {
+			// TODO - two records in prev_ccoa has no budget
+			if (budgetYear != null) {
+				if (Integer.parseInt(budgetYear.split("/")[0]) < startYear) {
+					startYear = Integer.parseInt(budgetYear.split("/")[0]);
+				}
+				if (Integer.parseInt(budgetYear.split("/")[0]) > endYear) {
+					endYear = Integer.parseInt(budgetYear.split("/")[0]);
+				}
+			}
+		}
+		for (int i = startYear; i <= endYear; i++) {
+			yearList.add(i);
+		}
+		// if the current budget year is 2015/2016 , then endyear is 2015
+		// following handle the 2016 if the year is already 2016 but budget
+		// year is still 2015/2016
+		Calendar cal = Calendar.getInstance();
+		cal.setTime(new Date());
+		if (endYear < cal.get(Calendar.YEAR))
+			yearList.add(endYear + 1);
 
+		return yearList;
+	}
 
 }

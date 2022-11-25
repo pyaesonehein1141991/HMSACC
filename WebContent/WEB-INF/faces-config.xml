@@ -70,6 +70,11 @@
 			<redirect />
 		</navigation-case>
 		<navigation-case>
+			<from-outcome>managemonthlyrate</from-outcome>
+			<to-view-id>/ui/currencyrate/rateMonthlyCurrency.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
 			<from-outcome>managecodesetup</from-outcome>
 			<to-view-id>/ui/codesetup/managecodestepup.xhtml</to-view-id>
 			<redirect />
@@ -89,6 +94,22 @@
 			<to-view-id>/ui/manage/chartofaccount/manageChartOfAccount.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
+		
+		<!-- Opening Balance Entry -->
+
+		<navigation-case>
+			<from-outcome>openingBalanceEntry</from-outcome>
+			<to-view-id>/ui/manage/openingbalance/openingbalance.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<!-- Branch -->
+		<navigation-case>
+			<from-outcome>openingBalanceEntry</from-outcome>
+			<to-view-id>/ui/manage/branch/manageBranch.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
 		
 		<navigation-case>
 			<from-outcome>manageLabTestCategory</from-outcome>

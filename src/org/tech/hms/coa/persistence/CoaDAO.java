@@ -40,7 +40,7 @@ public class CoaDAO extends BasicDAO implements ICoaDAO {
 	public List<ChartOfAccount> findAll() throws DAOException {
 		List<ChartOfAccount> result = null;
 		try {
-			Query q = em.createNamedQuery("ChartOfAccount.findAll");
+			TypedQuery<ChartOfAccount> q = em.createNamedQuery("ChartOfAccount.findAll",ChartOfAccount.class);
 			result = q.getResultList();
 			em.flush();
 		} catch (PersistenceException pe) {
