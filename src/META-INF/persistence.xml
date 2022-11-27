@@ -50,6 +50,10 @@
 		<class>org.tech.hms.setup.Setup</class>
 		<class>org.tech.hms.branch.Branch</class>
 		<class>org.tech.hms.department.Department</class>
+		<class>org.tech.hms.tlf.TLF</class>
+		<class>org.tech.hms.common.TranType</class>
+		<class>org.tech.hms.coasetup.COASetup</class>
+		<class>org.tech.java.component.idgen.IDGen</class>
 		
 		<shared-cache-mode>NONE</shared-cache-mode>
 		<properties>
@@ -60,7 +64,7 @@
 			<property name="javax.persistence.jdbc.user" value="sa" />
 
 			<property name="javax.persistence.jdbc.password"
-				value="sasa" />
+				value="123@ace" />
 
 			<!--Performance Tuning -->
 			<property name="eclipselink.orm.throw.exceptions"

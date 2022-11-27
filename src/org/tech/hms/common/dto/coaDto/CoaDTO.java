@@ -28,8 +28,14 @@ public class CoaDTO {
 
 	private String ibsbACode;
 	
-	
-	private ChartOfAccount parent;
+
+	public CoaDTO(String id,String acName,String acCode,AccountType acType,String ibsbACode) {
+		this.id=id;
+		this.acName=acName;
+		this.acCode=acCode;
+		this.acType=acType;
+		this.ibsbACode=ibsbACode;
+	}
 	
 	
 	

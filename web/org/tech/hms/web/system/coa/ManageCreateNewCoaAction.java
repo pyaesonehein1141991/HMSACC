@@ -136,7 +136,7 @@ public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 		}
 	}
 
-	public void addNewCoa() {
+	public String addNewCoa() {
 		ValidationResult result = accountCodeValidator.validate(coa, false);
 		if (result.isVerified()) {
 			try {
@@ -152,6 +152,7 @@ public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 				addErrorMessage(message.getId(), message.getErrorcode(), message.getParams());
 			}
 		}
+		return "manageChartOfAccount.xhtml?faces-redirect=true";
 	}
 
 	public void updateCoa() {

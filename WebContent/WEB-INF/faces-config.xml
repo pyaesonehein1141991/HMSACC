@@ -95,6 +95,18 @@
 			<redirect />
 		</navigation-case>
 		
+		<navigation-case>
+			<from-outcome>manageCredit</from-outcome>
+			<to-view-id>/ui/transaction/manageCreditvoucher.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>manageDebit</from-outcome>
+			<to-view-id>/ui/transaction/manageDebitvoucher.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
 		<!-- Opening Balance Entry -->
 
 		<navigation-case>
@@ -227,6 +239,12 @@
 		<navigation-case>
 			<from-outcome>coaDialog</from-outcome>
 			<to-view-id>/dialog/coaDialog.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>ccoaAcountDialog</from-outcome>
+			<to-view-id>/dialog/ccoaAcountDialog.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		

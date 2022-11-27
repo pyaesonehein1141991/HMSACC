@@ -100,5 +100,15 @@ public class CoaService extends DataRepService<ChartOfAccount> implements ICoaSe
 		}
 		return chartOfAccount;
 	}
-
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public List<ChartOfAccount> findAllCoaByAccountCodeType() {
+		List<ChartOfAccount> result = null;
+		try {
+			result = coaDAO.findAllCOAByAccountCodeType();
+		} catch (DAOException e) {
+			throw new SystemException(e.getErrorCode(), "Failed to find all of ChartOfAccount)", e);
+		}
+		return result;
+	}
 }

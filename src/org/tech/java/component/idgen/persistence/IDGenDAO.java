@@ -25,14 +25,14 @@ public class IDGenDAO extends BasicDAO implements IDGenDAOInf {
 	private IUserProcessService userProcessService;
 
 	@Transactional(propagation = Propagation.REQUIRED)
-	public IDGen getNextId(String generateItem, String branchId, int month, int year) throws DAOException {
+	public IDGen getNextId(String generateItem, int month, int year) throws DAOException {
 		IDGen idGen = null;
 		try {
-			Query selectQuery = em.createQuery("SELECT g FROM IDGen g WHERE g.generateItem = :generateItem AND g.branch.id = :branchId AND g.month = :month AND g.year = :year");
+			Query selectQuery = em.createQuery("SELECT g FROM IDGen g WHERE g.generateItem = :generateItem AND g.month = :month AND g.year = :year");
 			selectQuery.setLockMode(LockModeType.PESSIMISTIC_WRITE);
 			selectQuery.setHint("javax.persistence.lock.timeout", 30000);
 			selectQuery.setParameter("generateItem", generateItem);
-			selectQuery.setParameter("branchId", branchId);
+			//selectQuery.setParameter("branchId", branchId);
 			selectQuery.setParameter("month", month);
 			selectQuery.setParameter("year", year);
 			idGen = (IDGen) selectQuery.getSingleResult();
@@ -66,13 +66,13 @@ public class IDGenDAO extends BasicDAO implements IDGenDAOInf {
 
 
 	@Transactional(propagation = Propagation.REQUIRED)
-	public IDGen findCustomIDGenByBranchCodeMonthandYear(String generateItem, int month, int year, String branchId) throws DAOException {
+	public IDGen findCustomIDGenByBranchCodeMonthandYear(String generateItem, int month, int year) throws DAOException {
 		IDGen idGen = null;
 		try {
-			Query selectQuery = em.createQuery("SELECT g FROM IDGen g WHERE g.generateItem = :generateItem AND g.branch.id = :branchId AND g.month = :month AND g.year = :year");
+			Query selectQuery = em.createQuery("SELECT g FROM IDGen g WHERE g.generateItem = :generateItem AND  g.month = :month AND g.year = :year");
 
 			selectQuery.setParameter("generateItem", generateItem);
-			selectQuery.setParameter("branchId", branchId);
+			//selectQuery.setParameter("branchId", branchId);
 			selectQuery.setParameter("month", month);
 			selectQuery.setParameter("year", year);
 			idGen = (IDGen) selectQuery.getSingleResult();
