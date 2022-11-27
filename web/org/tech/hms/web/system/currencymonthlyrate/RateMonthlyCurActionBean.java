@@ -84,12 +84,13 @@ public class RateMonthlyCurActionBean extends BaseBean {
 	private void rebindData() {
 		currencyList = currencyService.findForeignCurrencyDto();
 		currencyListValue = currencyService.findAllCurrency();
-		/// coaList = coaService.findAllCoaByAccountCodeType();
+		 coaList = coaService.findAllCoaByAccountCodeType();
 		// branchList = branchService.findAllBranch();
-		TreeNode node = new DefaultTreeNode("ChartOfAccount", root);
-		coaList.forEach(coa -> {
-			node.getChildren().add(new DefaultTreeNode(coa, root));
-		});
+		
+		  TreeNode node = new DefaultTreeNode("ChartOfAccount", root);
+		  coaList.forEach(coa -> { node.getChildren().add(new DefaultTreeNode(coa,
+		  root)); });
+		 
 	}
 
 	public void deleteCurrency(MonthlyRateDto currency) {

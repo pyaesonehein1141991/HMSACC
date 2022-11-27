@@ -25,7 +25,7 @@ public class CoaDAO extends BasicDAO implements ICoaDAO {
 	public List<CoaDTO> findALLDTO() throws DAOException {
 		try {
 			TypedQuery<CoaDTO> q = em.createQuery("SELECT NEW " + CoaDTO.class.getName()
-					+ "(c.id, c.acName, c.acCode, c.acType,c.ibsbACode,c.parent) FROM ChartOfAccount c ORDER BY c.acType ASC",
+					+ "(c.id, c.acName, c.acCode, c.acType,c.ibsbACode) FROM ChartOfAccount c ORDER BY c.acType ASC",
 					CoaDTO.class);
 			return q.getResultList();
 		} catch (NoResultException ne) {
@@ -81,4 +81,20 @@ public class CoaDAO extends BasicDAO implements ICoaDAO {
 		}
 		return result;
 	}
+	
+	@Override
+	@SuppressWarnings("unchecked")
+	@Transactional(propagation = Propagation.REQUIRED)
+	public List<ChartOfAccount> findAllCOAByAccountCodeType() throws DAOException {
+		List<ChartOfAccount> result = null;
+		try {
+			Query q = em.createNamedQuery("ChartOfAccount.findAllCOAByAccountCodeType");
+			result = q.getResultList();
+			em.flush();
+		} catch (PersistenceException pe) {
+			throw translate("Failed to find all of ChartOfAccount", pe);
+		}
+		return result;
+	}
+
 }

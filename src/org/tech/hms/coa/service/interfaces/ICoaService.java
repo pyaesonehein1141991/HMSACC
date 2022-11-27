@@ -21,5 +21,7 @@ public interface ICoaService {
 	
 	public ChartOfAccount findCoaByAcCode(String acCode);
 	
+	public List<ChartOfAccount> findAllCoaByAccountCodeType();
+	
 
 }

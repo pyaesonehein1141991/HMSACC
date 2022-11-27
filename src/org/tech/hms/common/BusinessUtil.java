@@ -201,6 +201,19 @@ public class BusinessUtil {
 		// appSetting.setProperty(BUDGETEDATE,
 		// DateUtils.formatDateToString(budgetEndDate));
 	}
-
+	public static Date getBackDate() {
+		Date date = DateUtils.formatStringToDate(setupDAO.findSetupValueByVariable(BACKDATE));
+		return date;
+	}
 	
+	public static Date getBudgetStartDate() {
+		// return
+		// DateUtils.formatStringToDate(setupDAO.findSetupValueByVariable(BUDGETSDATE));
+		return DateUtils.formatStringToDate(setupDAO.findSetupValueByVariable(BUDGETSDATE));
+	}
+	public static Date getBudgetEndDate() {
+		// return
+		// DateUtils.formatStringToDate(setupDAO.findSetupValueByVariable(BUDGETEDATE));
+		return DateUtils.formatStringToDate(setupDAO.findSetupValueByVariable(BUDGETEDATE));
+	}
 }

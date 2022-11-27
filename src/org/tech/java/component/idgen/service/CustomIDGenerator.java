@@ -114,10 +114,10 @@ public class CustomIDGenerator implements ICustomIDGenerator {
 
 	//
 	@Transactional(propagation = Propagation.REQUIRED)
-	public IDGen findCustomIDGenByBranchCodeMonthandYear(String key, int month, int year, String branchId) throws SystemException {
+	public IDGen findCustomIDGenByBranchCodeMonthandYear(String key, int month, int year) throws SystemException {
 		IDGen result = null;
 		try {
-			result = idGenDAO.findCustomIDGenByBranchCodeMonthandYear(key, month, year, branchId);
+			result = idGenDAO.findCustomIDGenByBranchCodeMonthandYear(key, month, year);
 		} catch (DAOException e) {
 			throw new SystemException(e.getErrorCode(), "Fail to find", e);
 		}
@@ -145,12 +145,12 @@ public class CustomIDGenerator implements ICustomIDGenerator {
 	}
 
 	@Override
-	public String getNextId(String key, String branchid, int month, int year, Date settlementDate) throws CustomIDGeneratorException {
+	public String getNextId(String key, int month, int year, Date settlementDate) throws CustomIDGeneratorException {
 		String id = null;
 		try {
 			// String genName = (String) properties.getProperty(key);
 			System.out.println(key);
-			id = formatId(idGenDAO.getNextId(key, branchid, month, year), settlementDate);
+			id = formatId(idGenDAO.getNextId(key, month, year), settlementDate);
 		} catch (DAOException e) {
 			throw new CustomIDGeneratorException(e.getErrorCode(), "Failed to generate a ID", e);
 		}

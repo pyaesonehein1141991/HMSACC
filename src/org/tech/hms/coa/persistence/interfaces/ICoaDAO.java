@@ -15,5 +15,7 @@ public interface ICoaDAO {
 	public ChartOfAccount findByIbsbACode(String ibsbACode) throws DAOException;
 	
 	public ChartOfAccount findByAcCode(String acCode) throws DAOException;
+	
+	public List<ChartOfAccount> findAllCOAByAccountCodeType() throws DAOException;
 
 }
