@@ -12,7 +12,7 @@ public interface IBranchService {
 
 	void deleteById(String id) throws SystemException;
 
-	List<Branch> findAll();
+	List<Branch> findAll(Class<Branch> branch);
 
 	void insert(Object branch);
 

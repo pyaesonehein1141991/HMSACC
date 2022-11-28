@@ -49,7 +49,7 @@ public class AddNewBranchActionBean extends BaseBean implements Serializable {
 	}
 
 	public void rebindData() {
-		branchList = branchService.findAll();
+		branchList = branchService.findAll(Branch.class);
 	}
 
 	public void prepareUpdateBranch(Branch branch) {

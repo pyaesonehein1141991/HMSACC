@@ -65,9 +65,9 @@ public class DataRepService<T> extends BaseService implements IDataRepService<T>
 	}
 
 	@Override
-	public List<T> findAll() {
+	public List<T> findAll(Class<T> param) {
 		try {
-			return dataRepository.findAll();
+			return dataRepository.findAll(param);
 		} catch (NoResultException ne) {
 			return new ArrayList<>();
 		} catch (DAOException e) {
