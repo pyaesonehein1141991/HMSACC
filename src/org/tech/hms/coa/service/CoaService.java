@@ -26,7 +26,7 @@ import org.tech.java.component.persistence.exception.DAOException;
 import org.tech.java.component.service.DataRepService;
 import org.tech.java.component.service.interfaces.IDataRepService;
 
-@Service
+@Service(value = "CoaService")
 public class CoaService extends DataRepService<ChartOfAccount> implements ICoaService {
 
 	@Autowired

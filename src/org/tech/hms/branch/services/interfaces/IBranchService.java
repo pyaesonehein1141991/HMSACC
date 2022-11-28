@@ -24,4 +24,6 @@ public interface IBranchService {
 
 	void addNewBranch(Branch branch) throws SystemException;
 
+	List<Branch> findAllBranch() throws SystemException;
+
 }

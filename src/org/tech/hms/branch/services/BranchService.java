@@ -92,4 +92,16 @@ public class BranchService extends DataRepService<Branch> implements IBranchServ
 		}
 	}
 
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<Branch> findAllBranch() throws SystemException {
+		List<Branch> result = null;
+		try {
+			result = branchDAO.findAll();
+		} catch (DAOException e) {
+			throw new SystemException(e.getErrorCode(), "Failed to find all of Branch)", e);
+		}
+		return result;
+	}
+
 }
