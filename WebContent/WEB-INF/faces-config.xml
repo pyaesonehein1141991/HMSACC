@@ -59,6 +59,7 @@
 			<to-view-id>/ui/system/addNewUser.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
+			<!-- Manage Currency -->
 		<navigation-case>
 			<from-outcome>manageCurrency</from-outcome>
 			<to-view-id>/ui/manage/currency/managecurrency.xhtml</to-view-id>
@@ -94,19 +95,37 @@
 			<to-view-id>/ui/manage/chartofaccount/manageChartOfAccount.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
-		
+				<!-- Manage Branch Coa -->
+		<navigation-case>
+			<from-outcome>manageBranchCoa</from-outcome>
+			<to-view-id>/ui/manage/branchCoa/manageBranchCoaCode</to-view-id>
+			<redirect />
+		</navigation-case>
+				<!-- Edit Branch Coa -->
+		<navigation-case>
+			<from-outcome>editBranchCoa</from-outcome>
+			<to-view-id>/ui/manage/branchCoa/editBranchCoaCode</to-view-id>
+			<redirect />
+		</navigation-case>
+
+		<navigation-case>
+			<from-outcome>gainloseconfig</from-outcome>
+			<to-view-id>/ui/manage/gainlose/exchangeConfig.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+
 		<navigation-case>
 			<from-outcome>manageCredit</from-outcome>
 			<to-view-id>/ui/transaction/manageCreditvoucher.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
-		
+
 		<navigation-case>
 			<from-outcome>manageDebit</from-outcome>
 			<to-view-id>/ui/transaction/manageDebitvoucher.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
-		
+
 		<!-- Opening Balance Entry -->
 
 		<navigation-case>
@@ -114,284 +133,40 @@
 			<to-view-id>/ui/manage/openingbalance/openingbalance.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
-		
+
 		<!-- Branch -->
 		<navigation-case>
-			<from-outcome>openingBalanceEntry</from-outcome>
+			<from-outcome>manageBranch</from-outcome>
 			<to-view-id>/ui/manage/branch/manageBranch.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
-		
-		
+
 		<navigation-case>
-			<from-outcome>manageLabTestCategory</from-outcome>
-			<to-view-id>/ui/manage/labTestCategory/manageLabTestCategory.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>manageUnit</from-outcome>
-			<to-view-id>/ui/manage/unit/manageUnit.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		
-		<navigation-case>
-			<from-outcome>addNewUnit</from-outcome>
-			<to-view-id>/ui/manage/unit/addNewUnit.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>manageRelation</from-outcome>
-			<to-view-id>/ui/manage/relation/manageRelation.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		
-		<navigation-case>
-			<from-outcome>addNewRelation</from-outcome>
-			<to-view-id>/ui/manage/relation/addNewRelation.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>manageGeneric</from-outcome>
-			<to-view-id>/ui/manage/generic/manageGeneric.xhtml</to-view-id>
+			<from-outcome>createBranch</from-outcome>
+			<to-view-id>/ui/manage/branch/createNewBranch.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 
-		<navigation-case>
-			<from-outcome>addNewGeneric</from-outcome>
-			<to-view-id>/ui/manage/generic/addnewGeneric.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
 
-		<navigation-case>
-			<from-outcome>manageSpecialist</from-outcome>
-			<to-view-id>/ui/manage/specialist/manageSpecialist.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>addNewSpecialist</from-outcome>
-			<to-view-id>/ui/manage/specialist/addnewSpecialist.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		
-		<navigation-case>
-			<from-outcome>manageSpecialization</from-outcome>
-			<to-view-id>/ui/manage/specialization/manageSpecialization.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>addNewSpecialization</from-outcome>
-			<to-view-id>/ui/manage/specialization/addnewSpecialization.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		
-		<navigation-case>
-			<from-outcome>managePosition</from-outcome>
-			<to-view-id>/ui/manage/position/managePosition.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>addNewPosition</from-outcome>
-			<to-view-id>/ui/manage/position/addnewPosition.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		
-		<navigation-case>
-			<from-outcome>managepackageUnitRelation</from-outcome>
-			<to-view-id>/ui/manage/packageUnitRelation/managePackageUnitRelation.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>manageUnit</from-outcome>
-			<to-view-id>/ui/manage/unit/manageunit.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>manageBrand</from-outcome>
-			<to-view-id>/ui/manage/Brand/manageBrand.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>addNewBrand</from-outcome>
-			<to-view-id>/ui/manage/Brand/addNewBrand.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>manageFacility</from-outcome>
-			<to-view-id>/ui/manage/Facility/manageFacility.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>manageRoomClass</from-outcome>
-			<to-view-id>/ui/manage/RoomClass/manageRoomClass.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>managePackagingUnit</from-outcome>
-			<to-view-id>/ui/manage/PackagingUnit/managePackagingUnit.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>addNewPackagingUnit</from-outcome>
-			<to-view-id>/ui/manage/PackagingUnit/addNewPackagingUnit.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		
 		<navigation-case>
 			<from-outcome>coaDialog</from-outcome>
 			<to-view-id>/dialog/coaDialog.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
-		
+
 		<navigation-case>
 			<from-outcome>ccoaAcountDialog</from-outcome>
 			<to-view-id>/dialog/ccoaAcountDialog.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
-		
-		<navigation-case>
-			<from-outcome>packagingunitDialog</from-outcome>
-			<to-view-id>/dialog/packagingunitDialog.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		
-		<navigation-case>
-			<from-outcome>manageCountry</from-outcome>
-			<to-view-id>/ui/manage/Country/manageCountry.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		
-		<navigation-case>
-			<from-outcome>addNewCountry</from-outcome>
-			<to-view-id>/ui/manage/Country/addNewCountry.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>countryDialog</from-outcome>
-			<to-view-id>/dialog/countryDialog.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		
-		<navigation-case>
-			<from-outcome>manageProvince</from-outcome>
-			<to-view-id>/ui/manage/Province/manageProvince.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		
-		<navigation-case>
-			<from-outcome>addNewProvince</from-outcome>
-			<to-view-id>/ui/manage/Province/addNewProvince.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		
-		<navigation-case>
-			<from-outcome>provinceDialog</from-outcome>
-			<to-view-id>/dialog/provinceDialog.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		
-		<navigation-case>
-			<from-outcome>manageDistrict</from-outcome>
-			<to-view-id>/ui/manage/District/manageDistrict.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		
-		<navigation-case>
-			<from-outcome>addNewDistrict</from-outcome>
-			<to-view-id>/ui/manage/District/addNewDistrict.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		
-		<navigation-case>
-			<from-outcome>districtDialog</from-outcome>
-			<to-view-id>/dialog/districtDialog.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		
-		<navigation-case>
-			<from-outcome>manageTownship</from-outcome>
-			<to-view-id>/ui/manage/Township/manageTownship.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		
-		<navigation-case>
-			<from-outcome>addNewTownship</from-outcome>
-			<to-view-id>/ui/manage/Township/addNewTownship.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		
-		<navigation-case>
-			<from-outcome>townshipDialog</from-outcome>
-			<to-view-id>/dialog/townshipDialog.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>Test</from-outcome>
-			<to-view-id>/ui/manage/Test/Test.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>manageRelation</from-outcome>
-			<to-view-id>/ui/manage/relation/managerelation.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
+
+
 		<navigation-case>
 			<from-outcome>roleDialog</from-outcome>
 			<to-view-id>/dialog/roleDialog.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
-		<navigation-case>
-			<from-outcome>unitDialog</from-outcome>
-			<to-view-id>/dialog/unitDialog.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>labTestCategoryDialog</from-outcome>
-			<to-view-id>/dialog/labTestCategoryDialog.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		
-		<navigation-case>
-			<from-outcome>manageNrcPrefix</from-outcome>
-			<to-view-id>/ui/manage/nrcPrefix/manageNrcPrefix.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
 
-		<navigation-case>
-			<from-outcome>addNewNrcPrefix</from-outcome>
-			<to-view-id>/ui/manage/nrcPrefix/addNewNrcPrefix.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>manageSupplier</from-outcome>
-			<to-view-id>/ui/manage/supplier/manageSupplier.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		
-		<navigation-case>
-			<from-outcome>addNewSupplier</from-outcome>
-			<to-view-id>/ui/manage/supplier/addNewSupplier.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>managelabtest</from-outcome>
-			<to-view-id>/ui/manage/labTest/managelabtest.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>managePatient</from-outcome>
-			<to-view-id>/ui/manage/patient/managePatient.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>patientInquiry</from-outcome>
-			<to-view-id>/ui/manage/patient/patientInquiry.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-		<navigation-case>
-			<from-outcome>manageEmployee</from-outcome>
-			<to-view-id>/ui/manage/employee/manageEmployee.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
 		<from-view-id>/ui/manage/menu/manageMenu.xhtml</from-view-id>
@@ -401,12 +176,5 @@
 			<redirect />
 		</navigation-case>
 	</navigation-rule>
-	<navigation-rule>
-		<from-view-id>/ui/manage/labTestCategory/manageLabTestCategory.xhtml</from-view-id>
-		<navigation-case>
-			<from-outcome>addNewLabTestCategory</from-outcome>
-			<to-view-id>/ui/manage/labTestCategory/addNewLabTestCategory.xhtml</to-view-id>
-			<redirect />
-		</navigation-case>
-	</navigation-rule>
+
 </faces-config>

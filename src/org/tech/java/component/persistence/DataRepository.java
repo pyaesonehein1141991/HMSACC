@@ -15,13 +15,13 @@ import org.tech.java.component.persistence.interfaces.IDataRepository;
 
 @Repository("DataRepository")
 public class DataRepository<T> extends BasicDAO implements IDataRepository<T> {
-	
+
 	private Class<T> clazz;
 
 	/**
 	 * Basic Insert Operation using EM
 	 * 
-	 * @param object  -> object to insert
+	 * @param object -> object to insert
 	 */
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
@@ -37,8 +37,7 @@ public class DataRepository<T> extends BasicDAO implements IDataRepository<T> {
 	/**
 	 * Basic Update Operation using EM
 	 * 
-	 * @param param
-	 *            -> Object to update
+	 * @param param -> Object to update
 	 * @return updated object
 	 */
 	@Override
@@ -56,8 +55,7 @@ public class DataRepository<T> extends BasicDAO implements IDataRepository<T> {
 	/**
 	 * Basic Delete Operation using EM
 	 * 
-	 * @param object
-	 *            -> Object to delete
+	 * @param object -> Object to delete
 	 */
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
@@ -74,10 +72,8 @@ public class DataRepository<T> extends BasicDAO implements IDataRepository<T> {
 	/**
 	 * Basic Find Operation using EM
 	 * 
-	 * @param paramClass
-	 *            -> class name
-	 * @param paramObject
-	 *            -> primary key value of enity object
+	 * @param paramClass  -> class name
+	 * @param paramObject -> primary key value of enity object
 	 * @return result value
 	 */
 	@Override
@@ -94,20 +90,20 @@ public class DataRepository<T> extends BasicDAO implements IDataRepository<T> {
 		}
 		return result;
 	}
-	
+
 	@Override
-	public List<T> findAll()throws DAOException{
+	public List<T> findAll(Class<T> paramClass) throws DAOException {
 		StringBuffer namedQuery = new StringBuffer();
-		namedQuery.append(clazz.getSimpleName());
+		namedQuery.append(paramClass.getSimpleName());
 		namedQuery.append(".findAll");
 		try {
-			TypedQuery<T> query = em.createNamedQuery(namedQuery.toString(), clazz);
+			TypedQuery<T> query = em.createNamedQuery(namedQuery.toString(), paramClass);
 			return query.getResultList();
-			
+
 		} catch (NoResultException ne) {
 			return new ArrayList<>();
 		} catch (PersistenceException pe) {
-			throw translate("Failed to find all "+clazz.getSimpleName(),pe);
+			throw translate("Failed to find all " + paramClass.getSimpleName(), pe);
 		}
 	}
 

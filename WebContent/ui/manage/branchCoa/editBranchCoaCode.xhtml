@@ -1,0 +1,52 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/common/commonLayout.xhtml">
+	<ui:param name="header" value="Currency Chart Of Account Management" />
+	<ui:param name="headerRendered" value="true" />
+	<ui:define name="content">
+		<h:form id="ccoaEntryForm">
+			<p:growl escape="false" globalOnly="true" id="messages" showDetail="true" />
+			<h:outputText value="#{label['MANAGE_CCOA_EDIT_LABEL']}" styleClass="title" />
+			<p:panel>
+				<p:panelGrid id="panelBranchCur" columns="2" columnClasses="ui-grid-col-6,ui-grid-col-6" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+					<p:panelGrid columns="2" columnClasses="ui-grid-col-3,ui-grid-col-6" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+						<h:outputText value="" />
+						<p:message display="text" for="acCode" />
+						<h:outputText for="acCode" value="#{label['MANAGE_ACCOUNT_CODE_LABEL']}" styleClass="input-label mandatory" escape="false" />
+						<p:inputText value="#{EditBCoaActionBean.ccoa.coa.acCode}" id="acCode" disabled="true"
+							readonly="#{EditBCoaActionBean.ccoa.coa == null ? facesContext.currentPhaseId.ordinal eq 6 : true}">
+							<f:validateLength maximum="20" />
+						</p:inputText>
+						<h:outputText value="" />
+						<p:message display="text" for="branch" />
+						<h:outputText for="branch" styleClass="input-label" value="#{label['MANAGE_CCOA_BRANCH_LABEL']}" />
+						<p:inputText value="#{EditBCoaActionBean.ccoa.branch.code}" disabled="true" readonly="true" id="branch" />
+						<h:outputText value="" />
+						<p:message display="text" for="dCode" />
+						<h:outputText for="dCode" value="#{label['MANAGE_DCODE_LABEL']}" styleClass="input-label" />
+						<p:selectOneMenu converter="omnifaces.SelectItemsIndexConverter" id="dCode" value="#{EditBCoaActionBean.ccoa.department}">
+							<f:selectItem itemLabel="---" />
+							<f:selectItems itemLabel="#{department.dCode}" itemValue="#{department}" value="#{EditBCoaActionBean.deptList}" var="department" />
+							<p:ajax process="@this" update="@this" />
+						</p:selectOneMenu>
+					</p:panelGrid>
+					<p:panelGrid columns="2" columnClasses="ui-grid-col-3,ui-grid-col-6" layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
+						<h:outputText value="" />
+						<p:message display="text" for="acName" />
+						<h:outputText for="acName" value="#{label['MANAGE_DESC_LABEL']}" styleClass="input-label" />
+						<p:inputTextarea value="#{EditBCoaActionBean.ccoa.acName}" rows="6" id="acName">
+							<f:validateLength maximum="150" />
+						</p:inputTextarea>
+					</p:panelGrid>
+				</p:panelGrid>
+			</p:panel>
+			<br />
+			<p:commandButton id="editBtn" value="#{label['COMMON_UPDATE_BTN']}" action="#{EditBCoaActionBean.updateCcoa}" style="width:70px;"
+				oncomplete="PF('ccoaTable').filter();" />
+			<p:spacer></p:spacer>
+			<p:commandButton id="cancelBtn" value="#{label['COMMON_CANCEL_BTN']}" action="manageBranchCoa" process="@this" immediate="true"
+				style="width:70px;" />
+			<br />
+			<p:separator style="height:3px;" />
+		</h:form>
+	</ui:define>
+</ui:composition>

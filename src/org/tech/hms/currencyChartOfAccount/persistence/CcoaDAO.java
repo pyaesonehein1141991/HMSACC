@@ -18,6 +18,7 @@ import org.tech.hms.branch.Branch;
 import org.tech.hms.coa.ChartOfAccount;
 import org.tech.hms.codesetup.AccountCodeType;
 import org.tech.hms.common.CCOADialogDTO;
+import org.tech.hms.common.dto.coaDto.CcoaDto;
 import org.tech.hms.common.dto.coaDto.YearlyBudgetDto;
 import org.tech.hms.common.dto.obal.ObalCriteriaDto;
 import org.tech.hms.common.dto.obal.ObalDto;
@@ -25,6 +26,7 @@ import org.tech.hms.currency.Currency;
 import org.tech.hms.currencyChartOfAccount.CurrencyChartOfAccount;
 import org.tech.hms.currencyChartOfAccount.persistence.interfaces.ICcoaDAO;
 import org.tech.hms.process.interfaces.IUserProcessService;
+import org.tech.hms.user.User;
 import org.tech.java.component.SystemException;
 import org.tech.java.component.persistence.BasicDAO;
 import org.tech.java.component.persistence.exception.DAOException;
@@ -181,36 +183,6 @@ public class CcoaDAO extends BasicDAO implements ICcoaDAO {
 		}
 	}
 
-	@SuppressWarnings("unchecked")
-	@Transactional(propagation = Propagation.REQUIRED)
-	public List<CurrencyChartOfAccount> findBudgetFigure(String branchId) throws DAOException {
-		List<CurrencyChartOfAccount> result = null;
-		try {
-			StringBuffer queryString = new StringBuffer();
-			queryString.append(
-					"SELECT c FROM CurrencyChartOfAccount c WHERE c.coa.acCodeType != org.ace.accounting.system.chartaccount.AccountCodeType.HEAD AND c.coa.acCodeType != org.ace.accounting.system.chartaccount.AccountCodeType.GROUP ");
-
-			if (branchId != null) {
-				queryString.append(" AND c.branch.id=:branchId  ");
-			}
-
-			queryString.append(" ORDER BY c.coa.acType ");
-
-			Query q = em.createQuery(queryString.toString());
-
-			if (branchId != null) {
-				q.setParameter("branchId", branchId);
-			}
-			result = q.getResultList();
-			em.flush();
-		} catch (NoResultException pe) {
-			return null;
-		} catch (PersistenceException pe) {
-			throw translate("Failed to find Budget Figure with branchId : " + branchId, pe);
-		}
-		return result;
-	}
-
 	@Transactional(propagation = Propagation.REQUIRED)
 	public BigDecimal finddblBalance(StringBuffer sf, ChartOfAccount coa, String budgetYear, Currency currency,
 			Branch branch) throws DAOException {
@@ -352,9 +324,9 @@ public class CcoaDAO extends BasicDAO implements ICcoaDAO {
 		try {
 			StringBuffer queryString = new StringBuffer();
 			queryString.append(
-					"SELECT NEW org.ace.accounting.dto.ObalDto(c.coa.acCode,c.acName,c.oBal,c.hOBal,c.coa.acType,c.branch,c.department,c.currency,c.id,c.coa.headId,c.coa.groupId) "
-							+ "FROM CurrencyChartOfAccount c WHERE c.coa.acType IN (org.ace.accounting.system.chartaccount.AccountType.A,org.ace.accounting.system.chartaccount.AccountType.L) "
-							+ "AND c.coa.acCodeType = org.ace.accounting.system.chartaccount.AccountCodeType.DETAIL ");
+					"SELECT NEW org.tech.hms.common.dto.obal.ObalDto(c.coa.acCode,c.acName,c.oBal,c.hOBal,c.coa.acType,c.branch,c.department,c.currency,c.id,c.coa.headId,c.coa.groupId) "
+							+ "FROM CurrencyChartOfAccount c WHERE c.coa.acType IN (org.tech.hms.common.AccountType.A,org.tech.hms.common.AccountType.L) "
+							+ "AND c.coa.acCodeType = org.tech.hms.codesetup.AccountCodeType.DETAIL ");
 
 			if (dto.getBranchId() != null) {
 				queryString.append(" AND c.branch.id=:branchId  ");
@@ -427,7 +399,7 @@ public class CcoaDAO extends BasicDAO implements ICcoaDAO {
 			throw translate("Failed to update opening balance of ccoa by dto", pe);
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Transactional(propagation = Propagation.REQUIRED)
 	public List<CCOADialogDTO> findAllCCOADialogDTO(Currency currency, Branch branch) throws DAOException {
@@ -464,6 +436,63 @@ public class CcoaDAO extends BasicDAO implements ICcoaDAO {
 		}
 
 		return resultList;
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<CcoaDto> findAllCcoaDtos() throws DAOException {
+		List<CcoaDto> result = null;
+		try {
+			StringBuffer buffer = new StringBuffer();
+			buffer.append("SELECT NEW " + CcoaDto.class.getName()
+					+ "(c.id, c.coa.acCode, c.acName, c.coa.acType, d.dCode, c.currency.code, c.branch.code) ");
+			buffer.append("FROM CurrencyChartOfAccount c LEFT OUTER JOIN  c.department d ");
+			User user = userProcessService.getLoginUser();
+			if (!user.isAdmin())
+				buffer.append(" WHERE c.branch.id = :branchId");
+
+			buffer.append(" ORDER BY c.coa.acCode ASC ");
+			TypedQuery<CcoaDto> query = em.createQuery(buffer.toString(), CcoaDto.class);
+			if (!user.isAdmin())
+				query.setParameter("branchId", user.getBranch().getId());
+
+			result = query.getResultList();
+			em.flush();
+		} catch (PersistenceException pe) {
+			throw translate("Failed to find all of CcoaDtos", pe);
+		}
+		return result;
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public List<CurrencyChartOfAccount> findBudgetFigure(String branchId) throws DAOException {
+		List<CurrencyChartOfAccount> result = null;
+		try {
+			StringBuffer queryString = new StringBuffer();
+			queryString.append(
+					"SELECT c FROM CurrencyChartOfAccount c WHERE c.coa.acCodeType != org.ace.accounting.system.chartaccount.AccountCodeType.HEAD AND c.coa.acCodeType != org.ace.accounting.system.chartaccount.AccountCodeType.GROUP ");
+
+			if (branchId != null) {
+				queryString.append(" AND c.branch.id=:branchId  ");
+			}
+
+			queryString.append(" ORDER BY c.coa.acType ");
+
+			Query q = em.createQuery(queryString.toString());
+
+			if (branchId != null) {
+				q.setParameter("branchId", branchId);
+			}
+			result = q.getResultList();
+			em.flush();
+		} catch (NoResultException pe) {
+			return null;
+		} catch (PersistenceException pe) {
+			throw translate("Failed to find Budget Figure with branchId : " + branchId, pe);
+		}
+		return result;
 	}
 
 }

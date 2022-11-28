@@ -22,18 +22,18 @@ import lombok.Setter;
 public class ManageCurrencyActionBean extends BaseBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Autowired
 	protected ICurrencyService currencyService;
 
 	@Getter
 	@Setter
 	private boolean createNew;
-	
+
 	@Getter
 	@Setter
 	private Currency currency;
-	
+
 	@Getter
 	@Setter
 	private boolean homeCurDisable;
@@ -52,15 +52,16 @@ public class ManageCurrencyActionBean extends BaseBean implements Serializable {
 		currency = new Currency();
 		currency.setIsHomeCur(false);
 	}
-public String createCurrency() {
-	return "manageNewcurrency.xhtml?faces-redirect=true";
-}
+
+	public String createCurrency() {
+		return "manageNewcurrency.xhtml?faces-redirect=true";
+	}
+
 	public void loadCurrency() {
 		currencyList = currencyService.findAllCurrency();
 		Currency currency = currencyService.findHomeCurrency();
 		homeCurDisable = currency == null ? false : true;
 	}
-
 
 	public String addNewCurrency() {
 		try {
@@ -89,21 +90,22 @@ public String createCurrency() {
 		}
 		return null;
 	}
-	
-	public void prepareUpdateCurrency(Currency currency) {
-		createNew = false;
-		this.currency = currency;
+
+	public String prepareEditCurrency(Currency currency) {
+		putParam("currency", currency);
+		return "manageNewcurrency.xhtml?faces-redirect=true";
 	}
+
 	public void updateCurrency() {
-			try {
-				currencyService.updateCurrency(currency);
-				addInfoMessage(null, MessageId.UPDATE_SUCCESS, currency.getCode());
-				createNewCurrency();
-				loadCurrency();
-			} catch (SystemException ex) {
-				handleSysException(ex);
-			}
+		try {
+			currencyService.updateCurrency(currency);
+			addInfoMessage(null, MessageId.UPDATE_SUCCESS, currency.getCode());
+			createNewCurrency();
 			loadCurrency();
+		} catch (SystemException ex) {
+			handleSysException(ex);
 		}
+		loadCurrency();
+	}
 
 }

@@ -1,8 +1,10 @@
 package org.tech.java.component.service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.persistence.NoResultException;
 
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
@@ -56,17 +58,20 @@ public class DataRepService<T> extends BaseService implements IDataRepService<T>
 		try {
 			result = dataRepository.findById(paramClass, paramObject);
 		} catch (DAOException e) {
-			throw new SystemException(e.getErrorCode(), "Failed to find a " + paramClass.getName() + "(ID : " + paramObject.toString() + ")", e);
+			throw new SystemException(e.getErrorCode(),
+					"Failed to find a " + paramClass.getName() + "(ID : " + paramObject.toString() + ")", e);
 		}
 		return result;
 	}
-	
+
 	@Override
-	public List<T> findAll(){
+	public List<T> findAll(Class<T> param) {
 		try {
-			return dataRepository.findAll();
+			return dataRepository.findAll(param);
+		} catch (NoResultException ne) {
+			return new ArrayList<>();
 		} catch (DAOException e) {
-			throw new SystemException(e.getErrorCode(), "Failed to find all " , e);
+			throw new SystemException(e.getErrorCode(), "Failed to find all ", e);
 		}
 	}
 
