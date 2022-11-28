@@ -23,27 +23,29 @@ import lombok.Data;
 @Entity
 @EntityListeners(IDInterceptor.class)
 @Table(name = TableName.BRANCH)
-@TableGenerator(name = "BRANCH_GEN", table = "ID_GEN",valueColumnName = "GEN_VAL", pkColumnName = "GEN_NAME", pkColumnValue = "BRANCH_GEN",allocationSize = 10)
-@NamedQueries(value = { @NamedQuery(name = "Branch.findAll",query = "SELECT b FROM Branch b  ORDER BY b.name ASC"),
-		@NamedQuery(name = "Branch.findById",query = "SELECT b FROM Branch b WHERE b.id = :id")
-})
+@TableGenerator(name = "BRANCH_GEN", table = "ID_GEN", valueColumnName = "GEN_VAL", pkColumnName = "GEN_NAME", pkColumnValue = "BRANCH_GEN", allocationSize = 10)
+@NamedQueries(value = { @NamedQuery(name = "Branch.findAll", query = "SELECT b FROM Branch b  ORDER BY b.name ASC"),
+		@NamedQuery(name = "Branch.findById", query = "SELECT b FROM Branch b WHERE b.id = :id") })
 @Data
-public class Branch implements Serializable{
+public class Branch implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy = GenerationType.TABLE,generator = "BRANCH_GEN")
+	@GeneratedValue(strategy = GenerationType.TABLE, generator = "BRANCH_GEN")
 	private String id;
 	private String name;
 	private String code;
 	private String description;
 
+	private String address;
+
+	private String prefix;
+
 	@Embedded
-	private UserRecorder recorder;
-	
+	private UserRecorder userRecorder;
+
 	@Version
 	private int version;
 
-	
 }

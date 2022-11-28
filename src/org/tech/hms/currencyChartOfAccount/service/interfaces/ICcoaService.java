@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.tech.hms.branch.Branch;
 import org.tech.hms.coa.ChartOfAccount;
+import org.tech.hms.common.CCOADialogDTO;
 import org.tech.hms.common.dto.coaDto.CcoaDto;
 import org.tech.hms.common.dto.coaDto.YearlyBudgetDto;
 import org.tech.hms.common.dto.obal.ObalCriteriaDto;
@@ -46,4 +47,6 @@ public interface ICcoaService {
 	List<ObalDto> findOpeningBalance(ObalCriteriaDto dto);
 
 	void updateObalByDtos(List<ObalDto> dtoList);
+	
+	public List<CCOADialogDTO> findAllCCOADialogDTO(Currency currency, Branch branch);
 }

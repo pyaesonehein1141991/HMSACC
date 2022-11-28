@@ -2,6 +2,7 @@ package org.tech.hms.currencyChartOfAccount.persistence;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -15,6 +16,8 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.tech.hms.branch.Branch;
 import org.tech.hms.coa.ChartOfAccount;
+import org.tech.hms.codesetup.AccountCodeType;
+import org.tech.hms.common.CCOADialogDTO;
 import org.tech.hms.common.dto.coaDto.YearlyBudgetDto;
 import org.tech.hms.common.dto.obal.ObalCriteriaDto;
 import org.tech.hms.common.dto.obal.ObalDto;
@@ -22,6 +25,7 @@ import org.tech.hms.currency.Currency;
 import org.tech.hms.currencyChartOfAccount.CurrencyChartOfAccount;
 import org.tech.hms.currencyChartOfAccount.persistence.interfaces.ICcoaDAO;
 import org.tech.hms.process.interfaces.IUserProcessService;
+import org.tech.java.component.SystemException;
 import org.tech.java.component.persistence.BasicDAO;
 import org.tech.java.component.persistence.exception.DAOException;
 import org.tech.java.component.service.interfaces.IDataRepService;
@@ -422,6 +426,44 @@ public class CcoaDAO extends BasicDAO implements ICcoaDAO {
 		} catch (PersistenceException pe) {
 			throw translate("Failed to update opening balance of ccoa by dto", pe);
 		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	@Transactional(propagation = Propagation.REQUIRED)
+	public List<CCOADialogDTO> findAllCCOADialogDTO(Currency currency, Branch branch) throws DAOException {
+		List<CCOADialogDTO> resultList = null;
+		try {
+			StringBuffer queryBuffer = new StringBuffer();
+			queryBuffer.append("SELECT New org.tech.hms.common.CCOADialogDTO(c.id, c.coa.acCode, c.coa.acName, ");
+			queryBuffer.append("c.coa.acType, d.dCode, c.currency.code, c.branch.name ) ");
+			queryBuffer.append("FROM CurrencyChartOfAccount c LEFT OUTER JOIN c.department d ");
+			queryBuffer.append("WHERE c.coa.acCodeType NOT IN :codeTypeList ");
+			if (branch != null) {
+				queryBuffer.append("AND c.branch.id = :branchId ");
+			}
+
+			if (currency != null) {
+				queryBuffer.append("AND c.currency.id = :currencyId ");
+			}
+
+			queryBuffer.append("ORDER BY c.coa.acCode ASC ");
+			Query query = em.createQuery(queryBuffer.toString());
+			if (branch != null) {
+				query.setParameter("branchId", branch.getId());
+			}
+
+			if (currency != null) {
+				query.setParameter("currencyId", currency.getId());
+			}
+
+			query.setParameter("codeTypeList", Arrays.asList(AccountCodeType.HEAD, AccountCodeType.GROUP));
+			resultList = query.getResultList();
+
+		} catch (DAOException e) {
+			throw new SystemException(e.getErrorCode(), "Failed to find COA By Branch ID.", e);
+		}
+
+		return resultList;
 	}
 
 }

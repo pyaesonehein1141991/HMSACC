@@ -47,45 +47,46 @@
     TARGET="rules:#ui#manage#chartofaccount#manageChartOfAccount.xhtml"
     TITLE="manageCoa" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="openingBalanceEntry::#ui#manage#openingbalance.xhtml"
-    NAME="output11" PATH="/ui/manage/openingbalance.xhtml"
-    TARGET="rules:#ui#manage#openingbalance.xhtml"
+    ID="manageCredit::#ui#transaction#manageCreditvoucher.xhtml"
+    NAME="output11" PATH="/ui/transaction/manageCreditvoucher.xhtml"
+    TARGET="rules:#ui#transaction#manageCreditvoucher.xhtml"
+    TITLE="manageCredit" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="manageDebit::#ui#transaction#manageDebitvoucher.xhtml"
+    NAME="output12" PATH="/ui/transaction/manageDebitvoucher.xhtml"
+    TARGET="rules:#ui#transaction#manageDebitvoucher.xhtml"
+    TITLE="manageDebit" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="openingBalanceEntry::#ui#manage#openingbalance#openingbalance.xhtml"
+    NAME="output13"
+    PATH="/ui/manage/openingbalance/openingbalance.xhtml"
+    TARGET="rules:#ui#manage#openingbalance#openingbalance.xhtml"
+    TITLE="openingBalanceEntry" model-entity="JSFProcessItemOutput"/>
+   <PROCESS-ITEM-OUTPUT
+    ID="openingBalanceEntry::#ui#manage#branch#manageBranch.xhtml"
+    NAME="output14" PATH="/ui/manage/branch/manageBranch.xhtml"
+    TARGET="rules:#ui#manage#branch#manageBranch.xhtml"
     TITLE="openingBalanceEntry" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="manageLabTestCategory::#ui#manage#labTestCategory#manageLabTestCategory.xhtml"
-    NAME="output12"
+    NAME="output15"
     PATH="/ui/manage/labTestCategory/manageLabTestCategory.xhtml"
     TARGET="rules:#ui#manage#labTestCategory#manageLabTestCategory.xhtml"
     TITLE="manageLabTestCategory" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="manageUnit::#ui#manage#unit#manageUnit.xhtml" NAME="output13"
-    PATH="/ui/manage/unit/manageUnit.xhtml"
-    TARGET="rules:#ui#manage#unit#manageUnit.xhtml" TITLE="manageUnit" model-entity="JSFProcessItemOutput"/>
+    ID="addNewUnit::#ui#manage#unit#addNewUnit.xhtml" NAME="output16"
+    PATH="/ui/manage/unit/addNewUnit.xhtml"
+    TARGET="rules:#ui#manage#unit#addNewUnit.xhtml" TITLE="addNewUnit" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="manageRelation::#ui#manage#relation#manageRelation.xhtml"
-    NAME="output14" PATH="/ui/manage/relation/manageRelation.xhtml"
+    NAME="output17" PATH="/ui/manage/relation/manageRelation.xhtml"
     TARGET="rules:#ui#manage#relation#manageRelation.xhtml"
     TITLE="manageRelation" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="addNewRelation::#ui#manage#relation#addNewRelation.xhtml"
-    NAME="output15" PATH="/ui/manage/relation/addNewRelation.xhtml"
-    TARGET="rules:#ui#manage#relation#addNewRelation.xhtml"
-    TITLE="addNewRelation" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT
     ID="manageGeneric::#ui#manage#generic#manageGeneric.xhtml"
-    NAME="output16" PATH="/ui/manage/generic/manageGeneric.xhtml"
+    NAME="output18" PATH="/ui/manage/generic/manageGeneric.xhtml"
     TARGET="rules:#ui#manage#generic#manageGeneric.xhtml"
     TITLE="manageGeneric" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT
-    ID="addNewGeneric::#ui#manage#generic#addnewGeneric.xhtml"
-    NAME="output17" PATH="/ui/manage/generic/addnewGeneric.xhtml"
-    TARGET="rules:#ui#manage#generic#addnewGeneric.xhtml"
-    TITLE="addNewGeneric" model-entity="JSFProcessItemOutput"/>
-   <PROCESS-ITEM-OUTPUT
-    ID="manageSpecialist::#ui#manage#specialist#manageSpecialist.xhtml"
-    NAME="output18" PATH="/ui/manage/specialist/manageSpecialist.xhtml"
-    TARGET="rules:#ui#manage#specialist#manageSpecialist.xhtml"
-    TITLE="manageSpecialist" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="addNewSpecialist::#ui#manage#specialist#addnewSpecialist.xhtml"
     NAME="output19" PATH="/ui/manage/specialist/addnewSpecialist.xhtml"
@@ -159,10 +160,10 @@
     NAME="output32" PATH="/dialog/coaDialog.xhtml"
     TARGET="rules:#dialog#coaDialog.xhtml" TITLE="coaDialog" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
-    ID="packagingunitDialog::#dialog#packagingunitDialog.xhtml"
-    NAME="output33" PATH="/dialog/packagingunitDialog.xhtml"
-    TARGET="rules:#dialog#packagingunitDialog.xhtml"
-    TITLE="packagingunitDialog" model-entity="JSFProcessItemOutput"/>
+    ID="ccoaAcountDialog::#dialog#ccoaAcountDialog.xhtml"
+    NAME="output33" PATH="/dialog/ccoaAcountDialog.xhtml"
+    TARGET="rules:#dialog#ccoaAcountDialog.xhtml"
+    TITLE="ccoaAcountDialog" model-entity="JSFProcessItemOutput"/>
    <PROCESS-ITEM-OUTPUT
     ID="manageCountry::#ui#manage#Country#manageCountry.xhtml"
     NAME="output34" PATH="/ui/manage/Country/manageCountry.xhtml"
@@ -439,6 +440,16 @@
   PATH="/dialog/provinceDialog.xhtml" SHAPE="304,33,0,0" model-entity="JSFProcessGroup"/>
  <PROCESS-ITEM NAME="rules:#ui#currencyrate#rateMonthlyCurrency.xhtml"
   PATH="/ui/currencyrate/rateMonthlyCurrency.xhtml" SHAPE="304,2001,0,0" model-entity="JSFProcessGroup"/>
- <PROCESS-ITEM NAME="rules:#ui#manage#openingbalance.xhtml"
-  PATH="/ui/manage/openingbalance.xhtml" SHAPE="304,2001,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM
+  NAME="rules:#ui#manage#openingbalance#openingbalance.xhtml"
+  PATH="/ui/manage/openingbalance/openingbalance.xhtml"
+  SHAPE="304,2001,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#manage#branch#manageBranch.xhtml"
+  PATH="/ui/manage/branch/manageBranch.xhtml" SHAPE="304,2113,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#transaction#manageCreditvoucher.xhtml"
+  PATH="/ui/transaction/manageCreditvoucher.xhtml" SHAPE="304,2001,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#ui#transaction#manageDebitvoucher.xhtml"
+  PATH="/ui/transaction/manageDebitvoucher.xhtml" SHAPE="304,2113,0,0" model-entity="JSFProcessGroup"/>
+ <PROCESS-ITEM NAME="rules:#dialog#ccoaAcountDialog.xhtml"
+  PATH="/dialog/ccoaAcountDialog.xhtml" SHAPE="304,2001,0,0" model-entity="JSFProcessGroup"/>
 </PROCESS>

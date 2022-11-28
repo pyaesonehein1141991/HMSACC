@@ -2,6 +2,7 @@ package org.tech.hms.currency.persistence;
 
 import java.util.List;
 
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
@@ -51,7 +52,7 @@ public class CurrerncyDAO extends BasicDAO implements ICurrencyDAO{
 		List<MonthlyRateDto> result = null;
 		try {
 			StringBuffer sf = new StringBuffer();
-			sf.append("SELECT NEW org.ace.accounting.dto.MonthlyRateDto(c.id,c.code,c.description,");
+			sf.append("SELECT NEW org.tech.hms.common.dto.coaDto.MonthlyRateDto(c.id,c.code,c.description,");
 			sf.append("c." + BusinessUtil.getMonthlyRateFormula(1) + ",c." + BusinessUtil.getMonthlyRateFormula(2) + ",c." + BusinessUtil.getMonthlyRateFormula(3) + ",c.");
 			sf.append(BusinessUtil.getMonthlyRateFormula(4) + ",c." + BusinessUtil.getMonthlyRateFormula(5) + ",c." + BusinessUtil.getMonthlyRateFormula(6) + ",c.");
 			sf.append(BusinessUtil.getMonthlyRateFormula(7) + ",c." + BusinessUtil.getMonthlyRateFormula(8) + ",c." + BusinessUtil.getMonthlyRateFormula(9) + ",c.");
@@ -91,5 +92,18 @@ public class CurrerncyDAO extends BasicDAO implements ICurrencyDAO{
 		}
 	}
 
-	
+	@Transactional(propagation = Propagation.REQUIRED)
+	public Currency findHomeCurrency() throws DAOException {
+		Currency currency = null;
+		try {
+			Query q = em.createNamedQuery("Currency.findHomeCurrency");
+			currency = (Currency) q.getSingleResult();
+		} catch (NoResultException re) {
+			return null;
+		} catch (PersistenceException pe) {
+			throw translate("Failed to find Home Currency", pe);
+		}
+		return currency;
+	}
+
 }
