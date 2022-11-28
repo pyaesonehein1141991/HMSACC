@@ -145,20 +145,40 @@ public class CcoaService extends DataRepService<CurrencyChartOfAccount> implemen
 
 	@Override
 	public List<CcoaDto> findAllCcoaDtos() {
-		// TODO Auto-generated method stub
-		return null;
+		List<CcoaDto> result = null;
+		try {
+			result = ccoaDAO.findAllCcoaDtos();
+		} catch (DAOException e) {
+			throw new SystemException(e.getErrorCode(), "Failed to find all of CcoaDtos)", e);
+		}
+		return result;
 	}
 
 	@Override
 	public List<CurrencyChartOfAccount> findBudgetFigure(String branchId) {
-		// TODO Auto-generated method stub
-		return null;
+		List<CurrencyChartOfAccount> ccoa = null;
+		try {
+			ccoa = ccoaDAO.findBudgetFigure(branchId);
+		} catch (DAOException e) {
+			throw new SystemException(e.getErrorCode(), "Failed to find Yearly Budget Figure.", e);
+		}
+		return ccoa;
 	}
 
 	@Override
 	public BigDecimal finddblBalance(StringBuffer sf, ChartOfAccount coa, String budgetYear, Currency currency,
 			Branch branch) {
-		// TODO Auto-generated method stub
+//		BigDecimal result = BigDecimal.ZERO;
+//		try {
+//			result = ccoaDAO.finddblBalance(sf, coa, budgetYear, currency, branch);
+//			if (result == null || result.equals(BigDecimal.ZERO)) {
+//				sf = new StringBuffer(sf.toString().replace("FROM CurrencyChartOfAccount", "FROM CcoaHistory"));
+//				result = ccoaHistoryDAO.finddblBalance(sf, coa, budgetYear, currency, branch);
+//			}
+//		} catch (DAOException e) {
+//			throw new SystemException(e.getErrorCode(), "Failed to find COA By Branch ID.", e);
+//		}
+//		return result;
 		return null;
 	}
 

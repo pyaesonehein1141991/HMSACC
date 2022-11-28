@@ -6,6 +6,7 @@ import java.util.List;
 import org.tech.hms.branch.Branch;
 import org.tech.hms.coa.ChartOfAccount;
 import org.tech.hms.common.CCOADialogDTO;
+import org.tech.hms.common.dto.coaDto.CcoaDto;
 import org.tech.hms.common.dto.coaDto.YearlyBudgetDto;
 import org.tech.hms.common.dto.obal.ObalCriteriaDto;
 import org.tech.hms.common.dto.obal.ObalDto;
@@ -54,6 +55,10 @@ public interface ICcoaDAO {
 	List<ObalDto> findObal(ObalCriteriaDto dto) throws DAOException;
 
 	void updateCcoaByObalDtos(List<ObalDto> dtoList) throws DAOException;
-	
+
 	public List<CCOADialogDTO> findAllCCOADialogDTO(Currency currency, Branch branch) throws DAOException;
+
+	List<CcoaDto> findAllCcoaDtos() throws DAOException;
+
+	List<CurrencyChartOfAccount> findBudgetFigure(String branchId) throws DAOException;
 }

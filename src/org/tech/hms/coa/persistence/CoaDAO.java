@@ -26,7 +26,7 @@ public class CoaDAO extends BasicDAO implements ICoaDAO {
 	public List<CoaDTO> findALLDTO() throws DAOException {
 		try {
 			TypedQuery<CoaDTO> q = em.createQuery("SELECT NEW " + CoaDTO.class.getName()
-					+ "(c.id, c.acName, c.acCode, c.acType,c.ibsbACode) FROM ChartOfAccount c ORDER BY c.acType ASC",
+					+ "(c.id, c.acName, c.acCode, c.acType,c.acCodeType,c.ibsbACode) FROM ChartOfAccount c ORDER BY c.acType ASC",
 					CoaDTO.class);
 			return q.getResultList();
 		} catch (NoResultException ne) {

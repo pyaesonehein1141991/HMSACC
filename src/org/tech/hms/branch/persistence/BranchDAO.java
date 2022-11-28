@@ -10,6 +10,7 @@ import javax.persistence.TypedQuery;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.tech.hms.branch.Branch;
 import org.tech.hms.branch.persistence.interfaces.IBranchDAO;
 import org.tech.hms.common.dto.brachDto.BranchDTO;
 import org.tech.java.component.persistence.BasicDAO;
@@ -40,6 +41,20 @@ public class BranchDAO extends BasicDAO implements IBranchDAO {
 		} catch (PersistenceException e) {
 			throw translate("Failed to delete branch", e);
 		}
+	}
+
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED, readOnly = true)
+	public List<Branch> findAll() throws DAOException {
+		List<Branch> result = null;
+		try {
+			TypedQuery<Branch> q = em.createNamedQuery("Branch.findAll", Branch.class);
+			result = q.getResultList();
+			em.flush();
+		} catch (PersistenceException pe) {
+			throw translate("Failed to find all of Branch", pe);
+		}
+		return result;
 	}
 
 }

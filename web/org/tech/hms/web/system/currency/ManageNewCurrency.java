@@ -1,9 +1,9 @@
 package org.tech.hms.web.system.currency;
 
 import java.io.Serializable;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,15 +17,14 @@ import org.tech.java.web.common.BaseBean;
 import lombok.Getter;
 import lombok.Setter;
 
-@Named(value = "ManageCurrencyActionBean")
+@Named(value = "ManageNewCurrency")
 @Scope(value = "view")
-public class ManageCurrencyActionBean extends BaseBean implements Serializable {
+public class ManageNewCurrency extends BaseBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@Autowired
 	protected ICurrencyService currencyService;
-
 	@Getter
 	@Setter
 	private boolean createNew;
@@ -38,13 +37,20 @@ public class ManageCurrencyActionBean extends BaseBean implements Serializable {
 	@Setter
 	private boolean homeCurDisable;
 
-	@Getter
-	private List<Currency> currencyList;
-
 	@PostConstruct
 	public void init() {
-		createNewCurrency();
+		if (isExistParam("currency")) {
+			this.currency = (Currency) getParam("currency");
+		} else {
+			createNewCurrency();
+
+		}
 		loadCurrency();
+	}
+
+	@PreDestroy
+	public void destroy() {
+		removeParam("currency");
 	}
 
 	public void createNewCurrency() {
@@ -53,13 +59,7 @@ public class ManageCurrencyActionBean extends BaseBean implements Serializable {
 		currency.setIsHomeCur(false);
 	}
 
-	public String createCurrency() {
-		return "manageNewcurrency.xhtml?faces-redirect=true";
-	}
-
 	public void loadCurrency() {
-		currencyList = currencyService.findAllCurrency();
-		Currency currency = currencyService.findHomeCurrency();
 		homeCurDisable = currency == null ? false : true;
 	}
 
@@ -80,32 +80,15 @@ public class ManageCurrencyActionBean extends BaseBean implements Serializable {
 		return "managecurrency.xhtml?faces-redirect=true";
 	}
 
-	public String deleteCurrency(Currency currency) {
+	public String updateCurrency() {
 		try {
-			currencyService.deleteCurrency(currency);
-			addInfoMessage(null, MessageId.DELETE_SUCCESS, currency.getCode());
-			currencyList.remove(currency);
+			currencyService.updateCurrency(currency);
+			addInfoMessage(null, MessageId.UPDATE_SUCCESS, currency.getCode());
+			return "managecurrency.xhtml?faces-redirect=true";
 		} catch (SystemException ex) {
 			handleSysException(ex);
 		}
 		return null;
-	}
-
-	public String prepareEditCurrency(Currency currency) {
-		putParam("currency", currency);
-		return "manageNewcurrency.xhtml?faces-redirect=true";
-	}
-
-	public void updateCurrency() {
-		try {
-			currencyService.updateCurrency(currency);
-			addInfoMessage(null, MessageId.UPDATE_SUCCESS, currency.getCode());
-			createNewCurrency();
-			loadCurrency();
-		} catch (SystemException ex) {
-			handleSysException(ex);
-		}
-		loadCurrency();
 	}
 
 }

@@ -86,7 +86,9 @@
 
 			<p:commandButton id="editBtn" value="#{label['COMMON_UPDATE_BTN']}" action="#{ManageCreateNewCoaAction.updateCoa()}" rendered="#{!ManageCreateNewCoaAction.createNew}"
 				update=":coaEntryForm" style="width:70px;" />
-			<br />
+			<p:commandButton id="cancelBtn" value="Cancel" action="manageCoa" process="@this" immediate="true"
+			 style="width:70px;" />
+			 <br/>
 
 			<p:separator style="height:3px;" />
 			<br />

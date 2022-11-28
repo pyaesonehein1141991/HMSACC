@@ -59,7 +59,7 @@ public class AddNewBranchActionBean extends BaseBean implements Serializable {
 
 	public void addNewBranch() {
 		try {
-			branchService.insert(branch);
+			branchService.addNewBranch(branch);
 			addInfoMessage(null, MessageId.INSERT_SUCCESS, branch.getName());
 			createNewBranch();
 			rebindData();

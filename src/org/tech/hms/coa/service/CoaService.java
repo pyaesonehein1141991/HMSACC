@@ -5,6 +5,7 @@ import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,7 +26,7 @@ import org.tech.java.component.persistence.exception.DAOException;
 import org.tech.java.component.service.DataRepService;
 import org.tech.java.component.service.interfaces.IDataRepService;
 
-@Service
+@Service(value = "CoaService")
 public class CoaService extends DataRepService<ChartOfAccount> implements ICoaService {
 
 	@Autowired
@@ -38,6 +39,7 @@ public class CoaService extends DataRepService<ChartOfAccount> implements ICoaSe
 	private IBranchService branchService;
 
 	@Autowired
+	@Qualifier(value = "CcoaService")
 	private IDataRepService<CurrencyChartOfAccount> ccoaService;
 
 	@Autowired

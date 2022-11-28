@@ -2,24 +2,40 @@ package org.tech.hms.currency.service;
 
 import java.util.List;
 
-import javax.annotation.Resource;
-
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.tech.hms.branch.Branch;
+import org.tech.hms.branch.services.interfaces.IBranchService;
+import org.tech.hms.coa.ChartOfAccount;
+import org.tech.hms.coa.service.interfaces.ICoaService;
 import org.tech.hms.common.dto.coaDto.MonthlyRateDto;
 import org.tech.hms.currency.Currency;
 import org.tech.hms.currency.persistence.interfaces.ICurrencyDAO;
 import org.tech.hms.currency.service.interfaces.ICurrencyService;
+import org.tech.hms.currencyChartOfAccount.CurrencyChartOfAccount;
 import org.tech.java.component.SystemException;
 import org.tech.java.component.persistence.exception.DAOException;
 import org.tech.java.component.service.DataRepService;
+import org.tech.java.component.service.interfaces.IDataRepService;
 
 @Service(value = "CurrencyService")
 public class CurrencyService extends DataRepService<Currency> implements ICurrencyService {
 
-	@Resource(name = "CurrerncyDAO")
+	@Autowired
 	private ICurrencyDAO currencyDAO;
+
+	@Autowired
+	private ICoaService coaService;
+
+	@Autowired
+	private IBranchService branchService;
+
+	@Autowired
+	@Qualifier(value = "CcoaService")
+	private IDataRepService<CurrencyChartOfAccount> ccoaService;
 
 	@Transactional(propagation = Propagation.REQUIRED)
 	@Override
@@ -43,8 +59,19 @@ public class CurrencyService extends DataRepService<Currency> implements ICurren
 	@Override
 	public void addNewCurrency(Currency currency) {
 		try {
-			// TODO Business Logic
 			insert(currency);
+			List<ChartOfAccount> coaList = coaService.findAllCoa();
+			List<Branch> branchList = branchService.findAllBranch();
+			for (ChartOfAccount chartOfAccount : coaList) {
+				for (Branch branch : branchList) {
+					CurrencyChartOfAccount ccoa = new CurrencyChartOfAccount();
+					ccoa.setCoa(chartOfAccount);
+					ccoa.setAcName(chartOfAccount.getAcName());
+					ccoa.setBranch(branch);
+					ccoa.setCurrency(currency);
+					ccoaService.insert(ccoa);
+				}
+			}
 		} catch (DAOException e) {
 			throw new SystemException(e.getErrorCode(), "Failed to add currency", e);
 		}

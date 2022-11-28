@@ -7,19 +7,23 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import javax.inject.Named;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Scope;
 import org.tech.hms.coa.ChartOfAccount;
 import org.tech.hms.coa.service.interfaces.ICoaService;
 import org.tech.hms.codesetup.AccountCodeType;
 import org.tech.hms.common.AccountType;
+import org.tech.hms.common.dto.coaDto.CoaDTO;
 import org.tech.hms.common.validation.ErrorMessage;
 import org.tech.hms.common.validation.IDataValidator;
 import org.tech.hms.common.validation.MessageId;
 import org.tech.hms.common.validation.ValidationResult;
 import org.tech.java.component.SystemException;
+import org.tech.java.component.service.interfaces.IDataRepService;
 import org.tech.java.web.common.BaseBean;
 
 import lombok.Getter;
@@ -29,12 +33,14 @@ import lombok.Setter;
 @Scope(value = "view")
 public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 
-	
 	private static final long serialVersionUID = 1L;
-
 
 	@Autowired
 	private ICoaService coaService;
+
+	@Autowired
+	@Qualifier(value = "CoaService")
+	private IDataRepService<ChartOfAccount> dataRepService;
 
 	@Autowired
 	private IDataValidator<ChartOfAccount> accountCodeValidator;
@@ -63,10 +69,24 @@ public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 	@Setter
 	private boolean acCodeDisabled = false;
 
+	private CoaDTO coaDto;
+
 	@PostConstruct
 	public void init() {
 		loadData();
-		createNewCoa();
+		if (isExistParam("coaDto")) {
+			this.coaDto = (CoaDTO) getParam("coaDto");
+			this.coa = dataRepService.findById(ChartOfAccount.class, coaDto.getId());
+			prepareUpdateCoa();
+		} else {
+			createNewCoa();
+		}
+
+	}
+
+	@PreDestroy
+	public void destroy() {
+		removeParam("coaDto");
 	}
 
 	public void createNewCoa() {
@@ -84,22 +104,19 @@ public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 		// sort();
 	}
 
-	public void prepareUpdateCoa(ChartOfAccount coa) {
+	public void prepareUpdateCoa() {
 		acCodeDisabled = true;
 		createNew = false;
-		this.coa = coa;
 		loadHeadList();
 		eventAcCodeType();
 		loadGroupList();
 	}
 
 	public void loadHeadList() {
-
-		if(null != coaList || !coaList.isEmpty()) {
-			headList = coaList.stream().filter(
-					temp -> temp.getAcCodeType().equals(AccountCodeType.HEAD) && temp.getAcType().equals(coa.getAcType()))
-					.collect(Collectors.toList());
-		}else {
+		if (null != coaList || !coaList.isEmpty()) {
+			headList = coaList.stream().filter(temp -> temp.getAcCodeType().equals(AccountCodeType.HEAD)
+					&& temp.getAcType().equals(coa.getAcType())).collect(Collectors.toList());
+		} else {
 			headList = new ArrayList<>();
 		}
 
@@ -155,7 +172,7 @@ public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 		return "manageChartOfAccount.xhtml?faces-redirect=true";
 	}
 
-	public void updateCoa() {
+	public String updateCoa() {
 		ValidationResult result = accountCodeValidator.validate(coa, false);
 		if (result.isVerified()) {
 			try {
@@ -163,15 +180,17 @@ public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 				updateList(coa);
 				addInfoMessage(null, MessageId.UPDATE_SUCCESS, coa.getAcCode());
 				createNewCoa();
+				return "manageChartOfAccount.xhtml?faces-redirect=true";
 			} catch (SystemException ex) {
 				handleSysException(ex);
 			}
 		} else {
-
 			for (ErrorMessage message : result.getErrorMeesages()) {
 				addErrorMessage(message.getId(), message.getErrorcode(), message.getParams());
 			}
+
 		}
+		return null;
 	}
 
 	public String deleteCoa(ChartOfAccount coa) {
@@ -216,11 +235,9 @@ public class ManageCreateNewCoaAction extends BaseBean implements Serializable {
 		return AccountType.values();
 	}
 
-
 	public AccountCodeType[] getAcCodeTypes() {
 		return AccountCodeType.values();
 
 	}
-
 
 }

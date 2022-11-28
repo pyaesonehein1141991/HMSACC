@@ -2,7 +2,6 @@ package org.tech.hms.common.dto.coaDto;
 
 import java.util.Date;
 
-import org.tech.hms.coa.ChartOfAccount;
 import org.tech.hms.codesetup.AccountCodeType;
 import org.tech.hms.common.AccountType;
 
@@ -14,7 +13,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 public class CoaDTO {
-	
+
 	private String id;
 	private String acName;
 
@@ -27,17 +26,15 @@ public class CoaDTO {
 	private Date pDate;
 
 	private String ibsbACode;
-	
 
-	public CoaDTO(String id,String acName,String acCode,AccountType acType,String ibsbACode) {
-		this.id=id;
-		this.acName=acName;
-		this.acCode=acCode;
-		this.acType=acType;
-		this.ibsbACode=ibsbACode;
+	public CoaDTO(String id, String acName, String acCode, AccountType acType, AccountCodeType acCodeType,
+			String ibsbACode) {
+		this.id = id;
+		this.acName = acName;
+		this.acCode = acCode;
+		this.acType = acType;
+		this.acCodeType = acCodeType;
+		this.ibsbACode = ibsbACode;
 	}
-	
-	
-	
 
 }

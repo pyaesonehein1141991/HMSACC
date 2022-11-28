@@ -12,21 +12,21 @@
 						layout="grid" styleClass="ui-panelgrid-blank ui-fluid">
 						<h:panelGrid columns="1" styleClass="jsfgrid">
 							<h:outputText for="code" value="Currency Code" styleClass="input-label mandatory" escape="false" />
-							<p:inputText value="#{ManageCurrencyActionBean.currency.code}" id="code" required="true">
+							<p:inputText value="#{ManageNewCurrency.currency.code}" id="code" required="true">
 							</p:inputText>
 							<p:message display="text" for="code" />
 						</h:panelGrid>
 						
 						<h:panelGrid columns="1" styleClass="jsfgrid">
 							<h:outputText for="symbol" value="Symbol" styleClass="input-label mandatory" escape="false" />
-							<p:inputText value="#{ManageCurrencyActionBean.currency.symbol}" id="symbol" required="true">
+							<p:inputText value="#{ManageNewCurrency.currency.symbol}" id="symbol" required="true">
 							</p:inputText>
 							<p:message display="text" for="symbol" />
 						</h:panelGrid>
 						
 						<h:panelGrid columns="1" styleClass="jsfgrid">
 							<h:outputText for="description" value="#{label['MANAGE_BRAND_DESCRIPTION_LABEL']}" styleClass="input-label" escape="false" />
-							<p:inputText value="#{ManageCurrencyActionBean.currency.description}" id="description" required="true">
+							<p:inputText value="#{ManageNewCurrency.currency.description}" id="description" required="true">
 								<f:validateLength maximum="50" />
 							</p:inputText>
 							<p:message display="text" for="description" />
@@ -34,7 +34,7 @@
 						
 						<h:panelGrid columns="1" styleClass="jsfgrid">
 							<h:outputText for="homecurrency" value="Home Currency" styleClass="input-label mandatory" escape="false" />
-							<p:selectBooleanButton id="homecurrency" value="#{ManageCurrencyActionBean.currency.isHomeCur}" onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:55px;" disabled="#{ManageCurrencyActionBean.homeCurDisable}">
+							<p:selectBooleanButton id="homecurrency" value="#{ManageNewCurrency.currency.isHomeCur}" onLabel="Yes" offLabel="No" onIcon="ui-icon-check" offIcon="ui-icon-close" style="width:55px;" disabled="#{ManageNewCurrency.homeCurDisable}">
 				        </p:selectBooleanButton>
 							<p:message display="text" for="homecurrency" />
 						</h:panelGrid>
@@ -42,11 +42,11 @@
 					</p:panelGrid>
 				</p:panel>
 				<p:panelGrid columns="4" styleClass="ui-panelgrid-blank ui-fluid">
-	   			<p:commandButton id="addBtn" value="#{label['COMMON_ADDNEW_BTN']}" action="#{ManageCurrencyActionBean.addNewCurrency}"
-								rendered="#{ManageCurrencyActionBean.createNew}" oncomplete="PF('currencyTable').clearFilters();" update="currencyEntryForm" style="width:65px;" />
-				<p:commandButton id="editBtn" value="#{label['COMMON_UPDATE_BTN']}" action="#{ManageCurrencyActionBean.updateCurrency}"
-								rendered="#{!ManageCurrencyActionBean.createNew}" oncomplete="PF('currencyTable').filter();" update="@form" style="width:70px;" /><br/>
-				<p:commandButton id="cancleButton" immediate="true" process="@this" value="Cancel" action="#{ManageCurrencyActionBean.createNewCurrency}" update=":currencyEntryForm" style="width:70px;margin-left:-8px;"/>
+	   			<p:commandButton id="addBtn" value="#{label['COMMON_ADDNEW_BTN']}" action="#{ManageNewCurrency.addNewCurrency}"
+								rendered="#{ManageNewCurrency.createNew}" oncomplete="PF('currencyTable').clearFilters();" update="currencyEntryForm" style="width:65px;" />
+				<p:commandButton id="editBtn" value="#{label['COMMON_UPDATE_BTN']}" action="#{ManageNewCurrency.updateCurrency}"
+								rendered="#{!ManageNewCurrency.createNew}" oncomplete="PF('currencyTable').filter();" update="@form" style="width:70px;" /><br/>
+				<p:commandButton id="cancleButton" immediate="true" process="@this" value="Cancel" action="manageCurrency" style="width:70px;margin-left:-8px;"/>
 			</p:panelGrid>
 			<p:separator style="height:3px;"/>
 			</h:form>
