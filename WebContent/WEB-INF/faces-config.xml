@@ -96,6 +96,12 @@
 		</navigation-case>
 		
 		<navigation-case>
+			<from-outcome>gainloseconfig</from-outcome>
+			<to-view-id>/ui/manage/gainlose/exchangeConfig.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
 			<from-outcome>manageCredit</from-outcome>
 			<to-view-id>/ui/transaction/manageCreditvoucher.xhtml</to-view-id>
 			<redirect />
@@ -117,8 +123,14 @@
 		
 		<!-- Branch -->
 		<navigation-case>
-			<from-outcome>openingBalanceEntry</from-outcome>
+			<from-outcome>manageBranch</from-outcome>
 			<to-view-id>/ui/manage/branch/manageBranch.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		
+		<navigation-case>
+			<from-outcome>createBranch</from-outcome>
+			<to-view-id>/ui/manage/branch/createNewBranch.xhtml</to-view-id>
 			<redirect />
 		</navigation-case>
 		

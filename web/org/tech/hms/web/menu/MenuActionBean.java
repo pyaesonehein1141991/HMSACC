@@ -63,7 +63,8 @@ public class MenuActionBean extends BaseBean {
 		for (MainMenuValue mainMenuValue : user.getRole().getMainMenuValueList()) {
 			roleMainMenu = mainMenuValue.getMainMenu();
 			if (mainMenuValue.getSubMenuValueList().size() < 1 && haveAction(roleMainMenu.getAction())) {
-				menuItem = DefaultMenuItem.builder().value(roleMainMenu.getName()).command(roleMainMenu.getAction()).build();
+				menuItem = DefaultMenuItem.builder().value(roleMainMenu.getName()).command(roleMainMenu.getAction())
+						.build();
 				model.getElements().add(menuItem);
 			} else if (mainMenuValue.getSubMenuValueList().size() > 0) {
 				mainMenu = DefaultSubMenu.builder().label(roleMainMenu.getName()).build();
@@ -71,14 +72,16 @@ public class MenuActionBean extends BaseBean {
 				for (SubMenuValue subMenuValue : mainMenuValue.getSubMenuValueList()) {
 					roleSubMenu = subMenuValue.getSubMenu();
 					if (subMenuValue.getMenuItemValueList().size() < 1 && haveAction(roleSubMenu.getAction())) {
-						menuItem = DefaultMenuItem.builder().value(roleSubMenu.getName()).command(roleSubMenu.getAction()).build(); 
+						menuItem = DefaultMenuItem.builder().value(roleSubMenu.getName())
+								.command(roleSubMenu.getAction()).build();
 						mainMenu.getElements().add(menuItem);
 					} else if (subMenuValue.getMenuItemValueList().size() > 0) {
 						subMenu = DefaultSubMenu.builder().label(roleSubMenu.getName()).build();
 						Collections.sort(subMenuValue.getMenuItemValueList());
 						for (MenuItemValue menuItemValue : subMenuValue.getMenuItemValueList()) {
 							roleMenuItem = menuItemValue.getMenuItem();
-							menuItem = DefaultMenuItem.builder().value(roleMenuItem.getName()).command(roleMenuItem.getAction()).build();
+							menuItem = DefaultMenuItem.builder().value(roleMenuItem.getName())
+									.command(roleMenuItem.getAction()).build();
 							menuItem.setCommand(roleMenuItem.getAction());
 							subMenu.getElements().add(menuItem);
 						}
@@ -89,7 +92,7 @@ public class MenuActionBean extends BaseBean {
 			}
 		}
 	}
-	
+
 	private boolean haveAction(String action) {
 		if (action != null && !action.trim().isEmpty()) {
 			return true;

@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.tech.hms.coa.ChartOfAccount;
 import org.tech.hms.common.dto.coaDto.CoaDTO;
+import org.tech.hms.common.dto.coaDto.CoaDialogCriteriaDto;
 
 public interface ICoaService {
 
@@ -16,12 +17,13 @@ public interface ICoaService {
 	List<ChartOfAccount> findAllCoa();
 
 	List<CoaDTO> findAllDTO();
-	
+
 	public ChartOfAccount findCoaByibsbAcCode(String ibsbACode);
-	
+
 	public ChartOfAccount findCoaByAcCode(String acCode);
-	
+
 	public List<ChartOfAccount> findAllCoaByAccountCodeType();
-	
+
+	List<ChartOfAccount> findAllCoaByCriteria(CoaDialogCriteriaDto dto);
 
 }
