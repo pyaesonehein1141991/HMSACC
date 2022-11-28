@@ -15,8 +15,8 @@ import org.tech.java.component.SystemException;
 import org.tech.java.component.persistence.exception.DAOException;
 import org.tech.java.component.service.DataRepService;
 
-@Service(value = "CurrrencyService")
-public class CurrrencyService extends DataRepService<Currency> implements ICurrencyService {
+@Service(value = "CurrencyService")
+public class CurrencyService extends DataRepService<Currency> implements ICurrencyService {
 
 	@Resource(name = "CurrerncyDAO")
 	private ICurrencyDAO currencyDAO;
@@ -64,7 +64,7 @@ public class CurrrencyService extends DataRepService<Currency> implements ICurre
 
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
-	public void deleteCurrency(Currency currency){
+	public void deleteCurrency(Currency currency) {
 		try {
 			// TODO Business Logic
 			delete(currency);
@@ -84,6 +84,7 @@ public class CurrrencyService extends DataRepService<Currency> implements ICurre
 		}
 		return result;
 	}
+
 	@Transactional(propagation = Propagation.REQUIRED)
 	public List<MonthlyRateDto> findForeignCurrencyDto() {
 		List<MonthlyRateDto> result = null;
@@ -94,6 +95,7 @@ public class CurrrencyService extends DataRepService<Currency> implements ICurre
 		}
 		return result;
 	}
+
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void updateAllMonthlyRate(List<MonthlyRateDto> currencyList) {
 		try {
