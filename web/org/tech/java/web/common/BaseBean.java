@@ -15,6 +15,7 @@ import org.primefaces.PrimeFaces;
 import org.springframework.stereotype.Component;
 import org.springframework.web.context.annotation.ApplicationScope;
 import org.tech.hms.common.validation.ErrorMessage;
+import org.tech.hms.currency.Currency;
 import org.tech.java.component.SystemException;
 
 @Component
@@ -34,7 +35,15 @@ public class BaseBean {
 		System.out.println("(ServletContext) getFacesContext().getExternalContext().getContext()" + (ServletContext) getFacesContext().getExternalContext().getContext());
 		return (ServletContext) getFacesContext().getExternalContext().getContext();
 	}
+	   public void selectCCOAAccountCode() {
+	        PrimeFaces.current().dialog().openDynamic(DialogId.CCOA_DIALOG, getDialogOptions(800, 500, 100, 100), null);
+	    }
 
+	  public void selectCCOAAccountCode(Currency currency) {
+	        putParam(ParamId.CURRENCY_DATA, currency);
+	        PrimeFaces.current().dialog().openDynamic(DialogId.CCOA_DIALOG, getDialogOptions(800, 500, 100, 100), null);
+	        
+	    }
 	protected Application getApplication() {
 		return getFacesContext().getApplication();
 	}
@@ -157,7 +166,19 @@ public class BaseBean {
 		}
 		return dialogOptions;
 	}
-
+	 public static Map<String, Object> getDialogOptions(int width, int height, int contentHeight, int contentWidth) {
+	        if (dialogOptions == null) {
+	            dialogOptions = new HashMap<String, Object>();
+	        }
+	        dialogOptions.put("modal", true);
+	        dialogOptions.put("draggable", false);
+	        dialogOptions.put("resizable", false);
+	        dialogOptions.put("width", width);
+	        dialogOptions.put("height", height);
+	        dialogOptions.put("contentHeight", contentHeight + "%");
+	        dialogOptions.put("contentWidth", contentWidth + "%");
+	        return dialogOptions;
+	    }
 	public void selectRole() {
 		PrimeFaces.current().dialog().openDynamic("roleDialog", getDialogOptions(), null);
 	}

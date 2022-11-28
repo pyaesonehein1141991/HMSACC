@@ -15,4 +15,6 @@ public interface ICurrencyDAO {
 	public List<MonthlyRateDto> findForeignCurrencyDto() throws DAOException;
 	
 	public void updateMonthlyRate(MonthlyRateDto cur) throws DAOException;
+	
+	public Currency findHomeCurrency() throws DAOException;
 }

@@ -2,4 +2,5 @@
 <id-config>
 <!-- System -->
 	<class prefix="ISSYS001" name="org.ace.accounting.user.User"/> 
+	<class prefix="ISBR001" name="org.tech.hms.branch.Branch"/>
 </id-config>

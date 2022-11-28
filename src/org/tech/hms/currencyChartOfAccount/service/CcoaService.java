@@ -3,12 +3,15 @@ package org.tech.hms.currencyChartOfAccount.service;
 import java.math.BigDecimal;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 import org.tech.hms.branch.Branch;
 import org.tech.hms.coa.ChartOfAccount;
+import org.tech.hms.common.CCOADialogDTO;
 import org.tech.hms.common.dto.coaDto.CcoaDto;
 import org.tech.hms.common.dto.coaDto.YearlyBudgetDto;
 import org.tech.hms.common.dto.obal.ObalCriteriaDto;
@@ -20,12 +23,17 @@ import org.tech.hms.currencyChartOfAccount.service.interfaces.ICcoaService;
 import org.tech.java.component.SystemException;
 import org.tech.java.component.persistence.exception.DAOException;
 import org.tech.java.component.service.BaseService;
+import org.tech.java.component.service.DataRepService;
+import org.tech.java.component.service.interfaces.IDataRepService;
 
 @Service(value = "CcoaService")
-public class CcoaService extends BaseService implements ICcoaService {
-	@Autowired
+public class CcoaService extends DataRepService<CurrencyChartOfAccount>  implements ICcoaService {
+	
+	@Resource
 	private ICcoaDAO ccoaDAO;
 
+	
+	
 	@Transactional(propagation = Propagation.REQUIRED)
 	public List<CurrencyChartOfAccount> findAll() {
 		List<CurrencyChartOfAccount> list = null;
@@ -185,6 +193,17 @@ public class CcoaService extends BaseService implements ICcoaService {
 		} catch (DAOException e) {
 			throw new SystemException(e.getErrorCode(), "Failed to update opening balance", e);
 		}
+	}
+	@Override
+	@Transactional(propagation = Propagation.REQUIRED)
+	public List<CCOADialogDTO> findAllCCOADialogDTO(Currency currency, Branch branch) {
+		List<CCOADialogDTO> results = null;
+		try {
+			results = ccoaDAO.findAllCCOADialogDTO(currency, branch);
+		} catch (DAOException e) {
+			throw new SystemException(e.getErrorCode(), "Failed to find COA By Branch ID.", e);
+		}
+		return results;
 	}
 
 }

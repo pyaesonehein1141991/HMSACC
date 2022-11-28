@@ -30,8 +30,13 @@ public class CurrrencyService extends DataRepService<Currency> implements ICurre
 	@Transactional(propagation = Propagation.REQUIRED)
 	@Override
 	public Currency findHomeCurrency() {
-		// TODO Auto-generated method stub
-		return null;
+		Currency result = null;
+		try {
+			result = currencyDAO.findHomeCurrency();
+		} catch (DAOException e) {
+			throw new SystemException(e.getErrorCode(), "Failed to find home Currency)", e);
+		}
+		return result;
 	}
 
 	@Transactional(propagation = Propagation.REQUIRED)

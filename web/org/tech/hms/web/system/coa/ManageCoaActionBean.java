@@ -34,7 +34,7 @@ public class ManageCoaActionBean extends BaseBean implements Serializable {
 
 	@PostConstruct
 	public void init() {
-		
+		loadDTOList();
 	}
 	
 	public void initialization() {

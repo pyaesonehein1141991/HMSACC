@@ -3,8 +3,8 @@ package org.tech.hms.common.dto.coaDto;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-import org.hibernate.type.CurrencyType;
 import org.tech.hms.currency.Currency;
+import org.tech.hms.currency.CurrencyType;
 
 
 

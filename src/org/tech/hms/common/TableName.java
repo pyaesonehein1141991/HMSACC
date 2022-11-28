@@ -54,5 +54,8 @@ public class TableName {
 	public static final String EXCHANGECONFIG="EXCHANGECONFIG";
 	public static final String CCOA="CCOA";
 	public static final String SETUP="SETUP";
+	public static final String TRANTYPE="TRANTYPE";
+	public static final String TLF="TLF";
+	public static final String COASETUP="COASETUP";
 
 }

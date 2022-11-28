@@ -19,9 +19,9 @@ public interface ICustomIDGenerator {
 
 	public String getNextId(String key, String productCode, String vocherCodePrefix) throws CustomIDGeneratorException;
 
-	public String getNextId(String key, String branchid, int month, int year, Date settlementDate) throws CustomIDGeneratorException;
+	public String getNextId(String key, int month, int year, Date settlementDate) throws CustomIDGeneratorException;
 
-	public IDGen findCustomIDGenByBranchCodeMonthandYear(String key, int month, int year, String branchId) throws SystemException;
+	public IDGen findCustomIDGenByBranchCodeMonthandYear(String key, int month, int year) throws SystemException;
 
 	public IDGen insert(IDGen idgen) throws DAOException;
 
