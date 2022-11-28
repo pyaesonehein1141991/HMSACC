@@ -1,20 +1,29 @@
 package org.tech.hms.coa.service;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
+import org.tech.hms.branch.Branch;
+import org.tech.hms.branch.services.interfaces.IBranchService;
 import org.tech.hms.coa.ChartOfAccount;
 import org.tech.hms.coa.persistence.interfaces.ICoaDAO;
 import org.tech.hms.coa.service.interfaces.ICoaService;
+import org.tech.hms.common.BusinessUtil;
 import org.tech.hms.common.dto.coaDto.CoaDTO;
 import org.tech.hms.common.dto.coaDto.CoaDialogCriteriaDto;
+import org.tech.hms.currency.Currency;
+import org.tech.hms.currency.service.interfaces.ICurrencyService;
+import org.tech.hms.currencyChartOfAccount.CurrencyChartOfAccount;
+import org.tech.hms.currencyChartOfAccount.service.interfaces.ICcoaService;
 import org.tech.java.component.SystemException;
 import org.tech.java.component.persistence.exception.DAOException;
 import org.tech.java.component.service.DataRepService;
+import org.tech.java.component.service.interfaces.IDataRepService;
 
 @Service
 public class CoaService extends DataRepService<ChartOfAccount> implements ICoaService {
@@ -22,12 +31,42 @@ public class CoaService extends DataRepService<ChartOfAccount> implements ICoaSe
 	@Autowired
 	private ICoaDAO coaDAO;
 
+	@Autowired
+	private ICurrencyService currencyService;
+
+	@Autowired
+	private IBranchService branchService;
+
+	@Autowired
+	private IDataRepService<CurrencyChartOfAccount> ccoaService;
+
+	@Autowired
+	private ICcoaService ccService;
+
 	// create coa
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public void createCoa(ChartOfAccount coa) {
 		try {
+			Calendar cal = Calendar.getInstance();
+			coa.setPDate(cal.getTime());
+			String budInfo = BusinessUtil.getBudgetInfo(coa.getPDate(), 2);
+			List<Currency> curList = currencyService.findAllCurrency();
+			List<Branch> branchList = branchService.findAll(Branch.class);
 			insert(coa);
+
+			CurrencyChartOfAccount ccoa = null;
+			for (Currency currency : curList) {
+				for (Branch branch : branchList) {
+					ccoa = new CurrencyChartOfAccount();
+					ccoa.setCoa(coa);
+					ccoa.setAcName(coa.getAcName());
+					ccoa.setBranch(branch);
+					ccoa.setCurrency(currency);
+					ccoa.setBudget(budInfo);
+					ccoaService.insert(ccoa);
+				}
+			}
 		} catch (DAOException e) {
 			throw new SystemException(e.getErrorCode(), "Fail to create Chart of Account", e);
 		}
@@ -39,6 +78,10 @@ public class CoaService extends DataRepService<ChartOfAccount> implements ICoaSe
 	public ChartOfAccount updateCoa(ChartOfAccount coa) {
 
 		try {
+			for (CurrencyChartOfAccount ccoa : ccService.findCCOAByCOAid(coa.getId())) {
+				ccoa.setAcName(coa.getAcName());
+				ccoaService.update(ccoa);
+			}
 			return update(coa);
 		} catch (DAOException e) {
 			throw new SystemException(e.getErrorCode(), "Fail to update Chart of Account", e);
