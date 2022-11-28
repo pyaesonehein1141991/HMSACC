@@ -46,7 +46,7 @@
 						<h:outputText for="currencyCode" value="#{label['MANAGE_CURRENCY_CURRENCYCODE_LABEL']}" styleClass="input-label" />
 						<p:selectOneMenu id="currencyCode" value="#{ManageOpeningBalance.dto.curId}">
 							<f:selectItem itemLabel="Select One" />
-							<f:selectItems itemLabel="#{currency.currencyCode}" itemValue="#{currency.id}" value="#{ManageOpeningBalance.currencyList}" var="currency" />
+							<f:selectItems itemLabel="#{currency.code}" itemValue="#{currency.id}" value="#{ManageOpeningBalance.currencyList}" var="currency" />
 							<p:ajax process="@this" update="@this" />
 						</p:selectOneMenu>
 					</p:panelGrid>
@@ -87,7 +87,7 @@
 					<h:outputText value="#{dto.department == null ? '' : dto.department.dCode}" />
 				</p:column>
 				<p:column headerText="#{label['MANAGE_OBA_CUR_LABEL']}" style="width:90px">
-					<h:outputText value="#{dto.currency.currencyCode}" />
+					<h:outputText value="#{dto.currency.code}" />
 				</p:column>
 				<p:column headerText="#{label['MANAGE_OBAL_OBAL_LABEL']}" style="width:120px" styleClass="#{dto.error and dto.oBalDoubleValue==0 ? 'errorCell' : 'textOnRight'}">
 					<p:cellEditor>
