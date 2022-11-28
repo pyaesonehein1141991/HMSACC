@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
@@ -22,18 +21,14 @@ import org.tech.hms.currencyChartOfAccount.persistence.interfaces.ICcoaDAO;
 import org.tech.hms.currencyChartOfAccount.service.interfaces.ICcoaService;
 import org.tech.java.component.SystemException;
 import org.tech.java.component.persistence.exception.DAOException;
-import org.tech.java.component.service.BaseService;
 import org.tech.java.component.service.DataRepService;
-import org.tech.java.component.service.interfaces.IDataRepService;
 
 @Service(value = "CcoaService")
-public class CcoaService extends DataRepService<CurrencyChartOfAccount>  implements ICcoaService {
-	
+public class CcoaService extends DataRepService<CurrencyChartOfAccount> implements ICcoaService {
+
 	@Resource
 	private ICcoaDAO ccoaDAO;
 
-	
-	
 	@Transactional(propagation = Propagation.REQUIRED)
 	public List<CurrencyChartOfAccount> findAll() {
 		List<CurrencyChartOfAccount> list = null;
@@ -194,6 +189,7 @@ public class CcoaService extends DataRepService<CurrencyChartOfAccount>  impleme
 			throw new SystemException(e.getErrorCode(), "Failed to update opening balance", e);
 		}
 	}
+
 	@Override
 	@Transactional(propagation = Propagation.REQUIRED)
 	public List<CCOADialogDTO> findAllCCOADialogDTO(Currency currency, Branch branch) {
