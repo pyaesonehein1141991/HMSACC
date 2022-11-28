@@ -352,9 +352,9 @@ public class CcoaDAO extends BasicDAO implements ICcoaDAO {
 		try {
 			StringBuffer queryString = new StringBuffer();
 			queryString.append(
-					"SELECT NEW org.ace.accounting.dto.ObalDto(c.coa.acCode,c.acName,c.oBal,c.hOBal,c.coa.acType,c.branch,c.department,c.currency,c.id,c.coa.headId,c.coa.groupId) "
-							+ "FROM CurrencyChartOfAccount c WHERE c.coa.acType IN (org.ace.accounting.system.chartaccount.AccountType.A,org.ace.accounting.system.chartaccount.AccountType.L) "
-							+ "AND c.coa.acCodeType = org.ace.accounting.system.chartaccount.AccountCodeType.DETAIL ");
+					"SELECT NEW org.tech.hms.common.dto.obal.ObalDto(c.coa.acCode,c.acName,c.oBal,c.hOBal,c.coa.acType,c.branch,c.department,c.currency,c.id,c.coa.headId,c.coa.groupId) "
+							+ "FROM CurrencyChartOfAccount c WHERE c.coa.acType IN (org.tech.hms.common.AccountType.A,org.tech.hms.common.AccountType.L) "
+							+ "AND c.coa.acCodeType = org.tech.hms.codesetup.AccountCodeType.DETAIL ");
 
 			if (dto.getBranchId() != null) {
 				queryString.append(" AND c.branch.id=:branchId  ");
@@ -427,7 +427,7 @@ public class CcoaDAO extends BasicDAO implements ICcoaDAO {
 			throw translate("Failed to update opening balance of ccoa by dto", pe);
 		}
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	@Transactional(propagation = Propagation.REQUIRED)
 	public List<CCOADialogDTO> findAllCCOADialogDTO(Currency currency, Branch branch) throws DAOException {
