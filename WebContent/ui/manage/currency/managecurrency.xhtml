@@ -7,7 +7,6 @@
 			<h:form id="currencyEntryForm">
 				<p:growl globalOnly="true" id="messages" showDetail="true"/>
 				 <p:panelGrid columns="2" styleClass="ui-panelgrid-blank ui-fluid">
-					<h:outputText value="AddNewCurrency" styleClass="title" />
 					<p:commandButton id="addBtn" value="#{label['COMMON_ADDNEW_LINK']}" action="#{ManageCurrencyActionBean.createCurrency}" icon="pi pi-plus" />
 				</p:panelGrid>
 				<br/> 
@@ -32,14 +31,14 @@
 					<p:column filterBy="#{currency.description}" filterMatchMode="contains" headerText="#{label['MANAGE_BRAND_DESCRIPTION_LABEL']}">
 						<h:outputText value="#{currency.description}" />
 					</p:column>
+					<p:column style="width:3%; margin:center" styleClass="textOnCenter">
+						<p:commandButton styleClass="white-button" icon="fa fa-paint-brush" action="#{ManageCurrencyActionBean.prepareEditCurrency(currency)}" />
+					</p:column>
 					<p:column style="width:3%; max-width: 5px;" styleClass="textOnCenter">
 						<p:commandButton styleClass="red-button" icon="pi pi-times" action="#{ManageCurrencyActionBean.deleteCurrency(currency)}" 
 							oncomplete="PF('currencyTable').filter();" update="currencyTableForm" >
 							<p:confirm header="Confirmation"  message="#{label['COMMON_MSG_DELETE_CONFIRM_LABEL']}" icon="pi pi-exclamation-triangle" />
 						</p:commandButton>
-					</p:column>
-					<p:column style="width:3%; margin:center" styleClass="textOnCenter">
-						<p:commandButton styleClass="white-button" icon="fa fa-paint-brush" action="#{ManageCurrencyActionBean.prepareUpdateCurrency(currency)}" />
 					</p:column>
 				</p:dataTable>
 			</h:form>

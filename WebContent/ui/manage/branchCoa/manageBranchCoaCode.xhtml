@@ -1,0 +1,49 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui" template="/common/commonLayout.xhtml">
+	<ui:param name="header" value="Currency Chart Of Account Management" />
+	<ui:param name="headerRendered" value="true" />
+	<ui:define name="content">
+		<h:form id="ccoaEntryTableForm">
+			<p:dataTable var="dto" rowIndexVar="index" value="#{ManageBCOAActionBean.ccoaDtoList}" id="ccoaTable" paginatorPosition="bottom" paginator="true" rows="10" widgetVar="ccoaTable"
+				paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}" rowsPerPageTemplate="5,10, 15,20,50"
+				rowKey="#{dto.id}" emptyMessage="Nothing found with given criteria" reflow="true">
+				<p:column width="5%" headerText="No.">
+					<h:outputText value="#{index + 1}" />
+				</p:column>
+				<p:column filterBy="#{dto.acCode}" filterMatchMode="contains" headerText="#{label['MANAGE_ACCOUNT_CODE_LABEL']}">
+					<h:outputText value="#{dto.acCode}" />
+				</p:column>
+				<p:column filterBy="#{dto.acName}" filterMatchMode="contains" headerText="#{label['MANAGE_DESC_LABEL']}">
+					<h:outputText value="#{dto.acName}" />
+				</p:column>
+				<p:column filterBy="#{dto.acType.label}" filterMatchMode="contains" headerText="#{label['MANAGE_ACTYPE_LABEL']}">
+					<h:outputText value="#{dto.acType.label}" />
+				</p:column>
+				<p:column filterBy="#{dto.department}" filterStyle="width:80%" filterMatchMode="exact" headerText="#{label['MANAGE_DCODE_LABEL']}">
+					<f:facet name="filter">
+						<p:selectOneMenu converter="omnifaces.SelectItemsConverter" onchange="PF('ccoaTable').filter()">
+							<f:selectItem itemLabel="All" itemValue="#{null}" noSelectionOption="true" />
+							<f:selectItems value="#{ManageBCOAActionBean.departments}" itemValue="#{dept.dCode}" itemLabel="#{dept.dCode}" var="dept" />
+						</p:selectOneMenu>
+					</f:facet>
+					<h:outputText value="#{dto.department}" />
+				</p:column>
+				<p:column width="10%" filterBy="#{dto.currency}" filterStyle="width:80%" filterMatchMode="exact" headerText="#{label['MANAGE_CURRENCY_CURRENCYCODE_LABEL']}">
+					<f:facet name="filter">
+						<p:selectOneMenu converter="omnifaces.SelectItemsConverter" onchange="PF('ccoaTable').filter()">
+							<f:selectItem itemLabel="All" itemValue="#{null}" noSelectionOption="true" />
+							<f:selectItems value="#{ManageBCOAActionBean.currencyList}" itemValue="#{cur.code}" itemLabel="#{cur.code}" var="cur" />
+						</p:selectOneMenu>
+					</f:facet>
+					<h:outputText value="#{dto.currency}" />
+				</p:column>
+				<p:column width="10%" filterBy="#{dto.branch}" filterStyle="width:80%" filterMatchMode="contains" headerText="#{label['MANAGE_CCOA_BRANCH_LABEL']}">
+					<h:outputText value="#{dto.branch}" />
+				</p:column>
+				<p:column style="width:4%;">
+					<p:commandButton styleClass="green-button" icon="fa fa-paint-brush" action="#{ManageBCOAActionBean.prepareUpdateCcoa(dto)}" process="@this" />
+				</p:column>
+			</p:dataTable>
+		</h:form>
+	</ui:define>
+</ui:composition>

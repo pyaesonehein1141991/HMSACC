@@ -10,8 +10,6 @@ public interface ICoaService {
 
 	void createCoa(ChartOfAccount coa);
 
-	ChartOfAccount updateCoa(ChartOfAccount coa);
-
 	void deleteChartOfAccount(ChartOfAccount chartOfAccount);
 
 	List<ChartOfAccount> findAllCoa();
@@ -25,5 +23,7 @@ public interface ICoaService {
 	public List<ChartOfAccount> findAllCoaByAccountCodeType();
 
 	List<ChartOfAccount> findAllCoaByCriteria(CoaDialogCriteriaDto dto);
+
+	ChartOfAccount updateCoa(ChartOfAccount coa);
 
 }

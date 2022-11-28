@@ -28,14 +28,36 @@
 		            </f:facet>
 					<h:outputText value="#{coa.acType.label}" />
 				</p:column>
+				<p:column filterBy="#{coa.acCodeType}" filterMatchMode="exact" headerText="#{label['MANAGE_COA_CODE_TYPE']}" style="width:120px;">
+					<f:facet name="filter">
+		                <p:selectOneMenu converter="omnifaces.SelectItemsIndexConverter"  onchange="PF('coaTable').filter()" >
+		                    <f:selectItem itemLabel="All" itemValue="#{null}" noSelectionOption="true" />
+		                    <f:selectItems value="#{ManageCoaActionBean.accountCodeTypes}" itemValue="#{type}"  itemLabel="#{type}" var="type"/>
+		                </p:selectOneMenu>
+		            </f:facet>
+					<h:outputText value="#{coa.acCodeType.label}" />
+				</p:column>
 				
 				<p:column headerText="#{label['MANAGE_IBSB_CODE_LABEL']}" style="width:90px;text-align: center;">
 					<h:outputText value="#{coa.ibsbACode}" />
 				</p:column>
 				
+				<p:column style="width:4%;">
+					   <p:commandButton styleClass="green-button" icon="fa fa-paint-brush" action="#{ManageCoaActionBean.prepareUpdateCoa(coa)}" process="@this"/>
+				</p:column>
+				
+				<p:column style="width:4%;">
+				    <p:commandButton styleClass="red-button" icon="fa fa-times" action="#{ManageCoaActionBean.deleteCoa(coa)}" oncomplete="PF('coaTable').filter();" update=":coaEntryTableForm">
+				    	<p:confirm header="Confirmation" message="#{label['COMMON_MSG_DELETE_CONFIRM_LABEL']}" icon="fa fa-exclamation-triangle" />
+				    </p:commandButton>
+				</p:column>
+				
 				
 			</p:dataTable>
 		</h:form>
-		
+		<p:confirmDialog global="true" showEffect="fade" hideEffect="fade">
+		 	<p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" icon="fa fa-check" />
+				<p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no" icon="fa fa-times" />
+		</p:confirmDialog>
 	</ui:define>
 </ui:composition>
