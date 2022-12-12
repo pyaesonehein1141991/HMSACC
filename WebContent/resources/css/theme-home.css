@@ -174,7 +174,19 @@ body .ui-panel .ui-panel-content{
 	display: -webkit-flex;
 	padding: 0;
 }
+.ui-outputlabel .ui-outputlabel-rfi {
+    margin-left: .4em;
+    color: red;
+}
 
+body .ui-button {
+    background-color: #6f8ba0;
+    color: #fff;
+    border: 1px solid #6f8ba0;
+}
+.ui-widget-content .ui-datatable-empty-message{
+	border: 1px solid #c8c8c8 !important;
+}
 /**Un-used css*/
 .header-label {
 	padding: 5px 20px;
@@ -286,4 +298,8 @@ body .ui-panel .ui-panel-content{
 	margin-top: 7px;
 	margin-left: 10px;
 	font-size: 14px;
+}
+
+body .ui-datatable .ui-datatable-data>tr{
+	border: 1px solid #c8c8c8 !important;
 }

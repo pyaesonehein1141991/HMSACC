@@ -1,10 +1,10 @@
 @charset "UTF-8";
 
 /* Header */
-#headerForm{
-	background: #3d2a62;
-    color: white;
-}
+/* #headerForm{ */
+/* 	background: #3d2a62; */
+/*     color: white; */
+/* } */
 
 /* Menu */
 #menu {
@@ -40,13 +40,22 @@
 }
 
 /* Page */
-#centerPanel{
-	width: 100% !important;
-}
+/* #centerPanel{ */
+/* 	width: 85% !important; */
+/* } */
 .pageContent{
     margin: 10px !important;
 }
 
+/* .jsfgrid { */
+/* 	width: 100%; */
+/* 	margin-top: -15px; */
+/* } */
+
+.jsf-mini-grid {
+	width: 100%;
+	margin-top: -5px;
+}
 .jsfgrid{
 	width: 90%
 }

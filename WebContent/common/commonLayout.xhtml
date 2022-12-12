@@ -74,7 +74,7 @@
 		<p:layoutUnit id="left" position="west" size="250" resizable="true" gutter="0"  collapsible="true" rendered="#{sessionScope.LoginUser == null ? false : true}" >
 			<ui:include src="/common/leftmenu.xhtml"/>
 		</p:layoutUnit>
-		<p:layoutUnit id="centerPanel" position="center"  gutter="0" resizable="false" >
+		<p:layoutUnit id="centerPanel" position="center" size="85"  gutter="0">
 			<ui:insert name="content"/>
 		</p:layoutUnit>
 		<p:layoutUnit position="south" resizable="true" rendered="#{sessionScope.LoginUser == null  ? false : true}" gutter="0"> 
